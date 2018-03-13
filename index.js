@@ -1,3 +1,3 @@
-import Formian from './src/index.jsx';
+var Formian = require('./src/index.jsx');
 
-export default Formian;
+module.exports = Formian;
