@@ -19,6 +19,7 @@ class Form extends Component {
 		super(props);
 		this.mapInputsToState = this.mapInputsToState.bind(this);
 		this.addHandlersToChild = this.addHandlersToChild.bind(this);
+		this.setCheckersForChild = this.setCheckersForChild.bind(this);
 		this.renderChildren = this.renderChildren.bind(this);
 		this.autoSubmit = this.autoSubmit.bind(this);
 
@@ -55,26 +56,28 @@ class Form extends Component {
 				|| child.props.required === 'false') {
 					this.validators[key] = this.validators.prevalidated;
 				} else {
-					this.validators[key] = child.props.validator
-					|| this.validators[key.toLowerCase()]
-					|| this.formatters[child.type.name.toLowerCase()]
-					|| this.formatters[child.props.type.toLowerCase()]
-					;
+					this.setCheckersForChild(child, 'validators');
 				}
-				this.formatters[key] = child.props.formatter
-				|| this.formatters[key.toLowerCase()]
-				|| this.formatters[child.type.name.toLowerCase()]
-				|| this.formatters[child.props.type.toLowerCase()]
-				;
+				this.setCheckersForChild(child, 'formatters');
 
-				// set the key value as an empty string
+				// create initial state
 				const target = {};
 				target.value = child.props.defaultValue || '';
 				target.checked = child.props.defaultValue || '';
-				console.log('FORMATTER', child.type.name);
+
 				initialState.formData[key] = this.formatters[key](target);
 			}
 		});
+	}
+
+	setCheckersForChild(child, set) {
+		let key = child.props.name || child.type.name;
+
+		this[set][key] = child.props[set]			// custom checker
+		|| this[set][key.toLowerCase()]				// checker by field name
+		|| this[set][child.type.name.toLowerCase()]	// checker by type name
+		|| this[set][child.props.type.toLowerCase()]// checker by type
+		;
 	}
 
 	addHandlersToChild(child, idx) {
@@ -173,7 +176,6 @@ class Form extends Component {
 	}
 
 	autoSubmit() {
-		console.log('autosubmitting!');
 		clearTimeout(this.submitTimeout);
 		this.submitTimeout = setTimeout(() => {
 			this.onSubmit(SYNTH);

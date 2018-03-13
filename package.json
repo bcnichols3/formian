@@ -38,6 +38,13 @@
         "webpack": "^3.0.0",
         "webpack-bundle-analyzer": "^2.9.0"
     },
+    "bugs": {
+        "url": "https://github.com/bcnichols3/formian/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bcnichols3/formian"
+    },
     "keywords": [
         "react",
         "react-component",

@@ -1,3 +1,3 @@
-import Formian from './src';
+import Formian from './src/index.jsx';
 
 export default Formian;
