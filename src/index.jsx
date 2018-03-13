@@ -193,7 +193,7 @@ class Form extends Component {
 		return (
 			<form
 				id={this.props.id}
-				className={this.props.className}
+				className={'formian-form '+this.props.className}
 				onSubmit={this.onSubmit}
 			>
 				{this.renderChildren()}

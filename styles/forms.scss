@@ -1,0 +1,354 @@
+form.formian-form {
+	width: 100%;
+	display: flex;
+	flex-basis: 100%;
+	flex-flow: column;
+
+	* {
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+
+	div, section {
+		position: relative;
+		z-index: 1;
+		outline: none;
+	}
+
+	@include md-up() {
+		flex-flow: row wrap;
+	}
+
+	label,legend {
+		display: block;
+		text-transform: uppercase;
+		margin: 0;
+		text-align: left;
+	}
+
+	fieldset {
+		@include col(12);
+		border: none;
+		margin: 5px;
+		padding: 0;
+		width: 100%;
+		pointer-events: none;
+
+		.input-container.radio {
+			pointer-events: auto;
+			display: inline-block;
+    		margin: 0 50px 0 0;
+		}
+	}
+
+	.input-container {
+		position: relative;
+		@include col(12);
+
+		@include md-up() { margin: 5px; }
+
+		// global input container styles
+		input,select,textarea {
+			outline: none;
+			resize: none;
+			border: 2px solid $color-secondary;
+			-webkit-appearance: none;
+			-webkit-border-radius: 2px;
+			border-radius: 2px;
+			width: 100%;
+			margin: 5px 0 10px;
+			text-transform: none;
+		    outline: none;
+
+			&[type="text"],&[type="email"],&[type="select"] {
+				padding-left: 5px;
+			}
+
+			&:hover {
+				border-color: $color-tertiary;
+			}
+		}
+
+		// type-specific styling
+		&.name,&.email,&.phone,&.subject {
+			@include md-up() { @include col(6); }
+		}
+
+		// custom syles for check and radio boxes
+		&.checkbox,&.radio,&.onoff {
+			position: relative;
+			display: block;
+			margin: 5px;
+			&:nth-child(5) { margin-bottom: 15px; }
+
+			@include xs-only() {
+				.checkbox-custom { left: 20 }
+				.fa { left: 20 }
+			}
+			// @include sm-up() { @include col(4); }
+
+
+			label {
+				display: flex;
+				cursor: pointer;
+				align-items: center;
+				color: $gray-dark;
+				line-height: 15px;
+				vertical-align: middle;
+			}
+
+			input {
+				opacity: 0;
+				height: 12px;
+				width: 25px;
+				z-index: 2;
+			}
+
+			.checkbox-text,.radio-text,.onoff-text {
+				// font-size: 3em;
+				text-transform: capitalize;
+			}
+
+			.fa {
+				position: absolute;
+				top: -5px;
+				left: -2px;
+				font-size: 1.4em;
+				color: $color-secondary;
+				opacity: 0;
+			}
+
+			.checkbox-custom,.radio-custom,.onoff-custom {
+				position: absolute;
+				left: 0;
+				border: 2px solid $color-secondary;
+				height: 18px;
+				width: 18px;
+				z-index: 1;
+
+				@include sm-up() {
+					border-color: $gray;
+				}
+
+				&:hover,&:focus,&:active {
+					border-color: $color-secondary;
+				}
+			}
+
+			/* Hover and focus states */
+			&:hover input ~ .checkbox-custom,
+			&:focus input ~ .checkbox-custom,
+			&:hover input ~ .onoff-custom,
+			&:focus input ~ .onoff-custom {
+				border-color: $color-secondary;
+				color: $color-secondary;
+			}
+
+			input:focus ~ .radio-custom,
+			input:focus ~ .checkbox-custom,
+			input:focus ~ .onoff-custom {
+				border-color: $color-secondary;
+			}
+
+
+			/* Checked state */
+			& input:checked ~ .checkbox-custom,
+			& input:checked ~ .radio-custom,
+			& input:checked ~ .onoff-custom {
+				.fa { opacity: 1; }
+			}
+
+			/* Hover state whilst checked */
+			&:hover input:not([disabled]):checked ~ .checkbox-custom,
+			&:hover input:not([disabled]):checked ~ .radio-custom,
+			&:hover input:not([disabled]):checked ~ .onoff-custom,
+			& input:checked:focus ~ .checkbox-custom,
+			& input:checked:focus ~ .radio-custom,
+			& input:checked:focus ~ .onoff-custom {
+				border-color: $color-secondary;
+			}
+		}
+
+		// custom syles for on-off switch-type checkboxes
+		&.onoff {
+			input[type="checkbox"] {
+				position: absolute;
+			}
+
+			.onoff-custom {
+				cursor: pointer;
+			    margin: 0 5px;
+				width: 80px;
+				height: 30px;
+				background: $gray;
+				display: block;
+				border-radius: 100px;
+				position: relative;
+			}
+
+			.onoff-custom .custom-icon {
+				position: absolute;
+				top: 3px;
+				left: 3px;
+				width: 20px;
+				height: 20px;
+				background: $white;
+				border-radius: 90px;
+				transition: all 0.3s;
+			}
+
+			input:checked ~ .onoff-custom {
+				background: $color-secondary;
+
+				.custom-icon {
+					left: calc(100% - 25px);
+				}
+			}
+
+			/* Checked state */
+			& input:checked ~ .onoff-custom {
+				color: $color-secondary;
+			}
+		}
+	}
+
+	.input-container.number {
+		&.number-no-wheel {
+			input::-webkit-outer-spin-button,
+			input::-webkit-inner-spin-button {
+			    /* display: none; <- Crashes Chrome on hover */
+			    -webkit-appearance: none;
+			    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+			}
+		}
+	}
+
+	.input-container.select {
+		&::after {
+			position: absolute;
+		    pointer-events: none;
+		    content: "\25BC";
+		    height: 50%;
+		    font-size: 16px;
+		    line-height: 1;
+		    right: 5px;
+		    bottom: 0;
+			color: $color-secondary;
+		}
+
+		&:hover {
+			&::after {
+				color: $color-tertiary;
+			}
+		}
+	}
+
+	.input-container.range {
+		margin: 5px;
+
+		input[type=range] {
+			-webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+			width: 100%; /* Specific width is required for Firefox. */
+			background: transparent; /* Otherwise white in Chrome */
+
+			&::-webkit-slider-thumb {
+				-webkit-appearance: none;
+			}
+
+			&:focus {
+				outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
+			}
+
+			&::-ms-track {
+				width: 100%;
+				cursor: pointer;
+
+				/* Hides the slider so custom styles can be added */
+				background: transparent;
+				border-color: transparent;
+				color: transparent;
+			}
+
+			& {
+				background-color: $gray;
+				border: 0px;
+				height: 10px;
+				border-radius: 90px;
+				margin: 15px 0 25px;
+
+				&:focus {
+					&::-webkit-slider-thumb {
+						background: $color-secondary;
+						border-color: $color-secondary;
+					}
+				}
+			}
+
+			&::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				height: 30px;
+				background: $white;
+				border: 2px solid $gray-dark;
+				border-radius: 2px;
+				width: 20px;
+				cursor: pointer;
+
+				&:hover,&:focus {
+					background: $color-secondary;
+					border-color: $color-secondary;
+				}
+			}
+		}
+
+		input[type="submit"] {
+			background-color: $color-secondary;
+			color: $white;
+			border: none !important;
+			text-transform: uppercase !important;
+			position: relative;
+			transition: background-color 500ms;
+			padding: 15px;
+
+			&:focus, &:hover {
+				background-color: $color-primary;
+				outline: none;
+				border: none;
+			}
+
+			&:disabled {
+				color: $white;
+				background-color: $gray;
+				&:hover, &:focus { background-color: $gray; }
+			}
+		}
+	}
+
+	.error-message {
+		display: none;
+		position: absolute;
+	    bottom: -10%;
+	    right: 102%;
+		width: fit-content;
+		max-width: 150px;
+		@include sm-up() { max-width: 16vw; }
+	    text-align: right;
+	    color: $white;
+		background-color: $red;
+		padding: 10px;
+	    font-size: 14px;
+	    border-radius: 5px;
+
+		& .error { display: block; }
+
+		&::after {
+			content: "\25B6";
+			color: $red;
+			position: absolute;
+			right: -12px;
+			top: calc(50% - 6px);
+		}
+	}
+
+	.error { border-color: $red; }
+}
