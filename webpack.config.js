@@ -4,8 +4,6 @@ const webpack = require('webpack');
 const fs = require('fs');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const plugins = [
 	new webpack.LoaderOptionsPlugin({
@@ -16,19 +14,13 @@ const plugins = [
 			}
 		}
 	}),
-	new ExtractTextPlugin('style.css'),
-	new webpack.EnvironmentPlugin({NODE_ENV: 'development'}),
-	// new BundleAnalyzerPlugin({openAnalyzer: true}),
+	new ExtractTextPlugin('style.css')
 ];
 
-// if (process.env.NODE_ENV === 'production') {
-// 	plugins.push(new webpack.optimize.UglifyJsPlugin());
-// }
-
 module.exports = {
-    entry: ['./browser/index.jsx', './styles/index.scss'],
+    entry: ['./src/index.jsx'],
     output: {
-        path: path.join(__dirname, 'public'),
+        path: path.join(__dirname, 'build'),
         filename: 'bundle.js'
     },
     devtool: 'source-map',
