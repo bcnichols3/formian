@@ -1,0 +1,13 @@
+.formian-form {
+	* {
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+
+	section {
+		display: flex;
+		flex-basis: 100%;
+		flex-flow: row wrap;
+	}
+}

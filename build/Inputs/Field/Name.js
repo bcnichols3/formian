@@ -19,6 +19,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Name = function Name(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "name",
+		text: "Your Name",
 		placeholder: props.placeholder || "name",
 		errMessage: props.errMessage || "Please enter your name"
 	});

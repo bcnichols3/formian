@@ -11,7 +11,8 @@ var _react2 = _interopRequireDefault(_react);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Input = function Input(_ref) {
-	var name = _ref.name,
+	var _ref$name = _ref.name,
+	    name = _ref$name === undefined ? "text" : _ref$name,
 	    dataset = _ref.dataset,
 	    _ref$tabIndex = _ref.tabIndex,
 	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,

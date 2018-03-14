@@ -1,23 +1,13 @@
-form.formian-form {
+.formian-form {
 	width: 100%;
 	display: flex;
 	flex-basis: 100%;
 	flex-flow: column;
 
-	* {
-		box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		-webkit-box-sizing: border-box;
-	}
-
 	div, section {
 		position: relative;
 		z-index: 1;
 		outline: none;
-	}
-
-	@include md-up() {
-		flex-flow: row wrap;
 	}
 
 	label,legend {
@@ -28,7 +18,7 @@ form.formian-form {
 	}
 
 	fieldset {
-		@include col(12);
+		width: 100%;
 		border: none;
 		margin: 5px;
 		padding: 0;
@@ -44,15 +34,13 @@ form.formian-form {
 
 	.input-container {
 		position: relative;
-		@include col(12);
-
-		@include md-up() { margin: 5px; }
+		width: 100%;
 
 		// global input container styles
 		input,select,textarea {
 			outline: none;
 			resize: none;
-			border: 2px solid $color-secondary;
+			border: 2px solid $color-info;
 			-webkit-appearance: none;
 			-webkit-border-radius: 2px;
 			border-radius: 2px;
@@ -66,13 +54,8 @@ form.formian-form {
 			}
 
 			&:hover {
-				border-color: $color-tertiary;
+				border-color: $color-info;
 			}
-		}
-
-		// type-specific styling
-		&.name,&.email,&.phone,&.subject {
-			@include md-up() { @include col(6); }
 		}
 
 		// custom syles for check and radio boxes
@@ -80,14 +63,6 @@ form.formian-form {
 			position: relative;
 			display: block;
 			margin: 5px;
-			&:nth-child(5) { margin-bottom: 15px; }
-
-			@include xs-only() {
-				.checkbox-custom { left: 20 }
-				.fa { left: 20 }
-			}
-			// @include sm-up() { @include col(4); }
-
 
 			label {
 				display: flex;
@@ -115,24 +90,20 @@ form.formian-form {
 				top: -5px;
 				left: -2px;
 				font-size: 1.4em;
-				color: $color-secondary;
+				color: $color-info;
 				opacity: 0;
 			}
 
 			.checkbox-custom,.radio-custom,.onoff-custom {
 				position: absolute;
 				left: 0;
-				border: 2px solid $color-secondary;
+				border: 2px solid $color-info;
 				height: 18px;
 				width: 18px;
 				z-index: 1;
 
-				@include sm-up() {
-					border-color: $gray;
-				}
-
 				&:hover,&:focus,&:active {
-					border-color: $color-secondary;
+					border-color: $color-info;
 				}
 			}
 
@@ -141,14 +112,14 @@ form.formian-form {
 			&:focus input ~ .checkbox-custom,
 			&:hover input ~ .onoff-custom,
 			&:focus input ~ .onoff-custom {
-				border-color: $color-secondary;
-				color: $color-secondary;
+				border-color: $color-info;
+				color: $color-info;
 			}
 
 			input:focus ~ .radio-custom,
 			input:focus ~ .checkbox-custom,
 			input:focus ~ .onoff-custom {
-				border-color: $color-secondary;
+				border-color: $color-info;
 			}
 
 
@@ -166,7 +137,7 @@ form.formian-form {
 			& input:checked:focus ~ .checkbox-custom,
 			& input:checked:focus ~ .radio-custom,
 			& input:checked:focus ~ .onoff-custom {
-				border-color: $color-secondary;
+				border-color: $color-info;
 			}
 		}
 
@@ -199,7 +170,7 @@ form.formian-form {
 			}
 
 			input:checked ~ .onoff-custom {
-				background: $color-secondary;
+				background: $color-info;
 
 				.custom-icon {
 					left: calc(100% - 25px);
@@ -208,7 +179,7 @@ form.formian-form {
 
 			/* Checked state */
 			& input:checked ~ .onoff-custom {
-				color: $color-secondary;
+				color: $color-info;
 			}
 		}
 	}
@@ -234,12 +205,12 @@ form.formian-form {
 		    line-height: 1;
 		    right: 5px;
 		    bottom: 0;
-			color: $color-secondary;
+			color: $color-info;
 		}
 
 		&:hover {
 			&::after {
-				color: $color-tertiary;
+				color: $color-info;
 			}
 		}
 	}
@@ -279,8 +250,8 @@ form.formian-form {
 
 				&:focus {
 					&::-webkit-slider-thumb {
-						background: $color-secondary;
-						border-color: $color-secondary;
+						background: $color-info;
+						border-color: $color-info;
 					}
 				}
 			}
@@ -295,23 +266,23 @@ form.formian-form {
 				cursor: pointer;
 
 				&:hover,&:focus {
-					background: $color-secondary;
-					border-color: $color-secondary;
+					background: $color-info;
+					border-color: $color-info;
 				}
 			}
 		}
 
 		input[type="submit"] {
-			background-color: $color-secondary;
-			color: $white;
-			border: none !important;
+			color: $color-info;
+			background-color: $white;
+			border: 2px solid $color-info;
 			text-transform: uppercase !important;
 			position: relative;
-			transition: background-color 500ms;
 			padding: 15px;
 
 			&:focus, &:hover {
-				background-color: $color-primary;
+				color: $white;
+				background-color: $color-info;
 				outline: none;
 				border: none;
 			}
@@ -319,7 +290,12 @@ form.formian-form {
 			&:disabled {
 				color: $white;
 				background-color: $gray;
-				&:hover, &:focus { background-color: $gray; }
+				border-color: $gray;
+				&:hover, &:focus {
+					color: $white;
+					background-color: $gray;
+					border-color: $gray;
+				}
 			}
 		}
 	}
@@ -331,10 +307,9 @@ form.formian-form {
 	    right: 102%;
 		width: fit-content;
 		max-width: 150px;
-		@include sm-up() { max-width: 16vw; }
 	    text-align: right;
 	    color: $white;
-		background-color: $red;
+		background-color: $color-danger;
 		padding: 10px;
 	    font-size: 14px;
 	    border-radius: 5px;
@@ -343,12 +318,12 @@ form.formian-form {
 
 		&::after {
 			content: "\25B6";
-			color: $red;
+			color: $color-danger;
 			position: absolute;
 			right: -12px;
 			top: calc(50% - 6px);
 		}
 	}
 
-	.error { border-color: $red; }
+	.error { border-color: $color-danger; }
 }

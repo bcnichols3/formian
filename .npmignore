@@ -1,0 +1,6 @@
+src/
+styles/
+npm-debug.log
+.babelrc
+.gitignore
+_deprecated/

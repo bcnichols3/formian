@@ -6,6 +6,10 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _injectCSS = require('./injectCSS');
+
+var _injectCSS2 = _interopRequireDefault(_injectCSS);
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -240,7 +244,7 @@ var Form = function (_Component) {
 				'form',
 				{
 					id: this.props.id,
-					className: this.props.className,
+					className: 'formian-form ' + this.props.className,
 					onSubmit: this.onSubmit
 				},
 				this.renderChildren()

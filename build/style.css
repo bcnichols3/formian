@@ -1,0 +1,262 @@
+.formian-form * {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; }
+
+.formian-form {
+  width: 100%;
+  display: flex;
+  flex-basis: 100%;
+  flex-flow: column; }
+  .formian-form div, .formian-form section {
+    position: relative;
+    z-index: 1;
+    outline: none; }
+  .formian-form label, .formian-form legend {
+    display: block;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: left; }
+  .formian-form fieldset {
+    width: 100%;
+    border: none;
+    margin: 5px;
+    padding: 0;
+    width: 100%;
+    pointer-events: none; }
+    .formian-form fieldset .input-container.radio {
+      pointer-events: auto;
+      display: inline-block;
+      margin: 0 50px 0 0; }
+  .formian-form .input-container {
+    position: relative;
+    width: 100%; }
+    .formian-form .input-container input, .formian-form .input-container select, .formian-form .input-container textarea {
+      outline: none;
+      resize: none;
+      border: 2px solid #31708f;
+      -webkit-appearance: none;
+      -webkit-border-radius: 2px;
+      border-radius: 2px;
+      width: 100%;
+      margin: 5px 0 10px;
+      text-transform: none;
+      outline: none; }
+      .formian-form .input-container input[type="text"], .formian-form .input-container input[type="email"], .formian-form .input-container input[type="select"], .formian-form .input-container select[type="text"], .formian-form .input-container select[type="email"], .formian-form .input-container select[type="select"], .formian-form .input-container textarea[type="text"], .formian-form .input-container textarea[type="email"], .formian-form .input-container textarea[type="select"] {
+        padding-left: 5px; }
+      .formian-form .input-container input:hover, .formian-form .input-container select:hover, .formian-form .input-container textarea:hover {
+        border-color: #31708f; }
+    .formian-form .input-container.checkbox, .formian-form .input-container.radio, .formian-form .input-container.onoff {
+      position: relative;
+      display: block;
+      margin: 5px;
+      /* Hover and focus states */
+      /* Checked state */
+      /* Hover state whilst checked */ }
+      .formian-form .input-container.checkbox label, .formian-form .input-container.radio label, .formian-form .input-container.onoff label {
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        color: #555555;
+        line-height: 15px;
+        vertical-align: middle; }
+      .formian-form .input-container.checkbox input, .formian-form .input-container.radio input, .formian-form .input-container.onoff input {
+        opacity: 0;
+        height: 12px;
+        width: 25px;
+        z-index: 2; }
+      .formian-form .input-container.checkbox .checkbox-text, .formian-form .input-container.checkbox .radio-text, .formian-form .input-container.checkbox .onoff-text, .formian-form .input-container.radio .checkbox-text, .formian-form .input-container.radio .radio-text, .formian-form .input-container.radio .onoff-text, .formian-form .input-container.onoff .checkbox-text, .formian-form .input-container.onoff .radio-text, .formian-form .input-container.onoff .onoff-text {
+        text-transform: capitalize; }
+      .formian-form .input-container.checkbox .fa, .formian-form .input-container.radio .fa, .formian-form .input-container.onoff .fa {
+        position: absolute;
+        top: -5px;
+        left: -2px;
+        font-size: 1.4em;
+        color: #31708f;
+        opacity: 0; }
+      .formian-form .input-container.checkbox .checkbox-custom, .formian-form .input-container.checkbox .radio-custom, .formian-form .input-container.checkbox .onoff-custom, .formian-form .input-container.radio .checkbox-custom, .formian-form .input-container.radio .radio-custom, .formian-form .input-container.radio .onoff-custom, .formian-form .input-container.onoff .checkbox-custom, .formian-form .input-container.onoff .radio-custom, .formian-form .input-container.onoff .onoff-custom {
+        position: absolute;
+        left: 0;
+        border: 2px solid #31708f;
+        height: 18px;
+        width: 18px;
+        z-index: 1; }
+        .formian-form .input-container.checkbox .checkbox-custom:hover, .formian-form .input-container.checkbox .checkbox-custom:focus, .formian-form .input-container.checkbox .checkbox-custom:active, .formian-form .input-container.checkbox .radio-custom:hover, .formian-form .input-container.checkbox .radio-custom:focus, .formian-form .input-container.checkbox .radio-custom:active, .formian-form .input-container.checkbox .onoff-custom:hover, .formian-form .input-container.checkbox .onoff-custom:focus, .formian-form .input-container.checkbox .onoff-custom:active, .formian-form .input-container.radio .checkbox-custom:hover, .formian-form .input-container.radio .checkbox-custom:focus, .formian-form .input-container.radio .checkbox-custom:active, .formian-form .input-container.radio .radio-custom:hover, .formian-form .input-container.radio .radio-custom:focus, .formian-form .input-container.radio .radio-custom:active, .formian-form .input-container.radio .onoff-custom:hover, .formian-form .input-container.radio .onoff-custom:focus, .formian-form .input-container.radio .onoff-custom:active, .formian-form .input-container.onoff .checkbox-custom:hover, .formian-form .input-container.onoff .checkbox-custom:focus, .formian-form .input-container.onoff .checkbox-custom:active, .formian-form .input-container.onoff .radio-custom:hover, .formian-form .input-container.onoff .radio-custom:focus, .formian-form .input-container.onoff .radio-custom:active, .formian-form .input-container.onoff .onoff-custom:hover, .formian-form .input-container.onoff .onoff-custom:focus, .formian-form .input-container.onoff .onoff-custom:active {
+          border-color: #31708f; }
+      .formian-form .input-container.checkbox:hover input ~ .checkbox-custom,
+      .formian-form .input-container.checkbox:focus input ~ .checkbox-custom,
+      .formian-form .input-container.checkbox:hover input ~ .onoff-custom,
+      .formian-form .input-container.checkbox:focus input ~ .onoff-custom, .formian-form .input-container.radio:hover input ~ .checkbox-custom,
+      .formian-form .input-container.radio:focus input ~ .checkbox-custom,
+      .formian-form .input-container.radio:hover input ~ .onoff-custom,
+      .formian-form .input-container.radio:focus input ~ .onoff-custom, .formian-form .input-container.onoff:hover input ~ .checkbox-custom,
+      .formian-form .input-container.onoff:focus input ~ .checkbox-custom,
+      .formian-form .input-container.onoff:hover input ~ .onoff-custom,
+      .formian-form .input-container.onoff:focus input ~ .onoff-custom {
+        border-color: #31708f;
+        color: #31708f; }
+      .formian-form .input-container.checkbox input:focus ~ .radio-custom,
+      .formian-form .input-container.checkbox input:focus ~ .checkbox-custom,
+      .formian-form .input-container.checkbox input:focus ~ .onoff-custom, .formian-form .input-container.radio input:focus ~ .radio-custom,
+      .formian-form .input-container.radio input:focus ~ .checkbox-custom,
+      .formian-form .input-container.radio input:focus ~ .onoff-custom, .formian-form .input-container.onoff input:focus ~ .radio-custom,
+      .formian-form .input-container.onoff input:focus ~ .checkbox-custom,
+      .formian-form .input-container.onoff input:focus ~ .onoff-custom {
+        border-color: #31708f; }
+      .formian-form .input-container.checkbox input:checked ~ .checkbox-custom .fa,
+      .formian-form .input-container.checkbox input:checked ~ .radio-custom .fa,
+      .formian-form .input-container.checkbox input:checked ~ .onoff-custom .fa, .formian-form .input-container.radio input:checked ~ .checkbox-custom .fa,
+      .formian-form .input-container.radio input:checked ~ .radio-custom .fa,
+      .formian-form .input-container.radio input:checked ~ .onoff-custom .fa, .formian-form .input-container.onoff input:checked ~ .checkbox-custom .fa,
+      .formian-form .input-container.onoff input:checked ~ .radio-custom .fa,
+      .formian-form .input-container.onoff input:checked ~ .onoff-custom .fa {
+        opacity: 1; }
+      .formian-form .input-container.checkbox:hover input:not([disabled]):checked ~ .checkbox-custom,
+      .formian-form .input-container.checkbox:hover input:not([disabled]):checked ~ .radio-custom,
+      .formian-form .input-container.checkbox:hover input:not([disabled]):checked ~ .onoff-custom,
+      .formian-form .input-container.checkbox input:checked:focus ~ .checkbox-custom,
+      .formian-form .input-container.checkbox input:checked:focus ~ .radio-custom,
+      .formian-form .input-container.checkbox input:checked:focus ~ .onoff-custom, .formian-form .input-container.radio:hover input:not([disabled]):checked ~ .checkbox-custom,
+      .formian-form .input-container.radio:hover input:not([disabled]):checked ~ .radio-custom,
+      .formian-form .input-container.radio:hover input:not([disabled]):checked ~ .onoff-custom,
+      .formian-form .input-container.radio input:checked:focus ~ .checkbox-custom,
+      .formian-form .input-container.radio input:checked:focus ~ .radio-custom,
+      .formian-form .input-container.radio input:checked:focus ~ .onoff-custom, .formian-form .input-container.onoff:hover input:not([disabled]):checked ~ .checkbox-custom,
+      .formian-form .input-container.onoff:hover input:not([disabled]):checked ~ .radio-custom,
+      .formian-form .input-container.onoff:hover input:not([disabled]):checked ~ .onoff-custom,
+      .formian-form .input-container.onoff input:checked:focus ~ .checkbox-custom,
+      .formian-form .input-container.onoff input:checked:focus ~ .radio-custom,
+      .formian-form .input-container.onoff input:checked:focus ~ .onoff-custom {
+        border-color: #31708f; }
+    .formian-form .input-container.onoff {
+      /* Checked state */ }
+      .formian-form .input-container.onoff input[type="checkbox"] {
+        position: absolute; }
+      .formian-form .input-container.onoff .onoff-custom {
+        cursor: pointer;
+        margin: 0 5px;
+        width: 80px;
+        height: 30px;
+        background: #808080;
+        display: block;
+        border-radius: 100px;
+        position: relative; }
+      .formian-form .input-container.onoff .onoff-custom .custom-icon {
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        background: #ffffff;
+        border-radius: 90px;
+        transition: all 0.3s; }
+      .formian-form .input-container.onoff input:checked ~ .onoff-custom {
+        background: #31708f; }
+        .formian-form .input-container.onoff input:checked ~ .onoff-custom .custom-icon {
+          left: calc(100% - 25px); }
+      .formian-form .input-container.onoff input:checked ~ .onoff-custom {
+        color: #31708f; }
+  .formian-form .input-container.number.number-no-wheel input::-webkit-outer-spin-button,
+  .formian-form .input-container.number.number-no-wheel input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0;
+    /* <-- Apparently some margin are still there even though it's hidden */ }
+  .formian-form .input-container.select::after {
+    position: absolute;
+    pointer-events: none;
+    content: "\25BC";
+    height: 50%;
+    font-size: 16px;
+    line-height: 1;
+    right: 5px;
+    bottom: 0;
+    color: #31708f; }
+  .formian-form .input-container.select:hover::after {
+    color: #31708f; }
+  .formian-form .input-container.range {
+    margin: 5px; }
+    .formian-form .input-container.range input[type=range] {
+      -webkit-appearance: none;
+      /* Hides the slider so that custom slider can be made */
+      width: 100%;
+      /* Specific width is required for Firefox. */
+      background: transparent;
+      /* Otherwise white in Chrome */ }
+      .formian-form .input-container.range input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none; }
+      .formian-form .input-container.range input[type=range]:focus {
+        outline: none;
+        /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */ }
+      .formian-form .input-container.range input[type=range]::-ms-track {
+        width: 100%;
+        cursor: pointer;
+        /* Hides the slider so custom styles can be added */
+        background: transparent;
+        border-color: transparent;
+        color: transparent; }
+      .formian-form .input-container.range input[type=range] {
+        background-color: #808080;
+        border: 0px;
+        height: 10px;
+        border-radius: 90px;
+        margin: 15px 0 25px; }
+        .formian-form .input-container.range input[type=range]:focus::-webkit-slider-thumb {
+          background: #31708f;
+          border-color: #31708f; }
+      .formian-form .input-container.range input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 30px;
+        background: #ffffff;
+        border: 2px solid #555555;
+        border-radius: 2px;
+        width: 20px;
+        cursor: pointer; }
+        .formian-form .input-container.range input[type=range]::-webkit-slider-thumb:hover, .formian-form .input-container.range input[type=range]::-webkit-slider-thumb:focus {
+          background: #31708f;
+          border-color: #31708f; }
+    .formian-form .input-container.range input[type="submit"] {
+      color: #31708f;
+      background-color: #ffffff;
+      border: 2px solid #31708f;
+      text-transform: uppercase !important;
+      position: relative;
+      padding: 15px; }
+      .formian-form .input-container.range input[type="submit"]:focus, .formian-form .input-container.range input[type="submit"]:hover {
+        color: #ffffff;
+        background-color: #31708f;
+        outline: none;
+        border: none; }
+      .formian-form .input-container.range input[type="submit"]:disabled {
+        color: #ffffff;
+        background-color: #808080;
+        border-color: #808080; }
+        .formian-form .input-container.range input[type="submit"]:disabled:hover, .formian-form .input-container.range input[type="submit"]:disabled:focus {
+          color: #ffffff;
+          background-color: #808080;
+          border-color: #808080; }
+  .formian-form .error-message {
+    display: none;
+    position: absolute;
+    bottom: -10%;
+    right: 102%;
+    width: fit-content;
+    max-width: 150px;
+    text-align: right;
+    color: #ffffff;
+    background-color: #a94442;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px; }
+    .formian-form .error-message .error {
+      display: block; }
+    .formian-form .error-message::after {
+      content: "\25B6";
+      color: #a94442;
+      position: absolute;
+      right: -12px;
+      top: calc(50% - 6px); }
+  .formian-form .error {
+    border-color: #a94442; }
+
+/*# sourceMappingURL=style.css.map*/

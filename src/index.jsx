@@ -1,3 +1,5 @@
+import injectCSS from './injectCSS';
+
 import React, {Component, Children} from 'react';
 
 import validators from './validators';
