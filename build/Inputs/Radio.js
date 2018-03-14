@@ -1,16 +1,12 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
-
-var _CustomBox = require('./common/CustomBox');
-
-var _CustomBox2 = _interopRequireDefault(_CustomBox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -36,21 +32,21 @@ var Radio = function Radio(_ref) {
 	    _ref$errMessage = _ref.errMessage,
 	    errMessage = _ref$errMessage === undefined ? "Please select an option" : _ref$errMessage;
 	return _react2.default.createElement(
-		'fieldset',
+		"fieldset",
 		{ id: name, name: name },
 		_react2.default.createElement(
-			'legend',
+			"legend",
 			null,
 			text
 		),
 		options.map(function (option) {
 			return _react2.default.createElement(
-				'div',
-				{ key: option, className: 'input-container radio ' + className },
+				"div",
+				{ key: option, className: "input-container radio " + className },
 				_react2.default.createElement(
-					'label',
+					"label",
 					{ htmlFor: option + '@@' + name },
-					_react2.default.createElement('input', {
+					_react2.default.createElement("input", {
 						id: option + '@@' + name, type: type,
 						tabIndex: tabIndex,
 						name: name,
@@ -61,21 +57,25 @@ var Radio = function Radio(_ref) {
 						checked: dataset[name] === option
 					}),
 					_react2.default.createElement(
-						'div',
-						{ className: 'radio-custom' },
-						_react2.default.createElement(_CustomBox2.default, { name: name, type: type, icon: icon })
-					),
-					_react2.default.createElement(
-						'div',
-						{ className: 'radio-text' },
-						children || option
+						"div",
+						{ className: "radio-custom" },
+						_react2.default.createElement(
+							"div",
+							{ className: "custom-icon" },
+							''
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "radio-text" },
+							children || option
+						)
 					)
 				)
 			);
 		}),
 		errMessage !== false ? _react2.default.createElement(
-			'div',
-			{ className: 'error-message' },
+			"div",
+			{ className: "error-message" },
 			errMessage
 		) : null
 	);

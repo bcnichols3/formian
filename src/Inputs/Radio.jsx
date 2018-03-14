@@ -1,7 +1,5 @@
 import React from 'react';
 
-import CustomBox from './common/CustomBox';
-
 const Radio = ({
 	name, className="", text=name, tabIndex="0", icon, onChange, onFocus, onBlur, children,
 	dataset, options=['option1', 'option2'], defaultValue, type="radio",
@@ -22,10 +20,10 @@ const Radio = ({
 						onFocus={onFocus}
 						checked={dataset[name] === option}
 					/>
-					<div className="radio-custom">
-						<CustomBox name={name} type={type} icon={icon} />
+					<div className="radio-custom" >
+						<div className="custom-icon">{''}</div>
+						<div className="radio-text">{children || option}</div>
 					</div>
-					<div className="radio-text">{children || option}</div>
 				</label>
 			</div>
 		))}

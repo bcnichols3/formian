@@ -24,12 +24,6 @@
 		padding: 0;
 		width: 100%;
 		pointer-events: none;
-
-		.input-container.radio {
-			pointer-events: auto;
-			display: inline-block;
-    		margin: 0 50px 0 0;
-		}
 	}
 
 	.input-container {
@@ -81,7 +75,6 @@
 			}
 
 			.checkbox-text,.radio-text,.onoff-text {
-				// font-size: 3em;
 				text-transform: capitalize;
 			}
 
@@ -94,7 +87,7 @@
 				opacity: 0;
 			}
 
-			.checkbox-custom,.radio-custom,.onoff-custom {
+			.checkbox-custom,.onoff-custom {
 				position: absolute;
 				left: 0;
 				border: 2px solid $color-info;
@@ -116,7 +109,6 @@
 				color: $color-info;
 			}
 
-			input:focus ~ .radio-custom,
 			input:focus ~ .checkbox-custom,
 			input:focus ~ .onoff-custom {
 				border-color: $color-info;
@@ -125,7 +117,6 @@
 
 			/* Checked state */
 			& input:checked ~ .checkbox-custom,
-			& input:checked ~ .radio-custom,
 			& input:checked ~ .onoff-custom {
 				.fa { opacity: 1; }
 			}
@@ -180,6 +171,65 @@
 			/* Checked state */
 			& input:checked ~ .onoff-custom {
 				color: $color-info;
+			}
+		}
+
+		// custom syles for radio pills
+		&.radio {
+			pointer-events: auto;
+			display: inline-block;
+
+			input[type="radio"] {
+				position: absolute;
+			}
+
+			.radio-custom {
+				min-width: 80px;
+				height: 30px;
+				background: $white;
+				border: 2px solid $gray-dark;
+				display: block;
+				border-radius: 100px;
+				position: relative;
+				padding: 0px 5px;
+
+				.custom-icon {
+					position: absolute;
+					top: calc(50% - 9px);
+					left: 4px;
+					width: 18px;
+					height: 18px;
+					box-shadow: 0 0 0 2px $white;
+					border: 2px solid $gray-dark;
+					background-color: $white;
+					border-radius: 90px;
+				}
+				.radio-text {
+					color: $black;
+					background-color: transparent;
+				    padding: 5px 5px 5px 30px;
+					top: 6px;
+					right: 6px;
+				}
+			}
+
+			input:focus ~ .radio-custom {
+				border-color: $color-info;
+
+				.custom-icon {
+					border-color: $color-info;
+				}
+			}
+
+			input:checked ~ .radio-custom {
+				background-color: $color-info;
+				border-color: $color-info;
+				.custom-icon {
+					border-color: $color-info;
+				}
+				.radio-text {
+					color: $white;
+				}
 			}
 		}
 	}

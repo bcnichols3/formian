@@ -125,4 +125,6 @@ For lengthier text, options for bigger buttons or a vertical layout is in the wo
 |[max]|`integer`|`100`|Maximum value for this Range                                                                           |
 |[step]|`integer`|`1`|Step at which the Range increments or decrements                                                                      |
 
-**`Formian.Dataset`, `Formian.Date`, animated placeholders, and so much more are coming soon**
+## Coming soon
+
+**`Formian.Dataset`, `Formian.Date`, easily customized colors, animated placeholders, and so much more are on the horizon**

@@ -1,6 +1,7 @@
-src/
-styles/
 npm-debug.log
 .babelrc
+webpack.config.js
 .gitignore
-_deprecated/
+node_modules
+example/webpack.config.js
+example/package.json
