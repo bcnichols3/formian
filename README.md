@@ -24,7 +24,7 @@ import ReactDOM from 'react-dom';
 import Formian from 'react-formian';
 
 const submitHandler = function(evt) {
-	console.log('hello world, here’s your form data', this.state.formData)
+	console.log('hello world', this.state.formData)
 }
 
 ReactDOM.renderComponent(
@@ -65,7 +65,7 @@ Styles for Formian elements are dynamically injected.
 
 **Some defaults vary type-to-type**
 
-Formian elements are intended to mirror native HTML elements as closely as possible, just with a lot of useful built-in structure and props. The hope is you will be able to trust that Formian has fully extended their [native functionality](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) so these docs should feel (mostly) redundant.
+Formian elements are intended to mirror native HTML elements as closely as possible, just with a lot of useful built-in structure (like `<label>`s) and properties (like `tabindex` for mouseless navigation). The hope is you will be able to trust that Formian has fully extended and utilized HTML's [native functionality](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) so these docs may feel (mostly) redundant.
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
@@ -91,7 +91,7 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 
 **Shared by `Formian.OnOff`, a stylized Checkbox**
 
-An option for passing `0` and `1` for mysql is in the works.
+An option for passing `0` and `1` for MySQL is in the works.
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
@@ -125,4 +125,4 @@ For lengthier text, options for bigger buttons or a vertical layout is in the wo
 |[max]|`integer`|`100`|Maximum value for this Range                                                                           |
 |[step]|`integer`|`1`|Step at which the Range increments or decrements                                                                      |
 
-**`Formian.Dataset`, `Formian.Date` and much more coming soon**
+**`Formian.Dataset`, `Formian.Date`, animated placeholders, and so much more are coming soon**
