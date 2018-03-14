@@ -53,11 +53,11 @@ ReactDOM.renderComponent(
 
 ### Common Child Component Props
 
-**Props in `[]` are optional**
+**Some defaults vary type-to-type**
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|name       |`string`|field type|Required: Key name for the formData object                                                                          |
+|name       |`string`|field type|Required: Key name for the formData object (some child types have a default for ease of use but it's advised to declare names manually)                                                                       |
 |[className]|`string`|`empty string`|Set a CSS class for extra styles           |
 |[text]     |`string`|`name`|Label or Legend text                               |
 |[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                       |
