@@ -53,7 +53,7 @@ Styles for Formian elements are dynamically injected.
 
 ### `Formian.Form` Component API
 
-**All form input elements are children of `Formian.Form. You can also put anything else you might need in as a child; Formian.Form only manipulates Formian inputs.`**
+**All form input elements are children of `Formian.Form`. You can also put anything else you might need in as a child; `Formian.Form` only manipulates Formian inputs.**
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
@@ -65,7 +65,7 @@ Styles for Formian elements are dynamically injected.
 
 **Some defaults vary type-to-type**
 
-Formian elements are intended to mirror native HTML elements as closely as possible, just with a lot of useful built-in structure and props. The hope is you will be able to trust that Formian has fully extended their [native functionality](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) and these docs may seem (mostly) redundant.
+Formian elements are intended to mirror native HTML elements as closely as possible, just with a lot of useful built-in structure and props. The hope is you will be able to trust that Formian has fully extended their [native functionality](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) so these docs should feel (mostly) redundant.
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
@@ -103,13 +103,13 @@ An option for passing `0` and `1` for mysql is in the works.
 
 While you are likely used to declaring Radio buttons one-by-one (like a series of Checkboxes), Formian.Radio creates all radio elements together, wrapped in a `Fieldset`. This means they're declared in your JSX very similarly to a Select, and should tip you off to always ask the question: should this input be a `Radio`, or a `Select`?
 
+For lengthier text, options for bigger buttons or a vertical layout is in the works.
+
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
 |options|`array of strings`|`['option1', 'option2']`|Required: Array of values for this key                                                                             |
 
 ### `Formian.Select` Component API
-
-**`Formian.Dataset` coming soon**
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
@@ -117,10 +117,12 @@ While you are likely used to declaring Radio buttons one-by-one (like a series o
 |[placeholder]|`string`|`props.type`|Placeholder text                            |
 |[errMessage]|`string`|`Please select an option`|Invalid input error message text             |
 
-### Formian.Range Component API
+### `Formian.Range` Component API
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
 |[min]|`integer`|`0`|Minimum value for this Range                                                                           |
 |[max]|`integer`|`100`|Maximum value for this Range                                                                           |
 |[step]|`integer`|`1`|Step at which the Range increments or decrements                                                                      |
+
+**`Formian.Dataset`, `Formian.Date` and much more coming soon**
