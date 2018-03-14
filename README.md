@@ -36,7 +36,14 @@ ReactDOM.renderComponent(
   document.getElementById('main')
 )
 ```
+
+## API
+
+**Props in `[]` are optional**
+
 ### Form Component Props
+
+**This component wraps all other form elements**
 
 |Prop       |Type    |Default    |Description                                 |
 |-----------|:------:|:---------:|--------------------------------------------|
@@ -50,13 +57,13 @@ ReactDOM.renderComponent(
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|name       |`string`|`undefined`|Required: Key name for the formData object                                                                          |
+|name       |`string`|field type|Required: Key name for the formData object                                                                          |
 |[className]|`string`|`empty string`|Set a CSS class for extra styles           |
-|[text]     |`string`|`name`|Label or Legend text                        |
-|[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                     |
-|[defaultValue]|`string` or `boolean`|`empty string` or `false`|Value that the form element should initially render with                                                  |
-|[validator]|`function`|`undefined`|Custom validator function; returns a boolean that asserts an acceptable input. If required is set to `false`, the validator will not run                                                        |
-|[formatter]|`function`|`undefined`|Custom formatter function; manipulates the field value during every onChange event                                   |
+|[text]     |`string`|`name`|Label or Legend text                               |
+|[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                       |
+|[defaultValue]|`boolean` or `string`|`false` or `empty string`|Value that the form element should initially render with                                                                            |
+|[validator]|`function`|`undefined`|Custom validator function; returns a boolean that asserts an acceptable input. If required is set to `false`, the validator will not run                                                          |
+|[formatter]|`function`|`undefined`|Custom formatter function; manipulates the field value during every onChange event                                         |
 
 
 ### Field-Type Component Props
@@ -65,7 +72,6 @@ ReactDOM.renderComponent(
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|name       |`string`|field type|Required: Key name for the formData object                                                                          |
 |[placeholder]|`string`|`undefined`|Placeholder text                            |
 |[errMessage]|`string` or `false`|`Please enter a valid input`|Invalid input error message text (does not render if false)                                   |
 
