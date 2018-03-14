@@ -1,4 +1,6 @@
-A React module for easy, stylish and accessible controlled forms that mimic HTML syntax, and auto-include formatters and front-end validators. Never waste time on forms again.
+A React module for easy, stylish and accessible controlled forms that mimic HTML syntax, and auto-include formatters and front-end validators.
+
+**currently in alpha — no pre-injected styling; use with caution**
 
 This package requires that your project uses React and Webpack.
 
