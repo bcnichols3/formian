@@ -10,7 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = require('./Input');
+var _Input = require('../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -20,7 +20,7 @@ var TextArea = function TextArea(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "textarea",
 		placeholder: props.placeholder || "your message",
-		errMessage: props.errMessage || "Please enter a message"
+		errMessage: props.errMessage || "please enter a message"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		type: 'textarea'

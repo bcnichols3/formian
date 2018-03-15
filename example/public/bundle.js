@@ -8098,6 +8098,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Reset = function Reset(_ref) {
@@ -8106,15 +8110,18 @@ var Reset = function Reset(_ref) {
 	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
-	    text = _ref.text;
+	    style = _ref.style,
+	    _ref$text = _ref.text,
+	    text = _ref$text === undefined ? "restore defaults" : _ref$text;
+
+	if (disabled) className += " disabled";
 	return _react2.default.createElement(
-		"div",
-		{ className: "input-container reset " + className },
-		_react2.default.createElement("input", {
-			type: "reset",
+		_Container2.default,
+		{ type: 'reset', className: className, style: style },
+		_react2.default.createElement('input', {
+			type: 'reset',
 			tabIndex: tabIndex,
-			value: text ? text : "restore defaults",
-			disabled: disabled
+			value: text
 		})
 	);
 };
@@ -8141,25 +8148,32 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Submit = function Submit(_ref) {
 	var disabled = _ref.disabled,
+	    style = _ref.style,
 	    flagAllErrors = _ref.flagAllErrors,
 	    _ref$tabIndex = _ref.tabIndex,
 	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
-	    text = _ref.text;
+	    _ref$text = _ref.text,
+	    text = _ref$text === undefined ? "submit" : _ref$text;
+
+	if (disabled) className += ' disabled';
 	return _react2.default.createElement(
-		"div",
-		{ className: "input-container submit " + className + " " + (disabled ? 'disabled' : '') },
-		_react2.default.createElement("input", {
-			type: "submit",
+		_Container2.default,
+		{ type: 'submit', className: className, style: style },
+		_react2.default.createElement('input', {
+			type: 'submit',
 			tabIndex: tabIndex,
 			onFocus: flagAllErrors,
-			value: text ? text : "submit",
-			disabled: disabled
+			value: text
 		})
 	);
 };
@@ -8186,9 +8200,13 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _CustomBox = __webpack_require__(/*! ./common/CustomBox */ "../src/Inputs/common/CustomBox.jsx");
+var _CustomBox = __webpack_require__(/*! ../common/CustomBox */ "../src/common/CustomBox.jsx");
 
 var _CustomBox2 = _interopRequireDefault(_CustomBox);
+
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8200,6 +8218,7 @@ var Checkbox = function Checkbox(_ref) {
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
 	    onChange = _ref.onChange,
+	    style = _ref.style,
 	    _ref$defaultValue = _ref.defaultValue,
 	    defaultValue = _ref$defaultValue === undefined ? false : _ref$defaultValue,
 	    _ref$type = _ref.type,
@@ -8213,8 +8232,8 @@ var Checkbox = function Checkbox(_ref) {
 	    errMessage = _ref$errMessage === undefined ? "Please check to agree" : _ref$errMessage,
 	    dataset = _ref.dataset;
 	return _react2.default.createElement(
-		'div',
-		{ className: 'input-container ' + type + ' ' + className },
+		_Container2.default,
+		{ type: type, className: className, style: style },
 		_react2.default.createElement(
 			'label',
 			{ htmlFor: name },
@@ -8267,6 +8286,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Datalist = function Datalist(_ref) {
@@ -8289,14 +8312,14 @@ var Datalist = function Datalist(_ref) {
 	    _ref$errMessage = _ref.errMessage,
 	    errMessage = _ref$errMessage === undefined ? "Please select an option" : _ref$errMessage;
 	return _react2.default.createElement(
-		"div",
-		{ className: "input-container datalist " + className },
+		'div',
+		{ className: 'input-container datalist ' + className },
 		_react2.default.createElement(
-			"label",
+			'label',
 			{ htmlFor: name },
 			text
 		),
-		_react2.default.createElement("input", {
+		_react2.default.createElement('input', {
 			list: name,
 			value: dataset[name],
 			onChange: onChange,
@@ -8304,18 +8327,18 @@ var Datalist = function Datalist(_ref) {
 			onFocus: onFocus
 		}),
 		_react2.default.createElement(
-			"datalist",
+			'datalist',
 			{ id: name, placeholder: placeholder, tabIndex: tabIndex },
 			_react2.default.createElement(
-				"select",
+				'select',
 				null,
 				options.map(function (opt) {
-					return (typeof opt === "undefined" ? "undefined" : _typeof(opt)) === 'object' ? _react2.default.createElement("option", {
+					return (typeof opt === 'undefined' ? 'undefined' : _typeof(opt)) === 'object' ? _react2.default.createElement('option', {
 						key: opt.value,
 						label: opt.label || opt.value,
 						value: opt.value,
 						disabled: opt.disabled || false
-					}) : _react2.default.createElement("option", {
+					}) : _react2.default.createElement('option', {
 						key: opt,
 						label: opt,
 						value: opt
@@ -8324,8 +8347,8 @@ var Datalist = function Datalist(_ref) {
 			)
 		),
 		_react2.default.createElement(
-			"div",
-			{ className: "error-message" },
+			'div',
+			{ className: 'error-message' },
 			errMessage
 		)
 	);
@@ -8353,7 +8376,7 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = __webpack_require__(/*! ./Input */ "../src/Inputs/Field/Input.jsx");
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -8370,74 +8393,6 @@ var Email = function Email(props) {
 };
 
 exports.default = Email;
-
-/***/ }),
-
-/***/ "../src/Inputs/Field/Input.jsx":
-/*!*************************************!*\
-  !*** ../src/Inputs/Field/Input.jsx ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Input = function Input(_ref) {
-	var _ref$name = _ref.name,
-	    name = _ref$name === undefined ? "text" : _ref$name,
-	    dataset = _ref.dataset,
-	    _ref$tabIndex = _ref.tabIndex,
-	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
-	    onChange = _ref.onChange,
-	    onBlur = _ref.onBlur,
-	    onFocus = _ref.onFocus,
-	    _ref$type = _ref.type,
-	    type = _ref$type === undefined ? "text" : _ref$type,
-	    _ref$text = _ref.text,
-	    text = _ref$text === undefined ? name : _ref$text,
-	    _ref$placeholder = _ref.placeholder,
-	    placeholder = _ref$placeholder === undefined ? text : _ref$placeholder,
-	    _ref$errMessage = _ref.errMessage,
-	    errMessage = _ref$errMessage === undefined ? "Invalid Input" : _ref$errMessage,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className;
-	return _react2.default.createElement(
-		"div",
-		{ className: "input-container " + type + " " + className },
-		_react2.default.createElement(
-			"label",
-			{ htmlFor: name },
-			text
-		),
-		_react2.default.createElement("input", {
-			id: name, type: type,
-			tabIndex: tabIndex,
-			placeholder: placeholder,
-			onChange: onChange,
-			onBlur: onBlur,
-			onFocus: onFocus,
-			value: dataset[name]
-		}),
-		_react2.default.createElement(
-			"div",
-			{ className: "error-message" },
-			errMessage
-		)
-	);
-};
-
-exports.default = Input;
 
 /***/ }),
 
@@ -8461,7 +8416,7 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = __webpack_require__(/*! ./Input */ "../src/Inputs/Field/Input.jsx");
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -8472,7 +8427,7 @@ var Name = function Name(props) {
 		name: props.name || "name",
 		text: "Your Name",
 		placeholder: props.placeholder || "name",
-		errMessage: props.errMessage || "Please enter your name"
+		errMessage: props.errMessage || "please enter your name"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		className: 'name',
@@ -8504,7 +8459,7 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = __webpack_require__(/*! ./Input */ "../src/Inputs/Field/Input.jsx");
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -8514,7 +8469,7 @@ var Number = function Number(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "number",
 		placeholder: props.placeholder || "number",
-		errMessage: props.errMessage || "Please enter a number",
+		errMessage: props.errMessage || "please enter a number",
 		wheel: props.wheel || false
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
@@ -8547,7 +8502,7 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = __webpack_require__(/*! ./Input */ "../src/Inputs/Field/Input.jsx");
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -8557,7 +8512,7 @@ var Name = function Name(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "password",
 		placeholder: props.placeholder || "password",
-		errMessage: props.errMessage || "Please enter your password"
+		errMessage: props.errMessage || "please enter your password"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		type: 'password'
@@ -8586,7 +8541,7 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = __webpack_require__(/*! ./Input */ "../src/Inputs/Field/Input.jsx");
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -8626,7 +8581,7 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = __webpack_require__(/*! ./Input */ "../src/Inputs/Field/Input.jsx");
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -8636,7 +8591,7 @@ var Text = function Text(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "text",
 		placeholder: props.placeholder || "text",
-		errMessage: props.errMessage || "Please enter your text"
+		errMessage: props.errMessage || "please enter your text"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		type: 'text'
@@ -8667,7 +8622,7 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = __webpack_require__(/*! ./Input */ "../src/Inputs/Field/Input.jsx");
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -8677,7 +8632,7 @@ var TextArea = function TextArea(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "textarea",
 		placeholder: props.placeholder || "your message",
-		errMessage: props.errMessage || "Please enter a message"
+		errMessage: props.errMessage || "please enter a message"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		type: 'textarea'
@@ -8744,6 +8699,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Radio = function Radio(_ref) {
@@ -8759,30 +8718,32 @@ var Radio = function Radio(_ref) {
 	    onFocus = _ref.onFocus,
 	    onBlur = _ref.onBlur,
 	    children = _ref.children,
+	    style = _ref.style,
 	    dataset = _ref.dataset,
 	    _ref$options = _ref.options,
 	    options = _ref$options === undefined ? ['option1', 'option2'] : _ref$options,
-	    defaultValue = _ref.defaultValue,
+	    _ref$defaultValue = _ref.defaultValue,
+	    defaultValue = _ref$defaultValue === undefined ? options[0] : _ref$defaultValue,
 	    _ref$type = _ref.type,
 	    type = _ref$type === undefined ? "radio" : _ref$type,
 	    _ref$errMessage = _ref.errMessage,
 	    errMessage = _ref$errMessage === undefined ? "Please select an option" : _ref$errMessage;
 	return _react2.default.createElement(
-		"fieldset",
+		'fieldset',
 		{ id: name, name: name },
 		_react2.default.createElement(
-			"legend",
+			'legend',
 			null,
 			text
 		),
 		options.map(function (option) {
 			return _react2.default.createElement(
-				"div",
-				{ key: option, className: "input-container radio " + className },
+				_Container2.default,
+				{ key: option, type: type, className: className, style: style },
 				_react2.default.createElement(
-					"label",
+					'label',
 					{ htmlFor: option + '@@' + name },
-					_react2.default.createElement("input", {
+					_react2.default.createElement('input', {
 						id: option + '@@' + name, type: type,
 						tabIndex: tabIndex,
 						name: name,
@@ -8793,16 +8754,16 @@ var Radio = function Radio(_ref) {
 						checked: dataset[name] === option
 					}),
 					_react2.default.createElement(
-						"div",
-						{ className: "radio-custom" },
+						'div',
+						{ className: 'radio-custom' },
 						_react2.default.createElement(
-							"div",
-							{ className: "custom-icon" },
+							'div',
+							{ className: 'custom-icon' },
 							''
 						),
 						_react2.default.createElement(
-							"div",
-							{ className: "radio-text" },
+							'div',
+							{ className: 'radio-text' },
 							children || option
 						)
 					)
@@ -8810,8 +8771,8 @@ var Radio = function Radio(_ref) {
 			);
 		}),
 		errMessage !== false ? _react2.default.createElement(
-			"div",
-			{ className: "error-message" },
+			'div',
+			{ className: 'error-message' },
 			errMessage
 		) : null
 	);
@@ -8839,6 +8800,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Range = function Range(_ref) {
@@ -8849,6 +8814,7 @@ var Range = function Range(_ref) {
 	    name = _ref$name === undefined ? "range" : _ref$name,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
+	    style = _ref.style,
 	    _ref$text = _ref.text,
 	    text = _ref$text === undefined ? "choose a range" : _ref$text,
 	    _ref$min = _ref.min,
@@ -8865,16 +8831,15 @@ var Range = function Range(_ref) {
 	    vertical = _ref.vertical;
 
 	return _react2.default.createElement(
-		"div",
-		{
-			className: "input-container range " + className + "\n\t\t\t" + (vertical ? 'vertical' : '') },
+		_Container2.default,
+		{ type: 'range', className: className, style: style },
 		_react2.default.createElement(
-			"label",
+			'label',
 			{ htmlFor: name },
 			text
 		),
-		_react2.default.createElement("input", {
-			id: name, type: "range",
+		_react2.default.createElement('input', {
+			id: name, type: 'range',
 			tabIndex: tabIndex,
 			min: min, max: max, step: step,
 			onChange: onChange,
@@ -8909,6 +8874,10 @@ var _reactGoogleRecaptcha = __webpack_require__(/*! react-google-recaptcha */ ".
 
 var _reactGoogleRecaptcha2 = _interopRequireDefault(_reactGoogleRecaptcha);
 
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Recaptcha = function Recaptcha(_ref) {
@@ -8917,10 +8886,11 @@ var Recaptcha = function Recaptcha(_ref) {
 	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
+	    style = _ref.style,
 	    onChange = _ref.onChange;
 	return _react2.default.createElement(
-		'div',
-		{ name: 'recaptcha', className: 'input-container recaptcha ' + className },
+		_Container2.default,
+		{ type: 'recaptcha', className: className, style: style },
 		_react2.default.createElement(_reactGoogleRecaptcha2.default, {
 			id: 'recaptcha',
 			tabIndex: tabIndex,
@@ -8954,6 +8924,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Container = __webpack_require__(/*! ../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Select = function Select(_ref) {
@@ -8962,6 +8936,7 @@ var Select = function Select(_ref) {
 	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
+	    style = _ref.style,
 	    dataset = _ref.dataset,
 	    _ref$options = _ref.options,
 	    options = _ref$options === undefined ? ['enter options array'] : _ref$options,
@@ -8974,19 +8949,19 @@ var Select = function Select(_ref) {
 	    _ref$placeholder = _ref.placeholder,
 	    placeholder = _ref$placeholder === undefined ? text : _ref$placeholder,
 	    _ref$errMessage = _ref.errMessage,
-	    errMessage = _ref$errMessage === undefined ? "Please select an option" : _ref$errMessage;
+	    errMessage = _ref$errMessage === undefined ? "please select an option" : _ref$errMessage;
 	return _react2.default.createElement(
-		"div",
-		{ className: "input-container select " + className },
+		_Container2.default,
+		{ type: 'select', className: className, style: style },
 		_react2.default.createElement(
-			"label",
+			'label',
 			{ htmlFor: name },
 			text
 		),
 		_react2.default.createElement(
-			"select",
+			'select',
 			{
-				id: name, type: "select",
+				id: name, type: 'select',
 				tabIndex: tabIndex,
 				placeholder: placeholder,
 				onChange: onChange,
@@ -8995,12 +8970,12 @@ var Select = function Select(_ref) {
 				value: dataset[name]
 			},
 			options.map(function (opt) {
-				return (typeof opt === "undefined" ? "undefined" : _typeof(opt)) === 'object' ? _react2.default.createElement("option", {
+				return (typeof opt === 'undefined' ? 'undefined' : _typeof(opt)) === 'object' ? _react2.default.createElement('option', {
 					key: opt.value,
 					label: opt.label || opt.value,
 					value: opt.value,
 					disabled: opt.disabled || false
-				}) : _react2.default.createElement("option", {
+				}) : _react2.default.createElement('option', {
 					key: opt,
 					label: opt,
 					value: opt
@@ -9008,68 +8983,14 @@ var Select = function Select(_ref) {
 			})
 		),
 		_react2.default.createElement(
-			"div",
-			{ className: "error-message" },
+			'div',
+			{ className: 'error-message' },
 			errMessage
 		)
 	);
 };
 
 exports.default = Select;
-
-/***/ }),
-
-/***/ "../src/Inputs/common/CustomBox.jsx":
-/*!******************************************!*\
-  !*** ../src/Inputs/common/CustomBox.jsx ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var unicodes = {
-	onoff: '',
-	checkbox: '\u2714'
-};
-
-var CustomBox = function CustomBox(props) {
-	return _react2.default.createElement(
-		'div',
-		{ className: props.type + '-custom' },
-		resolveIcon(props)
-	);
-};
-
-exports.default = CustomBox;
-
-
-function resolveIcon(props) {
-	if (!props.icon) {
-		return _react2.default.createElement(
-			'div',
-			{ className: 'custom-icon' },
-			unicodes[props.type]
-		);
-	}
-	if (props.icon instanceof Object) {
-		return props.icon;
-	}
-	if (typeof props.icon === 'string' && props.icon.test(/^http?s/)) {
-		return _react2.default.createElement('img', { className: 'custom-icon ' + name + '-custom-icon', src: props.icon });
-	}
-}
 
 /***/ }),
 
@@ -9156,6 +9077,172 @@ exports.default = [_Checkbox2.default, _Datalist2.default, _Email2.default, _Nam
 
 /***/ }),
 
+/***/ "../src/common/Container.jsx":
+/*!***********************************!*\
+  !*** ../src/common/Container.jsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Container = function Container(_ref) {
+	var _ref$type = _ref.type,
+	    type = _ref$type === undefined ? "text" : _ref$type,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className,
+	    _ref$style = _ref.style,
+	    style = _ref$style === undefined ? {} : _ref$style,
+	    children = _ref.children;
+	return _react2.default.createElement(
+		"div",
+		{ className: "input-container " + type + " " + className, style: style },
+		children
+	);
+};
+
+exports.default = Container;
+
+/***/ }),
+
+/***/ "../src/common/CustomBox.jsx":
+/*!***********************************!*\
+  !*** ../src/common/CustomBox.jsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var unicodes = {
+	onoff: '',
+	checkbox: '\u2714'
+};
+
+var CustomBox = function CustomBox(props) {
+	return _react2.default.createElement(
+		'div',
+		{ className: props.type + '-custom' },
+		resolveIcon(props)
+	);
+};
+
+exports.default = CustomBox;
+
+
+function resolveIcon(props) {
+	if (!props.icon) {
+		return _react2.default.createElement(
+			'div',
+			{ className: 'custom-icon' },
+			unicodes[props.type]
+		);
+	}
+	if (props.icon instanceof Object) {
+		return props.icon;
+	}
+	if (typeof props.icon === 'string' && props.icon.test(/^http?s/)) {
+		return _react2.default.createElement('img', { className: 'custom-icon ' + name + '-custom-icon', src: props.icon });
+	}
+}
+
+/***/ }),
+
+/***/ "../src/common/Input.jsx":
+/*!*******************************!*\
+  !*** ../src/common/Input.jsx ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Container = __webpack_require__(/*! ./Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Input = function Input(_ref) {
+	var _ref$name = _ref.name,
+	    name = _ref$name === undefined ? "text" : _ref$name,
+	    dataset = _ref.dataset,
+	    style = _ref.style,
+	    _ref$tabIndex = _ref.tabIndex,
+	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
+	    onChange = _ref.onChange,
+	    onBlur = _ref.onBlur,
+	    onFocus = _ref.onFocus,
+	    _ref$type = _ref.type,
+	    type = _ref$type === undefined ? "text" : _ref$type,
+	    _ref$text = _ref.text,
+	    text = _ref$text === undefined ? name : _ref$text,
+	    _ref$placeholder = _ref.placeholder,
+	    placeholder = _ref$placeholder === undefined ? text : _ref$placeholder,
+	    _ref$errMessage = _ref.errMessage,
+	    errMessage = _ref$errMessage === undefined ? "invalid input" : _ref$errMessage,
+	    _ref$className = _ref.className,
+	    className = _ref$className === undefined ? "" : _ref$className;
+	return _react2.default.createElement(
+		_Container2.default,
+		{ type: type, className: className, style: style },
+		_react2.default.createElement(
+			'label',
+			{ htmlFor: name },
+			text
+		),
+		_react2.default.createElement('input', {
+			id: name, type: type,
+			tabIndex: tabIndex,
+			placeholder: placeholder,
+			onChange: onChange,
+			onBlur: onBlur,
+			onFocus: onFocus,
+			value: dataset[name]
+		}),
+		errMessage !== false ? _react2.default.createElement(
+			'div',
+			{ className: 'error-message' },
+			errMessage
+		) : null
+	);
+};
+
+exports.default = Input;
+
+/***/ }),
+
 /***/ "../src/formatters.js":
 /*!****************************!*\
   !*** ../src/formatters.js ***!
@@ -9175,6 +9262,7 @@ var formatters = {};
 
 // ========== BOX INPUTS
 formatters.checkbox = checkbox;
+formatters.onoff = checkbox;
 formatters.radio = preformatted;
 
 // ========== ARRAY INPUTS
@@ -9428,7 +9516,11 @@ var Form = function (_Component) {
 	}, {
 		key: 'onSubmit',
 		value: function onSubmit(evt) {
-			this.props.disabled ? this.props.onSubmit.call(this, this.state.formData) : this.flagAllErrors();
+			evt.preventDefault();
+			if (this.state.disabled) this.flagAllErrors();else {
+				console.log('ready to go!');
+				this.props.onSubmit.call(this, this.state.formData);
+			}
 		}
 	}, {
 		key: 'recaptcha',
@@ -9487,7 +9579,8 @@ var Form = function (_Component) {
 				{
 					id: this.props.id,
 					className: 'formian-form ' + this.props.className,
-					onSubmit: this.onSubmit
+					onSubmit: this.onSubmit,
+					style: this.props.style
 				},
 				this.renderChildren()
 			);
@@ -9521,7 +9614,8 @@ var version = __webpack_require__(/*! ../package */ "../package.json").version;
 function injectCSS() {
 	var css = document.createElement('link'); // Creates <style></style>
 	css.type = 'text/css'; // Specifies the type
-	css.href = 'https://unpkg.com/react-formian@' + version + '/build/style.css';
+	// css.href = `https://unpkg.com/react-formian@${version}/build/style.css`;
+	css.href = '../../build/style.css';
 	css.rel = 'stylesheet';
 	document.getElementsByTagName('head')[0].appendChild(css);
 }
@@ -9626,27 +9720,54 @@ var _index2 = _interopRequireDefault(_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function submitHandler(formData) {
-	console.log('SUBMITTING FORM', this.state.formData);
+function submitHandler(data) {
+	console.log('SUBMITTING FORM', data);
 }
 
 var Demo = function Demo(props) {
 	return _react2.default.createElement(
 		_index2.default.Form,
-		{ className: 'my-formian-form', onSubmit: submitHandler },
+		{
+			className: 'my-formian-form',
+			onSubmit: submitHandler,
+			style: {
+				width: "50%",
+				margin: "auto",
+				fontSize: "20px"
+			}
+		},
+		_react2.default.createElement(
+			'h1',
+			null,
+			'My Formian Form'
+		),
 		_react2.default.createElement(_index2.default.Text, {
 			name: 'feelings',
 			text: 'How do you feel?',
-			placehoder: 'I feel great'
+			placeholder: 'I feel great!',
+			errMessage: 'At least tell me how you feel...'
 		}),
 		_react2.default.createElement(_index2.default.Checkbox, {
 			name: 'formianAwesome',
-			text: 'Is Formian Awesome?'
+			text: 'Is Formian Awesome?',
+			required: false
+		}),
+		_react2.default.createElement(_index2.default.OnOff, {
+			name: 'carpeDiem',
+			text: 'Seize the Day?',
+			errMessage: 'Do it!'
 		}),
 		_react2.default.createElement(_index2.default.Radio, {
 			name: 'vacations',
-			text: 'Mountains or Beaches?',
+			text: 'Vacation preference?',
 			options: ["mountains", "beaches"]
+		}),
+		_react2.default.createElement(_index2.default.Submit, {
+			text: 'Do it!',
+			style: {
+				width: "50%",
+				margin: "auto"
+			}
 		})
 	);
 };

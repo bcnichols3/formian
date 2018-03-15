@@ -10,7 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = require('./Input');
+var _Input = require('../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -21,7 +21,7 @@ var Name = function Name(props) {
 		name: props.name || "name",
 		text: "Your Name",
 		placeholder: props.placeholder || "name",
-		errMessage: props.errMessage || "Please enter your name"
+		errMessage: props.errMessage || "please enter your name"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		className: 'name',

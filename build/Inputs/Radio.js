@@ -1,12 +1,16 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _Container = require('../common/Container');
+
+var _Container2 = _interopRequireDefault(_Container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23,30 +27,32 @@ var Radio = function Radio(_ref) {
 	    onFocus = _ref.onFocus,
 	    onBlur = _ref.onBlur,
 	    children = _ref.children,
+	    style = _ref.style,
 	    dataset = _ref.dataset,
 	    _ref$options = _ref.options,
 	    options = _ref$options === undefined ? ['option1', 'option2'] : _ref$options,
-	    defaultValue = _ref.defaultValue,
+	    _ref$defaultValue = _ref.defaultValue,
+	    defaultValue = _ref$defaultValue === undefined ? options[0] : _ref$defaultValue,
 	    _ref$type = _ref.type,
 	    type = _ref$type === undefined ? "radio" : _ref$type,
 	    _ref$errMessage = _ref.errMessage,
 	    errMessage = _ref$errMessage === undefined ? "Please select an option" : _ref$errMessage;
 	return _react2.default.createElement(
-		"fieldset",
+		'fieldset',
 		{ id: name, name: name },
 		_react2.default.createElement(
-			"legend",
+			'legend',
 			null,
 			text
 		),
 		options.map(function (option) {
 			return _react2.default.createElement(
-				"div",
-				{ key: option, className: "input-container radio " + className },
+				_Container2.default,
+				{ key: option, type: type, className: className, style: style },
 				_react2.default.createElement(
-					"label",
+					'label',
 					{ htmlFor: option + '@@' + name },
-					_react2.default.createElement("input", {
+					_react2.default.createElement('input', {
 						id: option + '@@' + name, type: type,
 						tabIndex: tabIndex,
 						name: name,
@@ -57,16 +63,16 @@ var Radio = function Radio(_ref) {
 						checked: dataset[name] === option
 					}),
 					_react2.default.createElement(
-						"div",
-						{ className: "radio-custom" },
+						'div',
+						{ className: 'radio-custom' },
 						_react2.default.createElement(
-							"div",
-							{ className: "custom-icon" },
+							'div',
+							{ className: 'custom-icon' },
 							''
 						),
 						_react2.default.createElement(
-							"div",
-							{ className: "radio-text" },
+							'div',
+							{ className: 'radio-text' },
 							children || option
 						)
 					)
@@ -74,8 +80,8 @@ var Radio = function Radio(_ref) {
 			);
 		}),
 		errMessage !== false ? _react2.default.createElement(
-			"div",
-			{ className: "error-message" },
+			'div',
+			{ className: 'error-message' },
 			errMessage
 		) : null
 	);

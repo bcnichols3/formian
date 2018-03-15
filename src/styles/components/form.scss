@@ -29,6 +29,7 @@
 	.input-container {
 		position: relative;
 		width: 100%;
+		font-size: inherit;
 
 		// global input container styles
 		input,select,textarea {
@@ -78,22 +79,20 @@
 				text-transform: capitalize;
 			}
 
-			.fa {
-				position: absolute;
-				top: -5px;
-				left: -2px;
-				font-size: 1.4em;
-				color: $color-info;
-				opacity: 0;
-			}
-
 			.checkbox-custom,.onoff-custom {
 				position: absolute;
 				left: 0;
-				border: 2px solid $color-info;
+				border: 2px solid $gray-dark;
 				height: 18px;
 				width: 18px;
 				z-index: 1;
+
+				.custom-icon,.fa {
+					font-size: 1.4em;
+					position: absolute;
+					color: $color-info;
+					opacity: 0;
+				}
 
 				&:hover,&:focus,&:active {
 					border-color: $color-info;
@@ -118,7 +117,7 @@
 			/* Checked state */
 			& input:checked ~ .checkbox-custom,
 			& input:checked ~ .onoff-custom {
-				.fa { opacity: 1; }
+				.custom-icon,.fa { opacity: 1; }
 			}
 
 			/* Hover state whilst checked */
@@ -143,7 +142,7 @@
 			    margin: 0 5px;
 				width: 80px;
 				height: 30px;
-				background: $gray;
+				background: $white;
 				display: block;
 				border-radius: 100px;
 				position: relative;
@@ -158,19 +157,41 @@
 				background: $white;
 				border-radius: 90px;
 				transition: all 0.3s;
-			}
+			    opacity: 1;
+				box-shadow: 0 0 0 2px $white;
+				border: 2px solid $gray-dark;
+				background-color: $white;
 
-			input:checked ~ .onoff-custom {
-				background: $color-info;
-
-				.custom-icon {
-					left: calc(100% - 25px);
+				&::after {
+					content: 'off';
+					color: $gray-dark;
+					font-size: 12px;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					transition: inherit;
+					padding: 0px 5px 5px 30px;
 				}
 			}
 
 			/* Checked state */
-			& input:checked ~ .onoff-custom {
-				color: $color-info;
+			input:checked ~ .onoff-custom {
+				background: $color-info;
+
+				.custom-icon {
+					border-color: $color-info;
+					left: calc(100% - 25px);
+
+					&::after {
+						content: 'on';
+						color: $white;
+						right: 0;
+						left: unset;
+						padding: 0px 30px 5px 5px;
+					}
+				}
 			}
 		}
 
@@ -178,6 +199,8 @@
 		&.radio {
 			pointer-events: auto;
 			display: inline-block;
+			width: auto;
+			max-width: 49%;
 
 			input[type="radio"] {
 				position: absolute;
@@ -185,7 +208,6 @@
 
 			.radio-custom {
 				min-width: 80px;
-				height: 30px;
 				background: $white;
 				border: 2px solid $gray-dark;
 				display: block;
@@ -208,8 +230,6 @@
 					color: $black;
 					background-color: transparent;
 				    padding: 5px 5px 5px 30px;
-					top: 6px;
-					right: 6px;
 				}
 			}
 
@@ -370,10 +390,13 @@
 			content: "\25B6";
 			color: $color-danger;
 			position: absolute;
-			right: -12px;
+			right: -10px;
 			top: calc(50% - 6px);
 		}
 	}
 
-	.error { border-color: $color-danger; }
+	.error {
+		border-color: $color-danger;
+		display: block;
+	}
 }

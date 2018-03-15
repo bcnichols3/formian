@@ -2,15 +2,17 @@ import React from 'react';
 
 import ReCAPTCHA from 'react-google-recaptcha';
 
-const Recaptcha = ({siteKey, tabIndex="0", className="", onChange}) => (
-	<div name="recaptcha" className={`input-container recaptcha ${className}`}>
+import Container from '../common/Container';
+
+const Recaptcha = ({siteKey, tabIndex="0", className="", style, onChange}) => (
+	<Container type="recaptcha" className={className} style={style}>
 		<ReCAPTCHA
 			id="recaptcha"
 			tabIndex={tabIndex}
 			sitekey={siteKey}
 			onChange={onChange}
 		/>
-	</div>
+	</Container>
 );
 
 export default Recaptcha;

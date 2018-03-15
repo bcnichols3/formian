@@ -1,6 +1,7 @@
 import React from 'react';
 
-import CustomBox from './common/CustomBox';
+import CustomBox from '../common/CustomBox';
+import Container from '../common/Container';
 
 const Checkbox = ({
 	name,
@@ -8,6 +9,7 @@ const Checkbox = ({
 	icon,
 	className="",
 	onChange,
+	style,
 	defaultValue=false,
 	type="checkbox",
 	text=name,
@@ -15,7 +17,7 @@ const Checkbox = ({
 	value=name,
 	errMessage = "Please check to agree",
 	dataset}) => (
-		<div className={`input-container ${type} ${className}`}>
+		<Container type={type} className={className} style={style}>
 			<label htmlFor={name}>
 				<input
 					tabIndex={tabIndex}
@@ -37,7 +39,7 @@ const Checkbox = ({
 			{errMessage !== false
 				? <div className="error-message">{errMessage}</div>
 				: null}
-		</div>
+		</Container>
 	)
 ;
 

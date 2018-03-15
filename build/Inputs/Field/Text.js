@@ -10,7 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = require('./Input');
+var _Input = require('../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -20,7 +20,7 @@ var Text = function Text(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "text",
 		placeholder: props.placeholder || "text",
-		errMessage: props.errMessage || "Please enter your text"
+		errMessage: props.errMessage || "please enter your text"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		type: 'text'

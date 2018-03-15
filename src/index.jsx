@@ -160,10 +160,12 @@ class Form extends Component {
 	}
 
 	onSubmit(evt) {
-		this.props.disabled
-			? this.props.onSubmit.call(this, this.state.formData)
-			: this.flagAllErrors()
-		;
+		evt.preventDefault();
+		if (this.state.disabled) this.flagAllErrors();
+		else {
+			console.log('ready to go!');
+			this.props.onSubmit.call(this, this.state.formData);
+		}
 	}
 
 	recaptcha(value) {
@@ -216,6 +218,7 @@ class Form extends Component {
 				id={this.props.id}
 				className={'formian-form '+this.props.className}
 				onSubmit={this.onSubmit}
+				style={this.props.style}
 			>
 				{this.renderChildren()}
 			</form>

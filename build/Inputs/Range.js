@@ -1,12 +1,16 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _Container = require('../common/Container');
+
+var _Container2 = _interopRequireDefault(_Container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18,6 +22,7 @@ var Range = function Range(_ref) {
 	    name = _ref$name === undefined ? "range" : _ref$name,
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
+	    style = _ref.style,
 	    _ref$text = _ref.text,
 	    text = _ref$text === undefined ? "choose a range" : _ref$text,
 	    _ref$min = _ref.min,
@@ -34,16 +39,15 @@ var Range = function Range(_ref) {
 	    vertical = _ref.vertical;
 
 	return _react2.default.createElement(
-		"div",
-		{
-			className: "input-container range " + className + "\n\t\t\t" + (vertical ? 'vertical' : '') },
+		_Container2.default,
+		{ type: 'range', className: className, style: style },
 		_react2.default.createElement(
-			"label",
+			'label',
 			{ htmlFor: name },
 			text
 		),
-		_react2.default.createElement("input", {
-			id: name, type: "range",
+		_react2.default.createElement('input', {
+			id: name, type: 'range',
 			tabIndex: tabIndex,
 			min: min, max: max, step: step,
 			onChange: onChange,

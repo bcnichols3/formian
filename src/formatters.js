@@ -4,6 +4,7 @@ const formatters = {};
 
 // ========== BOX INPUTS
 formatters.checkbox = checkbox;
+formatters.onoff = checkbox;
 formatters.radio = preformatted;
 
 // ========== ARRAY INPUTS

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Input from './Input';
+import Input from '../../common/Input';
 
 const Name = (props) => {
 	const newProps = Object.assign({}, props, {
 		name: props.name || "password",
 		placeholder: props.placeholder || "password",
-		errMessage: props.errMessage || "Please enter your password"
+		errMessage: props.errMessage || "please enter your password"
 	});
 	return (<Input
 		type="password"

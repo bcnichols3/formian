@@ -10,7 +10,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = require('./Input');
+var _Input = require('../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
 
@@ -20,7 +20,7 @@ var Name = function Name(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "password",
 		placeholder: props.placeholder || "password",
-		errMessage: props.errMessage || "Please enter your password"
+		errMessage: props.errMessage || "please enter your password"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		type: 'password'

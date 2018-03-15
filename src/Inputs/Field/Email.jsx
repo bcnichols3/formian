@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Input from './Input';
+import Input from '../../common/Input';
 
 const Email = (props) => {
 	const newProps = Object.assign({}, props, {

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import Input from './Input';
+import Input from '../../common/Input';
 
 const Text = (props) => {
 	const newProps = Object.assign({}, props, {
 		name: props.name || "text",
 		placeholder: props.placeholder || "text",
-		errMessage: props.errMessage || "Please enter your text"
+		errMessage: props.errMessage || "please enter your text"
 	});
 	return (<Input
 		type="text"

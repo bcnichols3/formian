@@ -67,7 +67,8 @@ var Form = function (_Component) {
 		_this.onFocus = _this.onFocus.bind(_this);
 		_this.recaptcha = _this.recaptcha.bind(_this);
 
-		_this.onSubmit = props.onSubmit.bind(_this);
+		_this.flagAllErrors = _this.flagAllErrors.bind(_this);
+		_this.onSubmit = _this.onSubmit.bind(_this);
 
 		_this.formatters = _formatters2.default;
 		_this.validators = _validators2.default;
@@ -144,8 +145,10 @@ var Form = function (_Component) {
 			return _react.Children.map(this.props.children, function (child) {
 				if (!child) return;
 				if (child.type === _Submit2.default) {
+					console.log('found submit button');
 					return _react2.default.cloneElement(child, {
-						disabled: _this3.state.disabled
+						disabled: _this3.state.disabled,
+						flagAllErrors: _this3.flagAllErrors
 					});
 				}
 				if (child.type === 'fieldset') {
@@ -153,7 +156,7 @@ var Form = function (_Component) {
 						'fieldset',
 						null,
 						_react.Children.map(child.props.children, function (child) {
-							return _this3.addHandlersToChild(child);
+							return _this3.addHandlersToChild(child, idx++);
 						})
 					);
 				}
@@ -200,6 +203,12 @@ var Form = function (_Component) {
 			evt.target.nextSibling.classList.remove('error');
 		}
 	}, {
+		key: 'onSubmit',
+		value: function onSubmit(evt) {
+			evt.preventDefault();
+			this.props.disabled ? this.props.onSubmit.call(this, this.state.formData) : this.flagAllErrors();
+		}
+	}, {
 		key: 'recaptcha',
 		value: function recaptcha(value) {
 			var formData = Object.assign({}, this.state.formData, { recaptcha: value });
@@ -218,6 +227,17 @@ var Form = function (_Component) {
 				}
 			});
 			this.setState({ disabled: disabled, formData: formData });
+		}
+	}, {
+		key: 'flagAllErrors',
+		value: function flagAllErrors() {
+			if (!this.state.disabled) return;
+
+			var el = void 0;
+			Object.keys(this.state.formData).forEach(function (key) {
+				el = document.getElementById(key);
+				el.dispatchEvent(new Event('blur'));
+			});
 		}
 	}, {
 		key: 'autoSubmit',
@@ -245,7 +265,8 @@ var Form = function (_Component) {
 				{
 					id: this.props.id,
 					className: 'formian-form ' + this.props.className,
-					onSubmit: this.onSubmit
+					onSubmit: this.onSubmit,
+					style: this.props.style
 				},
 				this.renderChildren()
 			);

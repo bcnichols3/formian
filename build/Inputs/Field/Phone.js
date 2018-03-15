@@ -8,7 +8,7 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Input = require('./Input');
+var _Input = require('../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
 

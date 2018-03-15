@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Select = ({name, tabIndex="0", className="", dataset, options=['enter options array'], defaultValue, onChange, onBlur, onFocus, text=name, placeholder=text, errMessage="Please select an option"}) => (
-	<div className={`input-container select ${className}`}>
+import Container from '../common/Container';
+
+const Select = ({name, tabIndex="0", className="", style, dataset, options=['enter options array'], defaultValue, onChange, onBlur, onFocus, text=name, placeholder=text, errMessage="please select an option"}) => (
+	<Container type="select" className={className} style={style}>
 		<label htmlFor={name}>{text}</label>
 		<select
 			id={name} type="select"
@@ -28,7 +30,7 @@ const Select = ({name, tabIndex="0", className="", dataset, options=['enter opti
 			))}
 		</select>
 		<div className="error-message">{errMessage}</div>
-	</div>
+	</Container>
 );
 
 export default Select;

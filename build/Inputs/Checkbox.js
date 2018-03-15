@@ -8,9 +8,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _CustomBox = require('./common/CustomBox');
+var _CustomBox = require('../common/CustomBox');
 
 var _CustomBox2 = _interopRequireDefault(_CustomBox);
+
+var _Container = require('../common/Container');
+
+var _Container2 = _interopRequireDefault(_Container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -22,6 +26,7 @@ var Checkbox = function Checkbox(_ref) {
 	    _ref$className = _ref.className,
 	    className = _ref$className === undefined ? "" : _ref$className,
 	    onChange = _ref.onChange,
+	    style = _ref.style,
 	    _ref$defaultValue = _ref.defaultValue,
 	    defaultValue = _ref$defaultValue === undefined ? false : _ref$defaultValue,
 	    _ref$type = _ref.type,
@@ -35,8 +40,8 @@ var Checkbox = function Checkbox(_ref) {
 	    errMessage = _ref$errMessage === undefined ? "Please check to agree" : _ref$errMessage,
 	    dataset = _ref.dataset;
 	return _react2.default.createElement(
-		'div',
-		{ className: 'input-container ' + type + ' ' + className },
+		_Container2.default,
+		{ type: type, className: className, style: style },
 		_react2.default.createElement(
 			'label',
 			{ htmlFor: name },

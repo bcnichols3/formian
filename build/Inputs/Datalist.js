@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -6,9 +6,13 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
+
+var _Container = require('../common/Container');
+
+var _Container2 = _interopRequireDefault(_Container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -32,14 +36,14 @@ var Datalist = function Datalist(_ref) {
 	    _ref$errMessage = _ref.errMessage,
 	    errMessage = _ref$errMessage === undefined ? "Please select an option" : _ref$errMessage;
 	return _react2.default.createElement(
-		"div",
-		{ className: "input-container datalist " + className },
+		'div',
+		{ className: 'input-container datalist ' + className },
 		_react2.default.createElement(
-			"label",
+			'label',
 			{ htmlFor: name },
 			text
 		),
-		_react2.default.createElement("input", {
+		_react2.default.createElement('input', {
 			list: name,
 			value: dataset[name],
 			onChange: onChange,
@@ -47,18 +51,18 @@ var Datalist = function Datalist(_ref) {
 			onFocus: onFocus
 		}),
 		_react2.default.createElement(
-			"datalist",
+			'datalist',
 			{ id: name, placeholder: placeholder, tabIndex: tabIndex },
 			_react2.default.createElement(
-				"select",
+				'select',
 				null,
 				options.map(function (opt) {
-					return (typeof opt === "undefined" ? "undefined" : _typeof(opt)) === 'object' ? _react2.default.createElement("option", {
+					return (typeof opt === 'undefined' ? 'undefined' : _typeof(opt)) === 'object' ? _react2.default.createElement('option', {
 						key: opt.value,
 						label: opt.label || opt.value,
 						value: opt.value,
 						disabled: opt.disabled || false
-					}) : _react2.default.createElement("option", {
+					}) : _react2.default.createElement('option', {
 						key: opt,
 						label: opt,
 						value: opt
@@ -67,8 +71,8 @@ var Datalist = function Datalist(_ref) {
 			)
 		),
 		_react2.default.createElement(
-			"div",
-			{ className: "error-message" },
+			'div',
+			{ className: 'error-message' },
 			errMessage
 		)
 	);
