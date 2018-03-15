@@ -17,9 +17,11 @@
     "author": "Brian Nichols Griggs <bcnichols@gmail.com>",
     "license": "ISC",
     "dependencies": {
-        "react": "^15.5.4",
-        "react-dom": "^15.5.4",
         "react-google-recaptcha": "^0.9.9"
+    },
+    "peerDependencies": {
+        "react": "^15.5.4",
+        "react-dom": "^15.5.4"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",

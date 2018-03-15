@@ -30,7 +30,8 @@ class Form extends Component {
 		this.onFocus = this.onFocus.bind(this);
 		this.recaptcha = this.recaptcha.bind(this);
 
-		this.onSubmit = props.onSubmit.bind(this);
+		this.flagAllErrors = this.flagAllErrors.bind(this);
+		this.onSubmit = this.onSubmit.bind(this);
 
 		this.formatters = formatters;
 		this.validators = validators;
@@ -104,14 +105,15 @@ class Form extends Component {
 			if (!child) return;
 			if (child.type === Submit) {
 				return React.cloneElement(child, {
-					disabled: this.state.disabled
+					disabled: this.state.disabled,
+					flagAllErrors: this.flagAllErrors
 				});
 			}
 			if (child.type === 'fieldset') {
 				return (
 					<fieldset>
 						{Children.map(child.props.children, child => {
-							return this.addHandlersToChild(child);
+							return this.addHandlersToChild(child, idx++);
 						})}
 					</fieldset>
 				);
@@ -157,6 +159,13 @@ class Form extends Component {
 		evt.target.nextSibling.classList.remove('error');
 	}
 
+	onSubmit(evt) {
+		this.props.disabled
+			? this.props.onSubmit.call(this, this.state.formData)
+			: this.flagAllErrors()
+		;
+	}
+
 	recaptcha(value) {
 		const formData = Object.assign({},
 			this.state.formData,
@@ -175,6 +184,16 @@ class Form extends Component {
 			}
 		});
 		this.setState({ disabled, formData });
+	}
+
+	flagAllErrors() {
+		if (!this.state.disabled) return;
+
+		let el;
+		Object.keys(this.state.formData).forEach(key => {
+			el = document.getElementById(key);
+			el.dispatchEvent(new Event('blur'));
+		});
 	}
 
 	autoSubmit() {

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Formian from '../build/index.js';
+import Formian from '../../src/index.jsx';
 
-function submitHandler() {
+function submitHandler(formData) {
 	console.log('SUBMITTING FORM', this.state.formData);
 }
 

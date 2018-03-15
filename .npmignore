@@ -3,5 +3,4 @@ npm-debug.log
 webpack.config.js
 .gitignore
 node_modules
-example/webpack.config.js
-example/package.json
+example
