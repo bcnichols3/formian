@@ -145,7 +145,6 @@ var Form = function (_Component) {
 			return _react.Children.map(this.props.children, function (child) {
 				if (!child) return;
 				if (child.type === _Submit2.default) {
-					console.log('found submit button');
 					return _react2.default.cloneElement(child, {
 						disabled: _this3.state.disabled,
 						flagAllErrors: _this3.flagAllErrors
@@ -206,7 +205,10 @@ var Form = function (_Component) {
 		key: 'onSubmit',
 		value: function onSubmit(evt) {
 			evt.preventDefault();
-			this.props.disabled ? this.props.onSubmit.call(this, this.state.formData) : this.flagAllErrors();
+			if (this.state.disabled) this.flagAllErrors();else {
+				console.log('ready to go!');
+				this.props.onSubmit.call(this, this.state.formData);
+			}
 		}
 	}, {
 		key: 'recaptcha',
