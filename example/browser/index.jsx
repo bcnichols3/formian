@@ -47,7 +47,7 @@ const Demo = (props) => (
 				transform: 'rotate(-40deg)',
 				width: '90%',
 				zIndex: '-1',
-				stroke: 'lightgray'
+				fill: 'gray'
 			}}
 		/>
 		<Formian.Radio
