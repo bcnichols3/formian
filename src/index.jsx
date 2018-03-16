@@ -36,6 +36,8 @@ class Form extends Component {
 		this.formatters = formatters;
 		this.validators = validators;
 
+		if (props.customStyles !== false) injectCSS();
+
 		const initialState = { disabled: true, formData: {} };
 		this.mapInputsToState(props.children, initialState);
 		this.state = initialState;
@@ -52,8 +54,7 @@ class Form extends Component {
 			}
 			else if (formElements.includes(child.type)) {
 				// discover the dataset object key
-				let key = child.props.name || child.type.name;
-
+				let key = child.props.name || child.type.name.toLowerCase();
 				// set prevalidated for marked inputs; otherwise set an appropriate validator function
 				if (child.props.required === false
 				|| child.props.required === 'false') {
@@ -64,8 +65,17 @@ class Form extends Component {
 				this.setCheckersForChild(child, 'formatters');
 
 				// create initial state
+				console.log(child.props.defaultValue);
 				const target = {};
-				target.value = child.props.defaultValue || '';
+				if (child.props.options) {
+					target.value =
+						child.props.options[child.props.defaultValue]
+						|| child.props.options[0]
+					;
+				}
+				else {
+					target.value = child.props.defaultValue || '';
+				}
 				target.checked = child.props.defaultValue || '';
 
 				initialState.formData[key] = this.formatters[key](target);
@@ -136,6 +146,7 @@ class Form extends Component {
 		);
 
 		this.checkForm(formData);
+		console.log(this.state.formData);
 
 		if (this.props.submitOnChange) this.autoSubmit();
 	}

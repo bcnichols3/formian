@@ -1,0 +1,186 @@
+.formian-form {
+	.input-container.checkbox,
+	.input-container.radio,
+	.input-container.onoff {
+		label {
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			color: $gray-dark;
+			line-height: 15px;
+			vertical-align: middle;
+		}
+
+		input {
+			opacity: 0;
+			height: 12px;
+			width: 25px;
+			z-index: 2;
+			position: absolute;
+		}
+
+		.checkbox-custom,
+		.onoff-custom,
+		.radio-custom {
+			cursor: pointer;
+			margin: 0 5px;
+			position: relative;
+			border: 2px solid $gray-dark;
+		}
+
+		/* Hover and focus states */
+		input:focus ~ .checkbox-custom,
+		input:hover ~ .checkbox-custom,
+		input:focus ~ .onoff-custom,
+		input:hover ~ .onoff-custom,
+		input:focus ~ .radio-custom,
+		input:hover ~ .radio-custom {
+			border-color: $color-info;
+			.custom-icon { border-color: $color-info; }
+		}
+
+
+		/* Checked state */
+		input:checked ~ .checkbox-custom,
+		input:checked ~ .onoff-custom,
+		input:checked ~ .readio-custom {
+			.custom-icon,.fa { opacity: 1; }
+		}
+
+		/* Hover and focus states whilst checked */
+		&:hover input:not([disabled]):checked ~ .checkbox-custom,
+		&:hover input:not([disabled]):checked ~ .radio-custom,
+		&:hover input:not([disabled]):checked ~ .onoff-custom,
+		& input:checked:focus ~ .checkbox-custom,
+		& input:checked:focus ~ .radio-custom,
+		& input:checked:focus ~ .onoff-custom {
+			border-color: $color-info;
+		}
+	}
+
+	.input-container.checkbox {
+		.checkbox-custom {
+			height: 18px;
+			width: 18px;
+
+			.custom-icon,.fa {
+				font-size: 1.4em;
+				position: absolute;
+				color: $color-info;
+				opacity: 0;
+			}
+
+			&:hover,&:focus,&:active {
+				border-color: $color-info;
+			}
+		}
+	}
+
+	.input-container.onoff {
+		.onoff-custom {
+			display: block;
+			width: 80px;
+			height: 30px;
+			background: $white;
+			border-radius: 100px;
+
+			.custom-icon {
+				position: absolute;
+				top: 3px;
+				left: 3px;
+				width: 20px;
+				height: 20px;
+				background: $white;
+				border-radius: 90px;
+				transition: all 0.3s;
+				opacity: 1;
+				box-shadow: 0 0 0 2px $white;
+				border: 2px solid $gray-dark;
+				background-color: $white;
+
+				&::after {
+					content: 'off';
+					color: $gray-dark;
+					font-size: 12px;
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					top: 0;
+					left: 0;
+					transition: inherit;
+					padding: 0px 5px 5px 30px;
+				}
+			}
+		}
+
+		/* Checked state */
+		input:checked ~ .onoff-custom {
+			background: $color-info;
+
+			.custom-icon {
+				border-color: $color-info;
+				left: calc(100% - 25px);
+
+				&::after {
+					content: 'on';
+					color: $white;
+					right: 0;
+					left: unset;
+					padding: 0px 30px 5px 5px;
+				}
+			}
+		}
+	}
+
+	// custom syles for radio pills
+	.input-container.radio {
+		display: inline-block;
+		width: auto;
+
+		.radio-custom {
+			min-width: 80px;
+			background: $white;
+			border: 2px solid $gray-dark;
+			display: block;
+			border-radius: 100px;
+			position: relative;
+			padding: 0px 5px;
+
+			.custom-icon {
+				position: absolute;
+				top: calc(50% - 9px);
+				left: 4px;
+				width: 18px;
+				height: 18px;
+				box-shadow: 0 0 0 2px $white;
+				border: 2px solid $gray-dark;
+				background-color: $white;
+				border-radius: 90px;
+			}
+			.radio-text {
+				color: $black;
+				background-color: transparent;
+				padding: 5px 5px 5px 30px;
+			}
+		}
+
+		input:focus ~ .radio-custom {
+			border-color: $color-info;
+
+			.custom-icon {
+				border-color: $color-info;
+			}
+		}
+
+		input:checked ~ .radio-custom {
+			background-color: $color-info;
+			border-color: $color-info;
+			.custom-icon {
+				border-color: $color-info;
+			}
+			.radio-text {
+				color: $white;
+			}
+		}
+	}
+}

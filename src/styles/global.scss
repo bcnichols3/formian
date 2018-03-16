@@ -10,4 +10,9 @@
 		flex-basis: 100%;
 		flex-flow: row wrap;
 	}
+
+	div, section {
+		position: relative;
+		outline: none;
+	}
 }

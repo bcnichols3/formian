@@ -1,10 +1,12 @@
 import React from 'react';
 
-import Container from '../common/Container';
+import Container from '../../common/Container';
+import CustomBox from '../../common/CustomBox';
+import ErrorMessage from '../../common/ErrorMessage';
 
 const Radio = ({
 	name, className="", text=name, tabIndex="0", icon, onChange, onFocus, onBlur, children, style,
-	dataset, options=['option1', 'option2'], defaultValue=options[0], type="radio",
+	dataset, options=['option1', 'option2'], defaultValue=options[0], type="radio", position,
 	errMessage = "Please select an option"
 }) => (
 	<fieldset id={name} name={name}>
@@ -17,21 +19,18 @@ const Radio = ({
 						tabIndex={tabIndex}
 						name={name}
 						value={option}
+						checked={dataset[name] === option}
 						onChange={onChange}
 						onBlur={onBlur}
 						onFocus={onFocus}
-						checked={dataset[name] === option}
 					/>
-					<div className="radio-custom" >
-						<div className="custom-icon">{''}</div>
-						<div className="radio-text">{children || option}</div>
-					</div>
+					<CustomBox name={name} type={type} icon={icon}>
+						<div className="radio-text">{option}</div>
+					</CustomBox>
 				</label>
 			</Container>
 		))}
-		{errMessage !== false
-			? <div className="error-message">{errMessage}</div>
-			: null}
+		<ErrorMessage errMessage={errMessage} position={position}/>
 	</fieldset>
 );
 

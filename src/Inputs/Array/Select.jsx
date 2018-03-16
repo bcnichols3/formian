@@ -1,12 +1,14 @@
 import React from 'react';
 
-import Container from '../common/Container';
+import Container from '../../common/Container';
+import CustomBox from '../../common/CustomBox';
+import ErrorMessage from '../../common/ErrorMessage';
 
-const Select = ({name, tabIndex="0", className="", style, dataset, options=['enter options array'], defaultValue, onChange, onBlur, onFocus, text=name, placeholder=text, errMessage="please select an option"}) => (
+const Select = ({name, type="select", icon, tabIndex="0", className="", style, dataset, position, options=['enter options array'], defaultValue, onChange, onBlur, onFocus, text=name, placeholder=text, errMessage="please select an option"}) => (
 	<Container type="select" className={className} style={style}>
 		<label htmlFor={name}>{text}</label>
 		<select
-			id={name} type="select"
+			id={name} type={type}
 			tabIndex={tabIndex}
 			placeholder={placeholder}
 			onChange={onChange}
@@ -29,7 +31,8 @@ const Select = ({name, tabIndex="0", className="", style, dataset, options=['ent
 					/>
 			))}
 		</select>
-		<div className="error-message">{errMessage}</div>
+		<CustomBox name={name} type={type} icon={icon} />
+		<ErrorMessage errMessage={errMessage} position={position}/>
 	</Container>
 );
 

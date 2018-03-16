@@ -1,0 +1,30 @@
+.formian-form {
+	.input-container.submit,
+	.input-container.reset {
+		input {
+			color: $color-info;
+			background-color: $white;
+			border: 2px solid $color-info;
+			padding: 15px;
+
+			&:focus,&:hover {
+				color: $white;
+				background-color: $color-info;
+			}
+		}
+	}
+	.input-container.submit.disabled,
+	.input-container.reset.disabled {
+		input {
+			color: $gray-light;
+			cursor: help;
+			background-color: $gray;
+			border-color: $gray;
+			&:focus,&:hover {
+				color: $gray-light;
+				background-color: $gray;
+				border-color: $gray;
+			}
+		}
+	}
+}

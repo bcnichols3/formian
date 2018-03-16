@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 
 const unicodes = {
 	onoff: '',
+	select: "\u25BC",
 	checkbox: "\u2714"
 };
 
 const CustomBox = (props) => (
 	<div className={`${props.type}-custom`}>
 		{resolveIcon(props)}
+		{props.children}
 	</div>
 );
 

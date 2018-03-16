@@ -73,6 +73,8 @@ var Form = function (_Component) {
 		_this.formatters = _formatters2.default;
 		_this.validators = _validators2.default;
 
+		if (props.customStyles !== false) (0, _injectCSS2.default)();
+
 		var initialState = { disabled: true, formData: {} };
 		_this.mapInputsToState(props.children, initialState);
 		_this.state = initialState;
@@ -91,8 +93,7 @@ var Form = function (_Component) {
 					_this2.mapInputsToState(child.props.children, initialState);
 				} else if (_Inputs2.default.includes(child.type)) {
 					// discover the dataset object key
-					var key = child.props.name || child.type.name;
-
+					var key = child.props.name || child.type.name.toLowerCase();
 					// set prevalidated for marked inputs; otherwise set an appropriate validator function
 					if (child.props.required === false || child.props.required === 'false') {
 						_this2.validators[key] = _this2.validators.prevalidated;
@@ -102,8 +103,13 @@ var Form = function (_Component) {
 					_this2.setCheckersForChild(child, 'formatters');
 
 					// create initial state
+					console.log(child.props.defaultValue);
 					var target = {};
-					target.value = child.props.defaultValue || '';
+					if (child.props.options) {
+						target.value = child.props.options[child.props.defaultValue] || child.props.options[0];
+					} else {
+						target.value = child.props.defaultValue || '';
+					}
 					target.checked = child.props.defaultValue || '';
 
 					initialState.formData[key] = _this2.formatters[key](target);
@@ -173,6 +179,7 @@ var Form = function (_Component) {
 			var formData = Object.assign({}, this.state.formData, _defineProperty({}, key, this.formatters[key] ? this.formatters[key](evt.target) : evt.target.value));
 
 			this.checkForm(formData);
+			console.log(this.state.formData);
 
 			if (this.props.submitOnChange) this.autoSubmit();
 		}
