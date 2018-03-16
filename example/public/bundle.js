@@ -10081,7 +10081,7 @@ var Demo = function Demo(props) {
 		_react2.default.createElement(_index2.default.Radio, {
 			name: 'movie',
 			labelText: 'Favorite Ant Movie',
-			options: ["Ants", "A Bugs Life", "Honey I Shrunk the Kids"]
+			options: ["Antz", "Ant Man", "Honey I Shrunk the Kids"]
 		}),
 		_react2.default.createElement(_index2.default.Select, {
 			name: 'species',
@@ -10092,6 +10092,15 @@ var Demo = function Demo(props) {
 		_react2.default.createElement(_index2.default.Checkbox, {
 			name: 'formianEasy',
 			labelText: 'I agree that Formian is easy to use',
+			required: false
+		}),
+		_react2.default.createElement(_index2.default.Text, {
+			name: 'whatIsThis',
+			labelText: 'What Is This?',
+			placeholder: 'Please type \u2018A School for Ants\u2019',
+			validator: function validator(val) {
+				return val.toLowerCase().trim() === 'a school for ants';
+			},
 			required: false
 		}),
 		_react2.default.createElement(
