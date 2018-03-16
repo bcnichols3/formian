@@ -1,0 +1,43 @@
+.formian-form {
+	.error { border-color: $color-danger; }
+
+	.error-message {
+		display: none;
+		position: absolute;
+	    bottom: -10%;
+		width: fit-content;
+		max-width: 150px;
+	    color: $white;
+		background-color: $color-danger;
+	    font-size: inherit;
+	    border-radius: 5px;
+		padding: 10px;
+
+		&.error { display: block; }
+
+		&.left {
+		    text-align: right;
+			right: 102%;
+
+			&::after {
+				right: -10px;
+			}
+		}
+
+		&.right {
+			text-align: left;
+			left: 102%;
+
+			&::after {
+				left: -10px;
+			}
+		}
+
+		&::after {
+			content: "\25B6";
+			color: $color-danger;
+			position: absolute;
+			top: calc(50% - 6px);
+		}
+	}
+}

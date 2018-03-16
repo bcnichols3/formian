@@ -12,6 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var unicodes = {
 	onoff: '',
+	select: '\u25BC',
 	checkbox: '\u2714'
 };
 
@@ -19,7 +20,8 @@ var CustomBox = function CustomBox(props) {
 	return _react2.default.createElement(
 		'div',
 		{ className: props.type + '-custom' },
-		resolveIcon(props)
+		resolveIcon(props),
+		props.children
 	);
 };
 

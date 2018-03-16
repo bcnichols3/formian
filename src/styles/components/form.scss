@@ -1,20 +1,13 @@
 .formian-form {
 	width: 100%;
 	display: flex;
+	font-size: 1.4em;
 	flex-basis: 100%;
 	flex-flow: column;
 
-	div, section {
-		position: relative;
-		z-index: 1;
-		outline: none;
-	}
-
 	label,legend {
 		display: block;
-		text-transform: uppercase;
 		margin: 0;
-		text-align: left;
 	}
 
 	fieldset {
@@ -23,18 +16,20 @@
 		margin: 5px;
 		padding: 0;
 		width: 100%;
-		pointer-events: none;
 	}
 
 	.input-container {
 		position: relative;
 		width: 100%;
 		font-size: inherit;
+		margin: 5px;
+	    min-height: 25px;
 
 		// global input container styles
 		input,select,textarea {
 			outline: none;
 			resize: none;
+			cursor: pointer;
 			border: 2px solid $color-info;
 			-webkit-appearance: none;
 			-webkit-border-radius: 2px;
@@ -42,361 +37,13 @@
 			width: 100%;
 			margin: 5px 0 10px;
 			text-transform: none;
-		    outline: none;
+			padding: 5px;
+			font-size: 1rem;
 
-			&[type="text"],&[type="email"],&[type="select"] {
-				padding-left: 5px;
-			}
-
-			&:hover {
-				border-color: $color-info;
-			}
-		}
-
-		// custom syles for check and radio boxes
-		&.checkbox,&.radio,&.onoff {
-			position: relative;
-			display: block;
-			margin: 5px;
-
-			label {
-				display: flex;
-				cursor: pointer;
-				align-items: center;
-				color: $gray-dark;
-				line-height: 15px;
-				vertical-align: middle;
-			}
-
-			input {
-				opacity: 0;
-				height: 12px;
-				width: 25px;
-				z-index: 2;
-			}
-
-			.checkbox-text,.radio-text,.onoff-text {
-				text-transform: capitalize;
-			}
-
-			.checkbox-custom,.onoff-custom {
-				position: absolute;
-				left: 0;
-				border: 2px solid $gray-dark;
-				height: 18px;
-				width: 18px;
-				z-index: 1;
-
-				.custom-icon,.fa {
-					font-size: 1.4em;
-					position: absolute;
-					color: $color-info;
-					opacity: 0;
-				}
-
-				&:hover,&:focus,&:active {
-					border-color: $color-info;
-				}
-			}
-
-			/* Hover and focus states */
-			&:hover input ~ .checkbox-custom,
-			&:focus input ~ .checkbox-custom,
-			&:hover input ~ .onoff-custom,
-			&:focus input ~ .onoff-custom {
-				border-color: $color-info;
-				color: $color-info;
-			}
-
-			input:focus ~ .checkbox-custom,
-			input:focus ~ .onoff-custom {
-				border-color: $color-info;
-			}
-
-
-			/* Checked state */
-			& input:checked ~ .checkbox-custom,
-			& input:checked ~ .onoff-custom {
-				.custom-icon,.fa { opacity: 1; }
-			}
-
-			/* Hover state whilst checked */
-			&:hover input:not([disabled]):checked ~ .checkbox-custom,
-			&:hover input:not([disabled]):checked ~ .radio-custom,
-			&:hover input:not([disabled]):checked ~ .onoff-custom,
-			& input:checked:focus ~ .checkbox-custom,
-			& input:checked:focus ~ .radio-custom,
-			& input:checked:focus ~ .onoff-custom {
-				border-color: $color-info;
-			}
-		}
-
-		// custom syles for on-off switch-type checkboxes
-		&.onoff {
-			input[type="checkbox"] {
-				position: absolute;
-			}
-
-			.onoff-custom {
-				cursor: pointer;
-			    margin: 0 5px;
-				width: 80px;
-				height: 30px;
-				background: $white;
-				display: block;
-				border-radius: 100px;
-				position: relative;
-			}
-
-			.onoff-custom .custom-icon {
-				position: absolute;
-				top: 3px;
-				left: 3px;
-				width: 20px;
-				height: 20px;
-				background: $white;
-				border-radius: 90px;
-				transition: all 0.3s;
-			    opacity: 1;
-				box-shadow: 0 0 0 2px $white;
-				border: 2px solid $gray-dark;
-				background-color: $white;
-
-				&::after {
-					content: 'off';
-					color: $gray-dark;
-					font-size: 12px;
-					width: 100%;
-					height: 100%;
-					position: absolute;
-					top: 0;
-					left: 0;
-					transition: inherit;
-					padding: 0px 5px 5px 30px;
-				}
-			}
-
-			/* Checked state */
-			input:checked ~ .onoff-custom {
-				background: $color-info;
-
-				.custom-icon {
-					border-color: $color-info;
-					left: calc(100% - 25px);
-
-					&::after {
-						content: 'on';
-						color: $white;
-						right: 0;
-						left: unset;
-						padding: 0px 30px 5px 5px;
-					}
-				}
-			}
-		}
-
-		// custom syles for radio pills
-		&.radio {
-			pointer-events: auto;
-			display: inline-block;
-			width: auto;
-			max-width: 49%;
-
-			input[type="radio"] {
-				position: absolute;
-			}
-
-			.radio-custom {
-				min-width: 80px;
-				background: $white;
-				border: 2px solid $gray-dark;
-				display: block;
-				border-radius: 100px;
-				position: relative;
-				padding: 0px 5px;
-
-				.custom-icon {
-					position: absolute;
-					top: calc(50% - 9px);
-					left: 4px;
-					width: 18px;
-					height: 18px;
-					box-shadow: 0 0 0 2px $white;
-					border: 2px solid $gray-dark;
-					background-color: $white;
-					border-radius: 90px;
-				}
-				.radio-text {
-					color: $black;
-					background-color: transparent;
-				    padding: 5px 5px 5px 30px;
-				}
-			}
-
-			input:focus ~ .radio-custom {
-				border-color: $color-info;
-
-				.custom-icon {
-					border-color: $color-info;
-				}
-			}
-
-			input:checked ~ .radio-custom {
-				background-color: $color-info;
-				border-color: $color-info;
-				.custom-icon {
-					border-color: $color-info;
-				}
-				.radio-text {
-					color: $white;
-				}
-			}
-		}
-	}
-
-	.input-container.number {
-		&.number-no-wheel {
-			input::-webkit-outer-spin-button,
-			input::-webkit-inner-spin-button {
-			    /* display: none; <- Crashes Chrome on hover */
-			    -webkit-appearance: none;
-			    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-			}
-		}
-	}
-
-	.input-container.select {
-		&::after {
-			position: absolute;
-		    pointer-events: none;
-		    content: "\25BC";
-		    height: 50%;
-		    font-size: 16px;
-		    line-height: 1;
-		    right: 5px;
-		    bottom: 0;
-			color: $color-info;
-		}
-
-		&:hover {
-			&::after {
-				color: $color-info;
-			}
-		}
-	}
-
-	.input-container.range {
-		margin: 5px;
-
-		input[type=range] {
-			-webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-			width: 100%; /* Specific width is required for Firefox. */
-			background: transparent; /* Otherwise white in Chrome */
-
-			&::-webkit-slider-thumb {
-				-webkit-appearance: none;
-			}
-
-			&:focus {
-				outline: none; /* Removes the blue border. You should probably do some kind of focus styling for accessibility reasons though. */
-			}
-
-			&::-ms-track {
-				width: 100%;
-				cursor: pointer;
-
-				/* Hides the slider so custom styles can be added */
-				background: transparent;
-				border-color: transparent;
-				color: transparent;
-			}
-
-			& {
-				background-color: $gray;
-				border: 0px;
-				height: 10px;
-				border-radius: 90px;
-				margin: 15px 0 25px;
-
-				&:focus {
-					&::-webkit-slider-thumb {
-						background: $color-info;
-						border-color: $color-info;
-					}
-				}
-			}
-
-			&::-webkit-slider-thumb {
-				-webkit-appearance: none;
-				height: 30px;
-				background: $white;
-				border: 2px solid $gray-dark;
-				border-radius: 2px;
-				width: 20px;
-				cursor: pointer;
-
-				&:hover,&:focus {
-					background: $color-info;
-					border-color: $color-info;
-				}
-			}
-		}
-
-		input[type="submit"] {
-			color: $color-info;
-			background-color: $white;
-			border: 2px solid $color-info;
-			text-transform: uppercase !important;
-			position: relative;
-			padding: 15px;
-
-			&:focus, &:hover {
-				color: $white;
-				background-color: $color-info;
+			&:focus,&:hover {
 				outline: none;
-				border: none;
-			}
-
-			&:disabled {
-				color: $white;
-				background-color: $gray;
-				border-color: $gray;
-				&:hover, &:focus {
-					color: $white;
-					background-color: $gray;
-					border-color: $gray;
-				}
+				border-color: $color-info;
 			}
 		}
-	}
-
-	.error-message {
-		display: none;
-		position: absolute;
-	    bottom: -10%;
-	    right: 102%;
-		width: fit-content;
-		max-width: 150px;
-	    text-align: right;
-	    color: $white;
-		background-color: $color-danger;
-		padding: 10px;
-	    font-size: 14px;
-	    border-radius: 5px;
-
-		& .error { display: block; }
-
-		&::after {
-			content: "\25B6";
-			color: $color-danger;
-			position: absolute;
-			right: -10px;
-			top: calc(50% - 6px);
-		}
-	}
-
-	.error {
-		border-color: $color-danger;
-		display: block;
 	}
 }

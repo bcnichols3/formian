@@ -1,7 +1,8 @@
 import React from 'react';
 
-import CustomBox from '../common/CustomBox';
-import Container from '../common/Container';
+import CustomBox from '../../common/CustomBox';
+import Container from '../../common/Container';
+import ErrorMessage from '../../common/ErrorMessage';
 
 const Checkbox = ({
 	name,
@@ -13,6 +14,7 @@ const Checkbox = ({
 	defaultValue=false,
 	type="checkbox",
 	text=name,
+	position,
 	children,
 	value=name,
 	errMessage = "Please check to agree",
@@ -31,14 +33,10 @@ const Checkbox = ({
 						: !!dataset[value]
 					}
 				/>
-				<CustomBox
-					name={name} type={type} icon={icon} tabIndex={tabIndex}
-				/>
+				<CustomBox name={name} type={type} icon={icon} />
 				<div className={`${type}-text`}>{children || text}</div>
 			</label>
-			{errMessage !== false
-				? <div className="error-message">{errMessage}</div>
-				: null}
+			<ErrorMessage errMessage={errMessage} position={position}/>
 		</Container>
 	)
 ;

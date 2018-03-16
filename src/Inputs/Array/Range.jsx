@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Container from '../common/Container';
+import Container from '../../common/Container';
 
 const Range = ({dataset, tabIndex="0", name="range", className="", style, text="choose a range", min=0, max=100, step=1, onChange, onBlur, onFocus, defaultValue=min, vertical}) => {
 	return (

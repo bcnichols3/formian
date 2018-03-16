@@ -7,6 +7,8 @@ An insect-based React module for easy, stylish and accessible controlled forms t
 
 # Controlled form elements as React components
 
+[Demo](https://bcnichols3.github.io/react-formian/example/public/index.html)
+
 ## Installation
 
 React Formian is distributed via [npm](https://www.npmjs.com/package/react-formian), with styles distributed on [UNPKG](https://unpkg.com)

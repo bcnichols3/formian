@@ -1,0 +1,75 @@
+.formian-form {
+	.input-container.datalist {
+
+	}
+
+	.input-container.range {
+		input {
+			-webkit-appearance: none;
+			width: 100%;
+			background: transparent;
+
+			&::-webkit-slider-thumb { -webkit-appearance: none; }
+
+			&::-ms-track {
+				width: 100%;
+				cursor: pointer;
+
+				/* Hides the slider so custom styles can be added */
+				background: transparent;
+				border-color: transparent;
+				color: transparent;
+			}
+
+			& {
+				background-color: $gray;
+				border: 0px;
+				height: 10px;
+				border-radius: 90px;
+				margin: 15px 0 25px;
+
+				&:focus {
+					&::-webkit-slider-thumb {
+						background: $color-info;
+						border-color: $color-info;
+					}
+				}
+			}
+
+			&::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				height: 30px;
+				background: $white;
+				border: 2px solid $gray-dark;
+				border-radius: 2px;
+				width: 20px;
+				cursor: pointer;
+
+				&:hover,&:focus {
+					background: $color-info;
+					border-color: $color-info;
+				}
+			}
+		}
+	}
+
+	.input-container.select {
+		.select-custom {
+			.custom-icon {
+				position: absolute;
+				pointer-events: none;
+				right: 5px;
+			    bottom: 5px;
+				font-size: 1.5rem;
+				color: $gray-dark;
+			}
+		}
+
+		select:focus ~ .select-custom,
+		select:hover ~ .select-custom {
+			.custom-icon {
+				color: $color-info;
+			}
+		}
+	}
+}

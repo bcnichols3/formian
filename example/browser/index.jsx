@@ -9,21 +9,23 @@ function submitHandler(data) {
 
 const Demo = (props) => (
 	<Formian.Form
-		className="my-formian-form"
+		className="my-form"
 		onSubmit={submitHandler}
 		style={{
 			width: "50%",
 			margin: "auto",
-			fontSize: "20px"
+			fontSize: "20px",
+			minWidth: "300px"
 		}}
 	>
 		<h1>My Formian Form</h1>
 		<Formian.Text
 			name="feelings"
-			text="How do you feel?"
-			placeholder="I feel great!"
+			text="How You Feel"
+			placeholder="I feel..."
 			errMessage="At least tell me how you feel..."
 		/>
+		<Formian.Email />
 		<Formian.Checkbox
 			name="formianAwesome"
 			text="Is Formian Awesome?"
@@ -31,13 +33,19 @@ const Demo = (props) => (
 		/>
 		<Formian.OnOff
 			name="carpeDiem"
-			text="Seize the Day?"
+			text="Seize the Day"
 			errMessage="Do it!"
 		/>
 		<Formian.Radio
 			name="vacations"
-			text="Vacation preference?"
+			text="Vacation Preference"
 			options={["mountains", "beaches"]}
+		/>
+		<Formian.Select
+			name="color"
+			text="Favorite Color"
+			defaultValue="4"
+			options={["red", "orange", "yellow", "green", "blue", "violet"]}
 		/>
 		<Formian.Submit
 			text="Do it!"

@@ -1,12 +1,12 @@
-// ========== BOX INPUTS
-import Checkbox from './Checkbox';
-import Radio from './Radio';
-import OnOff from './OnOff';
-
 // ========== ARRAY INPUTS
-import Datalist from './Datalist';
-import Range from './Range';
-import Select from './Select';
+import Datalist from './Array/Datalist';
+import Range from './Array/Range';
+import Select from './Array/Select';
+
+// ========== BOX INPUTS
+import Checkbox from './Box/Checkbox';
+import Radio from './Box/Radio';
+import OnOff from './Box/OnOff';
 
 // ========== FIELD INPUTS
 import Email from './Field/Email';
@@ -18,7 +18,7 @@ import Text from './Field/Text';
 import TextArea from './Field/TextArea';
 
 // ========== SPECIAL INPUTS
-import Recaptcha from './Recaptcha';
+import Recaptcha from './Special/Recaptcha';
 
 export default [
 	Checkbox, Datalist, Email, Name, Number, OnOff, Password, Phone,

@@ -12,11 +12,16 @@ var _Container = require('./Container');
 
 var _Container2 = _interopRequireDefault(_Container);
 
+var _ErrorMessage = require('./ErrorMessage');
+
+var _ErrorMessage2 = _interopRequireDefault(_ErrorMessage);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Input = function Input(_ref) {
 	var _ref$name = _ref.name,
 	    name = _ref$name === undefined ? "text" : _ref$name,
+	    position = _ref.position,
 	    dataset = _ref.dataset,
 	    style = _ref.style,
 	    _ref$tabIndex = _ref.tabIndex,
@@ -51,11 +56,7 @@ var Input = function Input(_ref) {
 			onFocus: onFocus,
 			value: dataset[name]
 		}),
-		errMessage !== false ? _react2.default.createElement(
-			'div',
-			{ className: 'error-message' },
-			errMessage
-		) : null
+		_react2.default.createElement(_ErrorMessage2.default, { errMessage: errMessage, position: position })
 	);
 };
 
