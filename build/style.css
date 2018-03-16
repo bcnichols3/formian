@@ -288,7 +288,7 @@
     border-color: #808080; }
 
 .formian-form .error {
-  border-color: #a94442; }
+  border-color: #a94442 !important; }
 
 .formian-form .error-message {
   display: none;

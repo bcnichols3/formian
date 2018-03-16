@@ -41,7 +41,7 @@ var Input = function Input(_ref) {
 	    className = _ref$className === undefined ? "" : _ref$className;
 	return _react2.default.createElement(
 		_Container2.default,
-		{ type: type, className: className, style: style },
+		{ type: type, className: 'field ' + className, style: style },
 		_react2.default.createElement(
 			'label',
 			{ htmlFor: name },

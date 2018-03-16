@@ -1,5 +1,5 @@
 .formian-form {
-	.error { border-color: $color-danger; }
+	.error { border-color: $color-danger !important;}
 
 	.error-message {
 		display: none;
