@@ -36,7 +36,7 @@ ReactDOM.renderComponent(
 	<Formian.Email />
 	<Formian.Checkbox
 		name="agree"
-		text="Isn't React Formian amazing?"
+		labelText="Aren't ants amazing?"
 		required={false}
 	/>
 	<Formian.Submit />
@@ -73,7 +73,7 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 |-----------|:------:|:---------:|--------------------------------------------  |
 |name       |`string`|field type|Required: Key name for the formData object (some child types have a default for ease of use but it's advised to declare names manually)                                                                       |
 |[className]|`string`|`''`|Set a CSS class for custom styles                     |
-|[text]     |`string`|`name`|Label or Legend text                               |
+|[labelText]     |`string`|`name`|Label or Legend text                               |
 |[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                       |
 |[defaultValue]|`boolean` or `string`|`false` or `''`|Value that the form element should initially render with                                                                            |
 |[formatter]|`function`|`undefined`|Custom formatter function; manipulates the field value during every onChange event                                         |
@@ -87,7 +87,7 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 |-----------|:------:|:---------:|--------------------------------------------  |
 |[validator]|`function`|`undefined`|Custom validator function; returns a boolean that asserts an acceptable input. If required is set to `false`, the validator will not run                                                          |
 |[placeholder]|`string`|`undefined`|Placeholder text                            |
-|[errMessage]|`string` or `false`|`Please enter a valid input`|Invalid input error message text (does not render if false)                                   |
+|[errorText]|`string` or `false`|`Please enter a valid input`|Invalid input error message text (does not render if false)                                   |
 
 ### `Formian.Checkbox` Component API
 
@@ -98,7 +98,7 @@ An option for passing `0` and `1` for MySQL is in the works.
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
 |[children]|`react components`|`undefined`|Component to be placed inline with the checkbox; supersedes `text`                                                 |
-|[errMessage]|`string` or `false`|`'Please check to agree'`|Invalid input error message text (if false, does not render)                                        |
+|[errorText]|`string` or `false`|`'Please check to agree'`|Invalid input error message text (if false, does not render)                                        |
 |[icon]|`URL string` or `React Component`|`'\u2714'`|Custom checkmark icon                                                                            |
 
 ### `Formian.Radio` Component API
@@ -116,8 +116,8 @@ For lengthier text, options for bigger buttons or a vertical layout is in the wo
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
 |options|`array of strings`|`['option1', 'option2']`|Required: Array of values for this key                                                                             |
-|[placeholder]|`string`|`props.type`|Placeholder text                            |
-|[errMessage]|`string`|`Please select an option`|Invalid input error message text             |
+|[placeholder]|`string`|`props.type`|Placeholder text                                                                            |
+|[errorText]|`string`|`Please select an option`|Invalid input error message text             |
 
 ### `Formian.Range` Component API
 

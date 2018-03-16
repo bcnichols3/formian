@@ -53,7 +53,7 @@ const Demo = (props) => (
 		<Formian.Radio
 			name="movie"
 			labelText="Favorite Ant Movie"
-			options={["Ants", "A Bugs Life", "Honey I Shrunk the Kids"]}
+			options={["Antz", "Ant Man", "Honey I Shrunk the Kids"]}
 		/>
 		<Formian.Select
 			name="species"
@@ -64,6 +64,15 @@ const Demo = (props) => (
 		<Formian.Checkbox
 			name="formianEasy"
 			labelText="I agree that Formian is easy to use"
+			required={false}
+		/>
+		<Formian.Text
+			name="whatIsThis"
+			labelText="What Is This?"
+			placeholder="Please type ‘A School for Ants’"
+			validator={function(val) {
+				return val.toLowerCase().trim() === 'a school for ants';
+			}}
 			required={false}
 		/>
 		<Formian.Fieldset>
