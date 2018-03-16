@@ -33,8 +33,8 @@ var Datalist = function Datalist(_ref) {
 	    text = _ref$text === undefined ? name : _ref$text,
 	    _ref$placeholder = _ref.placeholder,
 	    placeholder = _ref$placeholder === undefined ? text : _ref$placeholder,
-	    _ref$errMessage = _ref.errMessage,
-	    errMessage = _ref$errMessage === undefined ? "Please select an option" : _ref$errMessage;
+	    _ref$errorText = _ref.errorText,
+	    errorText = _ref$errorText === undefined ? "Please select an option" : _ref$errorText;
 	return _react2.default.createElement(
 		'div',
 		{ className: 'input-container datalist ' + className },
@@ -73,7 +73,7 @@ var Datalist = function Datalist(_ref) {
 		_react2.default.createElement(
 			'div',
 			{ className: 'error-message' },
-			errMessage
+			errorText
 		)
 	);
 };

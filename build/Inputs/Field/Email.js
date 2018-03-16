@@ -18,8 +18,8 @@ var Email = function Email(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "email",
 		type: "email",
-		placeholder: props.placeholder || "email@address.com",
-		errMessage: props.errMessage || "please enter a valid email address"
+		placeholder: props.placeholder,
+		errorText: props.errorText || "please enter a valid email address"
 	});
 	return _react2.default.createElement(_Input2.default, newProps);
 };

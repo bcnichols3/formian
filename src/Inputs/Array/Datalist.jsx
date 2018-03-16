@@ -2,7 +2,7 @@ import React from 'react';
 
 import Container from '../../common/Container';
 
-const Datalist = ({name, tabIndex="0", className="", dataset, options=['enter options array'], defaultValue, onChange, onBlur, onFocus, text=name, placeholder=text, errMessage="Please select an option"}) => (
+const Datalist = ({name, tabIndex="0", className="", dataset, options=['enter options array'], defaultValue, onChange, onBlur, onFocus, text=name, placeholder=text, errorText="Please select an option"}) => (
 	<div className={`input-container datalist ${className}`}>
 		<label htmlFor={name}>{text}</label>
 		<input
@@ -30,7 +30,7 @@ const Datalist = ({name, tabIndex="0", className="", dataset, options=['enter op
 				))}
 			</select>
 		</datalist>
-		<div className="error-message">{errMessage}</div>
+		<div className="error-message">{errorText}</div>
 	</div>
 );
 

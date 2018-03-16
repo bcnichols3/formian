@@ -2,17 +2,32 @@ import React from 'react';
 
 import Container from '../common/Container';
 
-const Reset = ({disabled, tabIndex="0", className="", style, text="restore defaults"}) => {
+const Reset = ({
+	labelText, value,
+	disabled, tabIndex,
+	resetForm,
+	style, className, position
+}) => {
 	if (disabled) className += " disabled";
 	return (
 		<Container type="reset" className={className} style={style}>
 			<input
-				type="reset"
+				type="button"
 				tabIndex={tabIndex}
-				value={text}
+				onClick={resetForm}
+				disabled={disabled}
+				value={labelText || value}
 			/>
 		</Container>
 	);
+};
+
+Reset.defaultProps = {
+	disabled: true,
+	tabIndex: "0",
+	value: "submit",
+	labelText: "restore defaults",
+	className: ""
 };
 
 export default Reset;

@@ -1,21 +1,24 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container from '../../common/Container';
 import CustomBox from '../../common/CustomBox';
 import ErrorMessage from '../../common/ErrorMessage';
+import Fieldset from '../../common/Fieldset';
 
 const Radio = ({
-	name, className="", text=name, tabIndex="0", icon, onChange, onFocus, onBlur, children, style,
-	dataset, options=['option1', 'option2'], defaultValue=options[0], type="radio", position,
-	errMessage = "Please select an option"
+	name, type,
+	labelText, errorText,
+	dataset, options, tabIndex,
+	onChange, onFocus, onBlur,
+	icon, style, className, position
 }) => (
-	<fieldset id={name} name={name}>
-		<legend>{text}</legend>
+	<Fieldset name={name} labelText={labelText}>
 		{options.map(option => (
 			<Container key={option} type={type} className={className} style={style}>
 				<label htmlFor={option+'@@'+name}>
 					<input
-						id={option+'@@'+name} type={type}
+						id={option+'@@'+name} type="radio"
 						tabIndex={tabIndex}
 						name={name}
 						value={option}
@@ -30,8 +33,22 @@ const Radio = ({
 				</label>
 			</Container>
 		))}
-		<ErrorMessage errMessage={errMessage} position={position}/>
-	</fieldset>
+		<ErrorMessage errorText={errorText} position={position} />
+	</Fieldset>
 );
+
+Radio.propTypes = {
+	name: PropTypes.string.isRequired,
+	options: PropTypes.arrayOf(PropTypes.string)
+};
+
+Radio.defaultProps = {
+	type: "radio",
+	tabIndex: "0",
+	options: ['option1', 'option2'],
+	defaultValue: 0,
+	errorText: "Please select an option",
+	className: ""
+};
 
 export default Radio;

@@ -5,8 +5,8 @@ import Input from '../../common/Input';
 const Number = (props) => {
 	const newProps = Object.assign({}, props, {
 		name: props.name || "number",
-		placeholder: props.placeholder || "number",
-		errMessage: props.errMessage || "please enter a number",
+		placeholder: props.placeholder,
+		errorText: props.errorText || "please enter a number",
 		wheel: props.wheel || false
 	});
 	return (<Input

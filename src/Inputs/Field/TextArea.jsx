@@ -6,7 +6,7 @@ const TextArea = (props) => {
 	const newProps = Object.assign({}, props, {
 		name: props.name || "textarea",
 		placeholder: props.placeholder || "your message",
-		errMessage: props.errMessage || "please enter a message"
+		errorText: props.errorText || "please enter a message"
 	});
 	return (<Input
 		type="textarea"

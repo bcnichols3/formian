@@ -46,11 +46,14 @@
       background: #31708f;
       border-color: #31708f; }
 
+.formian-form .input-container.select select {
+  background-color: #ffffff; }
+
 .formian-form .input-container.select .select-custom .custom-icon {
   position: absolute;
   pointer-events: none;
   right: 5px;
-  bottom: 5px;
+  bottom: 9px;
   font-size: 1.5rem;
   color: #555555; }
 
@@ -341,11 +344,15 @@
     display: block;
     margin: 0; }
   .formian-form fieldset {
-    width: 100%;
     border: none;
+    padding: 0; }
+  .formian-form .input-container.fieldset {
+    width: 100%;
     margin: 5px;
-    padding: 0;
-    width: 100%; }
+    display: flex;
+    flex-basis: 100%;
+    flex-flow: row;
+    flex-wrap: wrap; }
   .formian-form .input-container {
     position: relative;
     width: 100%;

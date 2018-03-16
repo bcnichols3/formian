@@ -8,6 +8,8 @@ import formatters from './formatters';
 import Reset from './Buttons/Reset';
 import Submit from './Buttons/Submit';
 
+import Fieldset from './common/Fieldset';
+
 import formElements from './Inputs';
 
 const Recaptcha = formElements[formElements.length - 1];
@@ -31,6 +33,8 @@ class Form extends Component {
 		this.recaptcha = this.recaptcha.bind(this);
 
 		this.flagAllErrors = this.flagAllErrors.bind(this);
+		this.resetForm = this.resetForm.bind(this);
+		this.isDefaultState = this.isDefaultState.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 
 		this.formatters = formatters;
@@ -38,19 +42,19 @@ class Form extends Component {
 
 		if (props.customStyles !== false) injectCSS();
 
-		const initialState = { disabled: true, formData: {} };
-		this.mapInputsToState(props.children, initialState);
-		this.state = initialState;
+		this.initialState = { disabled: true, formData: {} };
+		this.mapInputsToState(props.children);
+		this.state = Object.assign({}, this.initialState);
 	}
 
-	mapInputsToState(children, initialState) {
+	mapInputsToState(children) {
 		Children.map(children, child => {
 			if (!child) return;
 			else if (child.type === Recaptcha) {
-				initialState.formData.recaptcha = false;
+				this.initialState.formData.recaptcha = false;
 			}
-			else if (child.type === 'fieldset') {
-				this.mapInputsToState(child.props.children, initialState);
+			else if (child.type === Fieldset || child.type === 'fieldset') {
+				this.mapInputsToState(child.props.children);
 			}
 			else if (formElements.includes(child.type)) {
 				// discover the dataset object key
@@ -65,7 +69,6 @@ class Form extends Component {
 				this.setCheckersForChild(child, 'formatters');
 
 				// create initial state
-				console.log(child.props.defaultValue);
 				const target = {};
 				if (child.props.options) {
 					target.value =
@@ -78,7 +81,10 @@ class Form extends Component {
 				}
 				target.checked = child.props.defaultValue || '';
 
-				initialState.formData[key] = this.formatters[key](target);
+				this.initialState.formData[key] =
+					this.formatters[key](target)
+				;
+
 			}
 		});
 	}
@@ -93,10 +99,10 @@ class Form extends Component {
 		;
 	}
 
-	addHandlersToChild(child, idx) {
+	addHandlersToChild(child, tabIndex) {
 		if (formElements.includes(child.type)) {
 			return React.cloneElement(child, {
-				tabIndex: idx,
+				tabIndex: tabIndex,
 				onChange: child.type === Recaptcha
 					? this.recaptcha
 					: this.onChange,
@@ -106,33 +112,50 @@ class Form extends Component {
 				required: child.required || true
 			});
 		}
+		if (child.type === Submit) {
+			return React.cloneElement(child, {
+				tabIndex: tabIndex,
+				disabled: this.state.disabled,
+				flagAllErrors: this.flagAllErrors
+			});
+		}
+		if (child.type === Reset) {
+			return React.cloneElement(child, {
+				tabIndex: tabIndex,
+				disabled: this.isDefaultState(),
+				resetForm: this.resetForm
+			});
+		}
 		return child;
 	}
 
 	renderChildren() {
-		let idx = 1;
+		let tabIndex = 1;
 		return Children.map(this.props.children, child => {
 			if (!child) return;
-			if (child.type === Submit) {
+			if (child.type === Fieldset || child.type === 'fieldset') {
 				return React.cloneElement(child, {
-					disabled: this.state.disabled,
-					flagAllErrors: this.flagAllErrors
+					children: Children.map(child.props.children, child => {
+						return this.addHandlersToChild(child, tabIndex++);
+					})
 				});
 			}
-			if (child.type === 'fieldset') {
-				return (
-					<fieldset>
-						{Children.map(child.props.children, child => {
-							return this.addHandlersToChild(child, idx++);
-						})}
-					</fieldset>
-				);
-			}
 			if (formElements.includes(child.type)) {
-				return this.addHandlersToChild(child, idx++);
+				return this.addHandlersToChild(child, tabIndex++);
 			}
 			return child;
 		});
+	}
+
+	isDefaultState() {
+		const keys = Object.keys(this.initialState.formData);
+		for (let i = 0; i < keys.length; i++) {
+			if (this.initialState.formData[keys[i]]
+			!== this.state.formData[keys[i]]) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	onChange(evt) {
@@ -146,7 +169,6 @@ class Form extends Component {
 		);
 
 		this.checkForm(formData);
-		console.log(this.state.formData);
 
 		if (this.props.submitOnChange) this.autoSubmit();
 	}
@@ -199,6 +221,11 @@ class Form extends Component {
 		this.setState({ disabled, formData });
 	}
 
+	resetForm(evt) {
+		evt.preventDefault();
+		this.setState(Object.assign({}, this.initialState));
+	}
+
 	flagAllErrors() {
 		if (!this.state.disabled) return;
 
@@ -230,6 +257,7 @@ class Form extends Component {
 				className={'formian-form '+this.props.className}
 				onSubmit={this.onSubmit}
 				style={this.props.style}
+				disabled={this.state.disabled}
 			>
 				{this.renderChildren()}
 			</form>
@@ -240,6 +268,6 @@ class Form extends Component {
 const Formian = formElements.reduce((formian, input) => {
 	formian[input.name] = input;
 	return formian;
-}, { Form, Submit, Reset });
+}, { Form, Submit, Reset, Fieldset });
 
 export default Formian;

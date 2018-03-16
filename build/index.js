@@ -30,6 +30,10 @@ var _Submit = require('./Buttons/Submit');
 
 var _Submit2 = _interopRequireDefault(_Submit);
 
+var _Fieldset = require('./common/Fieldset');
+
+var _Fieldset2 = _interopRequireDefault(_Fieldset);
+
 var _Inputs = require('./Inputs');
 
 var _Inputs2 = _interopRequireDefault(_Inputs);
@@ -68,6 +72,8 @@ var Form = function (_Component) {
 		_this.recaptcha = _this.recaptcha.bind(_this);
 
 		_this.flagAllErrors = _this.flagAllErrors.bind(_this);
+		_this.resetForm = _this.resetForm.bind(_this);
+		_this.isDefaultState = _this.isDefaultState.bind(_this);
 		_this.onSubmit = _this.onSubmit.bind(_this);
 
 		_this.formatters = _formatters2.default;
@@ -75,22 +81,22 @@ var Form = function (_Component) {
 
 		if (props.customStyles !== false) (0, _injectCSS2.default)();
 
-		var initialState = { disabled: true, formData: {} };
-		_this.mapInputsToState(props.children, initialState);
-		_this.state = initialState;
+		_this.initialState = { disabled: true, formData: {} };
+		_this.mapInputsToState(props.children);
+		_this.state = Object.assign({}, _this.initialState);
 		return _this;
 	}
 
 	_createClass(Form, [{
 		key: 'mapInputsToState',
-		value: function mapInputsToState(children, initialState) {
+		value: function mapInputsToState(children) {
 			var _this2 = this;
 
 			_react.Children.map(children, function (child) {
 				if (!child) return;else if (child.type === Recaptcha) {
-					initialState.formData.recaptcha = false;
-				} else if (child.type === 'fieldset') {
-					_this2.mapInputsToState(child.props.children, initialState);
+					_this2.initialState.formData.recaptcha = false;
+				} else if (child.type === _Fieldset2.default || child.type === 'fieldset') {
+					_this2.mapInputsToState(child.props.children);
 				} else if (_Inputs2.default.includes(child.type)) {
 					// discover the dataset object key
 					var key = child.props.name || child.type.name.toLowerCase();
@@ -103,7 +109,6 @@ var Form = function (_Component) {
 					_this2.setCheckersForChild(child, 'formatters');
 
 					// create initial state
-					console.log(child.props.defaultValue);
 					var target = {};
 					if (child.props.options) {
 						target.value = child.props.options[child.props.defaultValue] || child.props.options[0];
@@ -112,7 +117,7 @@ var Form = function (_Component) {
 					}
 					target.checked = child.props.defaultValue || '';
 
-					initialState.formData[key] = _this2.formatters[key](target);
+					_this2.initialState.formData[key] = _this2.formatters[key](target);
 				}
 			});
 		}
@@ -156,20 +161,36 @@ var Form = function (_Component) {
 						flagAllErrors: _this3.flagAllErrors
 					});
 				}
-				if (child.type === 'fieldset') {
-					return _react2.default.createElement(
-						'fieldset',
-						null,
-						_react.Children.map(child.props.children, function (child) {
+				if (child.type === _Reset2.default) {
+					return _react2.default.cloneElement(child, {
+						disabled: _this3.isDefaultState(),
+						resetForm: _this3.resetForm
+					});
+				}
+				if (child.type === _Fieldset2.default || child.type === 'fieldset') {
+					return _react2.default.cloneElement(child, {
+						children: _react.Children.map(child.props.children, function (child) {
 							return _this3.addHandlersToChild(child, idx++);
 						})
-					);
+					});
 				}
 				if (_Inputs2.default.includes(child.type)) {
 					return _this3.addHandlersToChild(child, idx++);
 				}
 				return child;
 			});
+		}
+	}, {
+		key: 'isDefaultState',
+		value: function isDefaultState() {
+			var keys = Object.keys(this.initialState.formData);
+			console.log('keys', keys);
+			for (var i = 0; i < keys.length; i++) {
+				if (this.initialState.formData[keys[i]] !== this.state.formData[keys[i]]) {
+					return false;
+				}
+			}
+			return true;
 		}
 	}, {
 		key: 'onChange',
@@ -179,7 +200,6 @@ var Form = function (_Component) {
 			var formData = Object.assign({}, this.state.formData, _defineProperty({}, key, this.formatters[key] ? this.formatters[key](evt.target) : evt.target.value));
 
 			this.checkForm(formData);
-			console.log(this.state.formData);
 
 			if (this.props.submitOnChange) this.autoSubmit();
 		}
@@ -238,6 +258,12 @@ var Form = function (_Component) {
 			this.setState({ disabled: disabled, formData: formData });
 		}
 	}, {
+		key: 'resetForm',
+		value: function resetForm(evt) {
+			evt.preventDefault();
+			this.setState(Object.assign({}, this.initialState));
+		}
+	}, {
 		key: 'flagAllErrors',
 		value: function flagAllErrors() {
 			if (!this.state.disabled) return;
@@ -275,7 +301,8 @@ var Form = function (_Component) {
 					id: this.props.id,
 					className: 'formian-form ' + this.props.className,
 					onSubmit: this.onSubmit,
-					style: this.props.style
+					style: this.props.style,
+					disabled: this.state.disabled
 				},
 				this.renderChildren()
 			);
@@ -288,6 +315,6 @@ var Form = function (_Component) {
 var Formian = _Inputs2.default.reduce(function (formian, input) {
 	formian[input.name] = input;
 	return formian;
-}, { Form: Form, Submit: _Submit2.default, Reset: _Reset2.default });
+}, { Form: Form, Submit: _Submit2.default, Reset: _Reset2.default, Fieldset: _Fieldset2.default });
 
 exports.default = Formian;

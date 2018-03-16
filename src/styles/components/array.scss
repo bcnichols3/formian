@@ -54,12 +54,15 @@
 	}
 
 	.input-container.select {
+		select {
+			background-color: $white;
+		}
 		.select-custom {
 			.custom-icon {
 				position: absolute;
 				pointer-events: none;
 				right: 5px;
-			    bottom: 5px;
+			    bottom: 9px;
 				font-size: 1.5rem;
 				color: $gray-dark;
 			}

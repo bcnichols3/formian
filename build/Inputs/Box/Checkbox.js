@@ -8,6 +8,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _CustomBox = require('../../common/CustomBox');
 
 var _CustomBox2 = _interopRequireDefault(_CustomBox);
@@ -24,26 +28,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Checkbox = function Checkbox(_ref) {
 	var name = _ref.name,
-	    _ref$tabIndex = _ref.tabIndex,
-	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
-	    icon = _ref.icon,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className,
+	    type = _ref.type,
+	    labelText = _ref.labelText,
+	    errorText = _ref.errorText,
+	    dataset = _ref.dataset,
+	    defaultValue = _ref.defaultValue,
+	    tabIndex = _ref.tabIndex,
 	    onChange = _ref.onChange,
+	    onFocus = _ref.onFocus,
+	    onBlur = _ref.onBlur,
+	    icon = _ref.icon,
 	    style = _ref.style,
-	    _ref$defaultValue = _ref.defaultValue,
-	    defaultValue = _ref$defaultValue === undefined ? false : _ref$defaultValue,
-	    _ref$type = _ref.type,
-	    type = _ref$type === undefined ? "checkbox" : _ref$type,
-	    _ref$text = _ref.text,
-	    text = _ref$text === undefined ? name : _ref$text,
+	    className = _ref.className,
 	    position = _ref.position,
-	    children = _ref.children,
-	    _ref$value = _ref.value,
-	    value = _ref$value === undefined ? name : _ref$value,
-	    _ref$errMessage = _ref.errMessage,
-	    errMessage = _ref$errMessage === undefined ? "Please check to agree" : _ref$errMessage,
-	    dataset = _ref.dataset;
+	    children = _ref.children;
 	return _react2.default.createElement(
 		_Container2.default,
 		{ type: type, className: className, style: style },
@@ -54,19 +52,32 @@ var Checkbox = function Checkbox(_ref) {
 				tabIndex: tabIndex,
 				id: name, type: 'checkbox',
 				name: name,
-				value: value,
 				onChange: onChange,
-				checked: Array.isArray(dataset) ? dataset.includes(value) : !!dataset[value]
+				onFocus: onFocus,
+				onBlur: onBlur,
+				checked: !!dataset[name]
 			}),
 			_react2.default.createElement(_CustomBox2.default, { name: name, type: type, icon: icon }),
 			_react2.default.createElement(
 				'div',
 				{ className: type + '-text' },
-				children || text
+				children || labelText || name
 			)
 		),
-		_react2.default.createElement(_ErrorMessage2.default, { errMessage: errMessage, position: position })
+		_react2.default.createElement(_ErrorMessage2.default, { errorText: errorText, position: position })
 	);
+};
+
+Checkbox.propTypes = {
+	name: _propTypes2.default.string.isRequired
+};
+
+Checkbox.defaultProps = {
+	type: "checkbox",
+	tabIndex: "0",
+	defaultValue: false,
+	errorText: "Please check to agree",
+	className: ""
 };
 
 exports.default = Checkbox;

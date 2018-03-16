@@ -8,6 +8,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Container = require('../common/Container');
 
 var _Container2 = _interopRequireDefault(_Container);
@@ -15,16 +19,18 @@ var _Container2 = _interopRequireDefault(_Container);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Submit = function Submit(_ref) {
-	var disabled = _ref.disabled,
-	    style = _ref.style,
+	var name = _ref.name,
+	    type = _ref.type,
+	    value = _ref.value,
+	    labelText = _ref.labelText,
+	    disabled = _ref.disabled,
+	    tabIndex = _ref.tabIndex,
 	    flagAllErrors = _ref.flagAllErrors,
-	    _ref$tabIndex = _ref.tabIndex,
-	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className,
-	    _ref$text = _ref.text,
-	    text = _ref$text === undefined ? "submit" : _ref$text;
+	    style = _ref.style,
+	    className = _ref.className,
+	    position = _ref.position;
 
+	console.log('disabled?', disabled);
 	if (disabled) className += ' disabled';
 	return _react2.default.createElement(
 		_Container2.default,
@@ -33,9 +39,17 @@ var Submit = function Submit(_ref) {
 			type: 'submit',
 			tabIndex: tabIndex,
 			onFocus: flagAllErrors,
-			value: text
+			value: labelText || value
 		})
 	);
+};
+
+Submit.defaultProps = {
+	disabled: true,
+	tabIndex: "0",
+	value: "submit",
+	labelText: "submit",
+	className: ""
 };
 
 exports.default = Submit;

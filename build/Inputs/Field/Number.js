@@ -19,8 +19,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Number = function Number(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "number",
-		placeholder: props.placeholder || "number",
-		errMessage: props.errMessage || "please enter a number",
+		placeholder: props.placeholder,
+		errorText: props.errorText || "please enter a number",
 		wheel: props.wheel || false
 	});
 	return _react2.default.createElement(_Input2.default, _extends({

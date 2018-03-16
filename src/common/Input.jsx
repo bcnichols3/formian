@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container from './Container';
 import ErrorMessage from './ErrorMessage';
 
-const Input = ({name="text", position, dataset, style, tabIndex="0", onChange, onBlur, onFocus, type="text", text=name, placeholder=text, errMessage="invalid input", className=""}) => (
+const Input = ({name, position, dataset, style, tabIndex, onChange, onBlur, onFocus, type, labelText, placeholder, errorText, className}) => (
 	<Container type={type} className={'field '+className} style={style}>
-		<label htmlFor={name}>{text}</label>
+		<label htmlFor={name}>{labelText || name}</label>
 		<input
-			id={name} type={type}
+			id={name}
+			type={type}
 			tabIndex={tabIndex}
 			placeholder={placeholder}
 			onChange={onChange}
@@ -15,8 +17,17 @@ const Input = ({name="text", position, dataset, style, tabIndex="0", onChange, o
 			onFocus={onFocus}
 			value={dataset[name]}
 		/>
-		<ErrorMessage errMessage={errMessage} position={position}/>
+		<ErrorMessage errorText={errorText} position={position} />
 	</Container>
 );
+
+Input.defaultProps = {
+	name: "text",
+	type: "text",
+	placeholder: "",
+	errorText: "invalid input",
+	className: "",
+	tabIndex: "0"
+};
 
 export default Input;

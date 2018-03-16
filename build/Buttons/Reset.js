@@ -16,13 +16,12 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Reset = function Reset(_ref) {
 	var disabled = _ref.disabled,
-	    _ref$tabIndex = _ref.tabIndex,
-	    tabIndex = _ref$tabIndex === undefined ? "0" : _ref$tabIndex,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className,
+	    resetForm = _ref.resetForm,
+	    tabIndex = _ref.tabIndex,
+	    className = _ref.className,
 	    style = _ref.style,
-	    _ref$text = _ref.text,
-	    text = _ref$text === undefined ? "restore defaults" : _ref$text;
+	    labelText = _ref.labelText,
+	    value = _ref.value;
 
 	if (disabled) className += " disabled";
 	return _react2.default.createElement(
@@ -30,10 +29,19 @@ var Reset = function Reset(_ref) {
 		{ type: 'reset', className: className, style: style },
 		_react2.default.createElement('input', {
 			type: 'reset',
+			onClick: resetForm,
 			tabIndex: tabIndex,
-			value: text
+			value: labelText || value
 		})
 	);
+};
+
+Reset.defaultProps = {
+	disabled: true,
+	tabIndex: "0",
+	value: "submit",
+	labelText: "restore defaults",
+	className: ""
 };
 
 exports.default = Reset;

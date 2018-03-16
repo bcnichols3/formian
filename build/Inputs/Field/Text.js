@@ -18,13 +18,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Text = function Text(props) {
 	var newProps = Object.assign({}, props, {
-		name: props.name || "text",
-		placeholder: props.placeholder || "text",
-		errMessage: props.errMessage || "please enter your text"
+		placeholder: props.placeholder,
+		errorText: props.errorText || "please enter your text"
 	});
-	return _react2.default.createElement(_Input2.default, _extends({
-		type: 'text'
-	}, newProps));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'text' }, newProps));
 };
 
 exports.default = Text;

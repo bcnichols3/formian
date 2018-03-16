@@ -2,58 +2,77 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Formian from '../../src/index.jsx';
+import QueenSVG from './Queen';
 
 function submitHandler(data) {
 	console.log('SUBMITTING FORM', data);
 }
+
+const buttonStyle = {
+	width: "49%",
+	display: "inlineBlock",
+	margin: "auto"
+};
 
 const Demo = (props) => (
 	<Formian.Form
 		className="my-form"
 		onSubmit={submitHandler}
 		style={{
-			width: "50%",
+			width: "60%",
+			position: "relative",
 			margin: "auto",
 			fontSize: "20px",
-			minWidth: "300px"
+			minWidth: "320px"
 		}}
 	>
 		<h1>My Formian Form</h1>
 		<Formian.Text
 			name="feelings"
-			text="How You Feel"
-			placeholder="I feel..."
-			errMessage="At least tell me how you feel..."
+			labelText="How Ants Make You Feel"
+			errorText="You must share your feelings about ants."
 		/>
-		<Formian.Email />
-		<Formian.Checkbox
-			name="formianAwesome"
-			text="Is Formian Awesome?"
-			required={false}
+		<Formian.Email
+			labelText="Join Ant Facts"
+			placeholder="Your Email"
 		/>
 		<Formian.OnOff
-			name="carpeDiem"
-			text="Seize the Day"
-			errMessage="Do it!"
+			name="queen"
+			labelText="Activate Ant Queen"
 		/>
-		<Formian.Radio
-			name="vacations"
-			text="Vacation Preference"
-			options={["mountains", "beaches"]}
-		/>
-		<Formian.Select
-			name="color"
-			text="Favorite Color"
-			defaultValue="4"
-			options={["red", "orange", "yellow", "green", "blue", "violet"]}
-		/>
-		<Formian.Submit
-			text="Do it!"
-			style={{
-				width: "50%",
-				margin: "auto"
+		<QueenSVG style={{
+				position: 'absolute',
+				top: '32%',
+				right: '-33%',
+				transform: 'rotate(-40deg)',
+				width: '90%',
+				zIndex: '-1',
+				stroke: 'lightgray'
 			}}
 		/>
+		<Formian.Radio
+			name="movie"
+			labelText="Favorite Ant Movie"
+			options={["Ants", "A Bugs Life", "Honey I Shrunk the Kids"]}
+		/>
+		<Formian.Select
+			name="species"
+			labelText="Favorite Species of Ant"
+			defaultValue={1}
+			options={["fire ant", "weaver ant", "carpenter ant"]}
+		/>
+		<Formian.Checkbox
+			name="formianEasy"
+			labelText="I agree that Formian is easy to use"
+			required={false}
+		/>
+		<Formian.Fieldset>
+			<Formian.Submit
+				labelText="Do it!"
+				style={buttonStyle}
+			/>
+			<Formian.Reset style={buttonStyle} />
+		</Formian.Fieldset>
 	</Formian.Form>
 );
 

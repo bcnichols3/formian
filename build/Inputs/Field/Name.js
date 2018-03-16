@@ -20,8 +20,8 @@ var Name = function Name(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "name",
 		text: "Your Name",
-		placeholder: props.placeholder || "name",
-		errMessage: props.errMessage || "please enter your name"
+		placeholder: props.placeholder,
+		errorText: props.errorText || "please enter your name"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({
 		className: 'name',

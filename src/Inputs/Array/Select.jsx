@@ -1,12 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Container from '../../common/Container';
 import CustomBox from '../../common/CustomBox';
 import ErrorMessage from '../../common/ErrorMessage';
+import Option from '../../common/Option';
 
-const Select = ({name, type="select", icon, tabIndex="0", className="", style, dataset, position, options=['enter options array'], defaultValue, onChange, onBlur, onFocus, text=name, placeholder=text, errMessage="please select an option"}) => (
+const Select = ({
+	name, type,
+	labelText, errorText, placeholder,
+	dataset, options, tabIndex,
+	onChange, onFocus, onBlur,
+	icon, style, className, position
+}) => (
 	<Container type="select" className={className} style={style}>
-		<label htmlFor={name}>{text}</label>
+		<label htmlFor={name}>{labelText || name}</label>
 		<select
 			id={name} type={type}
 			tabIndex={tabIndex}
@@ -16,24 +24,27 @@ const Select = ({name, type="select", icon, tabIndex="0", className="", style, d
 			onFocus={onFocus}
 			value={dataset[name]}
 		>
-			{options.map(opt => (
-				typeof opt === 'object'
-					? <option
-						key={opt.value}
-						label={opt.label || opt.value}
-						value={opt.value}
-						disabled={opt.disabled || false}
-					/>
-					: <option
-						key={opt}
-						label={opt}
-						value={opt}
-					/>
+			{options.map(data => (
+				<Option key={data.value || data} data={data} />
 			))}
 		</select>
 		<CustomBox name={name} type={type} icon={icon} />
-		<ErrorMessage errMessage={errMessage} position={position}/>
+		<ErrorMessage errorText={errorText} position={position} />
 	</Container>
 );
+
+Select.propTypes = {
+	options: PropTypes.array,
+	defaultValue: PropTypes.number
+};
+
+Select.defaultProps = {
+	type: "select",
+	defaultValue: 0,
+	tabIndex: "0",
+	options: ['option 1', 'option 2'],
+	errorText: "please select an option",
+	className: ""
+};
 
 export default Select;

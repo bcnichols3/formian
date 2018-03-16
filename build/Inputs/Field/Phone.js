@@ -4,6 +4,8 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -17,11 +19,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Phone = function Phone(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "phone",
-		type: "tel",
-		placeholder: props.placeholder || "(123) 867-5309",
-		errMessage: props.errMessage || "please enter a valid phone number"
+		placeholder: props.placeholder,
+		errorText: props.errorText || "please enter a valid phone number"
 	});
-	return _react2.default.createElement(_Input2.default, newProps);
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'tel' }, newProps));
 };
 
 exports.default = Phone;
