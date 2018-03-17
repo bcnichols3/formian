@@ -134,15 +134,29 @@ var Form = function (_Component) {
 		}
 	}, {
 		key: 'addHandlersToChild',
-		value: function addHandlersToChild(child, idx) {
+		value: function addHandlersToChild(child, tabIndex) {
 			if (_Inputs2.default.includes(child.type)) {
 				return _react2.default.cloneElement(child, {
-					tabIndex: idx,
+					tabIndex: tabIndex,
 					onChange: child.type === Recaptcha ? this.recaptcha : this.onChange,
 					onBlur: this.onBlur,
 					onFocus: this.onFocus,
 					dataset: this.state.formData,
 					required: child.required || true
+				});
+			}
+			if (child.type === _Submit2.default) {
+				return _react2.default.cloneElement(child, {
+					tabIndex: tabIndex,
+					disabled: this.state.disabled,
+					flagAllErrors: this.flagAllErrors
+				});
+			}
+			if (child.type === _Reset2.default) {
+				return _react2.default.cloneElement(child, {
+					tabIndex: tabIndex,
+					disabled: this.isDefaultState(),
+					resetForm: this.resetForm
 				});
 			}
 			return child;
@@ -152,30 +166,18 @@ var Form = function (_Component) {
 		value: function renderChildren() {
 			var _this3 = this;
 
-			var idx = 1;
+			var tabIndex = 1;
 			return _react.Children.map(this.props.children, function (child) {
 				if (!child) return;
-				if (child.type === _Submit2.default) {
-					return _react2.default.cloneElement(child, {
-						disabled: _this3.state.disabled,
-						flagAllErrors: _this3.flagAllErrors
-					});
-				}
-				if (child.type === _Reset2.default) {
-					return _react2.default.cloneElement(child, {
-						disabled: _this3.isDefaultState(),
-						resetForm: _this3.resetForm
-					});
-				}
 				if (child.type === _Fieldset2.default || child.type === 'fieldset') {
 					return _react2.default.cloneElement(child, {
 						children: _react.Children.map(child.props.children, function (child) {
-							return _this3.addHandlersToChild(child, idx++);
+							return _this3.addHandlersToChild(child, tabIndex++);
 						})
 					});
 				}
 				if (_Inputs2.default.includes(child.type)) {
-					return _this3.addHandlersToChild(child, idx++);
+					return _this3.addHandlersToChild(child, tabIndex++);
 				}
 				return child;
 			});
@@ -184,7 +186,6 @@ var Form = function (_Component) {
 		key: 'isDefaultState',
 		value: function isDefaultState() {
 			var keys = Object.keys(this.initialState.formData);
-			console.log('keys', keys);
 			for (var i = 0; i < keys.length; i++) {
 				if (this.initialState.formData[keys[i]] !== this.state.formData[keys[i]]) {
 					return false;

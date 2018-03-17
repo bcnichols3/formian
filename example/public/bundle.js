@@ -9015,6 +9015,107 @@ exports.default = TextArea;
 
 /***/ }),
 
+/***/ "../src/Inputs/Special/File.jsx":
+/*!**************************************!*\
+  !*** ../src/Inputs/Special/File.jsx ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Container = __webpack_require__(/*! ../../common/Container */ "../src/common/Container.jsx");
+
+var _Container2 = _interopRequireDefault(_Container);
+
+var _ErrorMessage = __webpack_require__(/*! ../../common/ErrorMessage */ "../src/common/ErrorMessage.jsx");
+
+var _ErrorMessage2 = _interopRequireDefault(_ErrorMessage);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function data(dataset, name) {
+	console.log(dataset[name]);
+	if (!dataset[name]) return "No File selected";
+	if (dataset[name][0]) return dataset[name][0].name;
+	return "No File selected";
+}
+
+var File = function File(_ref) {
+	var name = _ref.name,
+	    type = _ref.type,
+	    labelText = _ref.labelText,
+	    errorText = _ref.errorText,
+	    placeholder = _ref.placeholder,
+	    dataset = _ref.dataset,
+	    accept = _ref.accept,
+	    tabIndex = _ref.tabIndex,
+	    onChange = _ref.onChange,
+	    onFocus = _ref.onFocus,
+	    onBlur = _ref.onBlur,
+	    icon = _ref.icon,
+	    style = _ref.style,
+	    className = _ref.className,
+	    position = _ref.position;
+	return _react2.default.createElement(
+		_Container2.default,
+		{ type: type, className: className, style: style },
+		_react2.default.createElement(
+			'label',
+			{ htmlFor: name },
+			labelText || name
+		),
+		_react2.default.createElement('input', {
+			id: name,
+			type: 'file',
+			tabIndex: tabIndex,
+			placeholder: placeholder,
+			accept: accept,
+			onChange: onChange,
+			onBlur: onBlur,
+			onFocus: onFocus
+		}),
+		_react2.default.createElement(
+			'div',
+			{ className: 'file-preview' },
+			data(dataset, name)
+		),
+		_react2.default.createElement(_ErrorMessage2.default, { errorText: errorText, position: position })
+	);
+};
+
+File.defaultProps = {
+	name: "file",
+	type: "file",
+	accept: "",
+	labelText: "Upload an attachment",
+	errorText: "invalid file",
+	className: "",
+	tabIndex: "0"
+};
+
+exports.default = File;
+
+
+function fileSize(num) {
+	if (num < 1024) return num + ' bytes';else if (num > 1024 && num < 1048576) return (num / 1024).toFixed(1) + 'KB';else if (num > 1048576) return (num / 1048576).toFixed(1) + 'MB';
+}
+
+/***/ }),
+
 /***/ "../src/Inputs/Special/Recaptcha.jsx":
 /*!*******************************************!*\
   !*** ../src/Inputs/Special/Recaptcha.jsx ***!
@@ -9133,20 +9234,24 @@ var _TextArea = __webpack_require__(/*! ./Field/TextArea */ "../src/Inputs/Field
 
 var _TextArea2 = _interopRequireDefault(_TextArea);
 
+var _File = __webpack_require__(/*! ./Special/File */ "../src/Inputs/Special/File.jsx");
+
+var _File2 = _interopRequireDefault(_File);
+
 var _Recaptcha = __webpack_require__(/*! ./Special/Recaptcha */ "../src/Inputs/Special/Recaptcha.jsx");
 
 var _Recaptcha2 = _interopRequireDefault(_Recaptcha);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// ========== FIELD INPUTS
-// ========== ARRAY INPUTS
-exports.default = [_Checkbox2.default, _Datalist2.default, _Email2.default, _Name2.default, _Number2.default, _OnOff2.default, _Password2.default, _Phone2.default, _Radio2.default, _Range2.default, _Select2.default, _Text2.default, _TextArea2.default, _Recaptcha2.default];
-
 // ========== SPECIAL INPUTS
 
 
 // ========== BOX INPUTS
+exports.default = [_Checkbox2.default, _Datalist2.default, _Email2.default, _File2.default, _Name2.default, _Number2.default, _OnOff2.default, _Password2.default, _Phone2.default, _Radio2.default, _Range2.default, _Select2.default, _Text2.default, _TextArea2.default, _Recaptcha2.default];
+
+// ========== FIELD INPUTS
+// ========== ARRAY INPUTS
 
 /***/ }),
 
@@ -9476,7 +9581,7 @@ exports.default = Option;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 // NOTE formatters manipulate and upate a user input in real time, putting into the chosen format.
 
@@ -9501,25 +9606,29 @@ formatters.textArea = textLarge;
 
 // ========== SPECIAL INPUTS
 formatters.recaptcha = preformatted;
+formatters.file = function (target) {
+	console.log('target', target);
+	return target.files;
+};
 
 exports.default = formatters;
 
 // ========== COMMON FORMATTERS
 
 function preformatted(target) {
-  return target.value;
+	return target.value;
 }
 function textSmall(target) {
-  return target.value.slice(0, 25).toLowerCase();
+	return target.value.slice(0, 25).toLowerCase();
 }
 function textMed(target) {
-  return target.value.slice(0, 50).toLowerCase();
+	return target.value.slice(0, 50).toLowerCase();
 }
 function textLarge(target) {
-  return target.value.slice(0, 50000);
+	return target.value.slice(0, 50000);
 }
 function checkbox(target) {
-  return target.checked || false;
+	return target.checked || false;
 }
 
 /***/ }),
@@ -9937,6 +10046,7 @@ validators.textarea = text;
 
 // ========== SPECIAL INPUTS
 validators.recaptcha = validators.prevalidated;
+validators.file = box;
 
 exports.default = validators;
 
@@ -10043,11 +10153,11 @@ var Demo = function Demo(props) {
 			className: 'my-form',
 			onSubmit: submitHandler,
 			style: {
-				width: "60%",
+				width: "100%",
+				maxWidth: "800px",
 				position: "relative",
 				margin: "auto",
-				fontSize: "20px",
-				minWidth: "320px"
+				fontSize: "20px"
 			}
 		},
 		_react2.default.createElement(
@@ -10089,11 +10199,7 @@ var Demo = function Demo(props) {
 			defaultValue: 1,
 			options: ["fire ant", "weaver ant", "carpenter ant"]
 		}),
-		_react2.default.createElement(_index2.default.Checkbox, {
-			name: 'formianEasy',
-			labelText: 'I agree that Formian is easy to use',
-			required: false
-		}),
+		_react2.default.createElement(_index2.default.File, null),
 		_react2.default.createElement(_index2.default.Text, {
 			name: 'whatIsThis',
 			labelText: 'What Is This?',
@@ -10101,6 +10207,11 @@ var Demo = function Demo(props) {
 			validator: function validator(val) {
 				return val.toLowerCase().trim() === 'a school for ants';
 			},
+			required: false
+		}),
+		_react2.default.createElement(_index2.default.Checkbox, {
+			name: 'formianEasy',
+			labelText: 'I agree that Formian is easy to use',
 			required: false
 		}),
 		_react2.default.createElement(

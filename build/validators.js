@@ -40,6 +40,7 @@ validators.textarea = text;
 
 // ========== SPECIAL INPUTS
 validators.recaptcha = validators.prevalidated;
+validators.file = box;
 
 exports.default = validators;
 

@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 // NOTE formatters manipulate and upate a user input in real time, putting into the chosen format.
 
@@ -26,23 +26,27 @@ formatters.textArea = textLarge;
 
 // ========== SPECIAL INPUTS
 formatters.recaptcha = preformatted;
+formatters.file = function (target) {
+	console.log('target', target);
+	return target.files;
+};
 
 exports.default = formatters;
 
 // ========== COMMON FORMATTERS
 
 function preformatted(target) {
-  return target.value;
+	return target.value;
 }
 function textSmall(target) {
-  return target.value.slice(0, 25).toLowerCase();
+	return target.value.slice(0, 25).toLowerCase();
 }
 function textMed(target) {
-  return target.value.slice(0, 50).toLowerCase();
+	return target.value.slice(0, 50).toLowerCase();
 }
 function textLarge(target) {
-  return target.value.slice(0, 50000);
+	return target.value.slice(0, 50000);
 }
 function checkbox(target) {
-  return target.checked || false;
+	return target.checked || false;
 }

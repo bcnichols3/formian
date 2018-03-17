@@ -19,11 +19,11 @@ const Demo = (props) => (
 		className="my-form"
 		onSubmit={submitHandler}
 		style={{
-			width: "60%",
+			width: "100%",
+			maxWidth: "800px",
 			position: "relative",
 			margin: "auto",
 			fontSize: "20px",
-			minWidth: "320px"
 		}}
 	>
 		<h1>My Formian Form</h1>
@@ -61,11 +61,7 @@ const Demo = (props) => (
 			defaultValue={1}
 			options={["fire ant", "weaver ant", "carpenter ant"]}
 		/>
-		<Formian.Checkbox
-			name="formianEasy"
-			labelText="I agree that Formian is easy to use"
-			required={false}
-		/>
+		<Formian.File />
 		<Formian.Text
 			name="whatIsThis"
 			labelText="What Is This?"
@@ -73,6 +69,11 @@ const Demo = (props) => (
 			validator={function(val) {
 				return val.toLowerCase().trim() === 'a school for ants';
 			}}
+			required={false}
+		/>
+		<Formian.Checkbox
+			name="formianEasy"
+			labelText="I agree that Formian is easy to use"
 			required={false}
 		/>
 		<Formian.Fieldset>

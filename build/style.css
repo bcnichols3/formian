@@ -334,6 +334,45 @@
   margin: 0;
   /* <-- Apparently some margin are still there even though it's hidden */ }
 
+.formian-form .input-container.file input {
+  display: none; }
+
+.formian-form .input-container.file label {
+  left: 0;
+  color: #31708f;
+  background-color: #ffffff;
+  border: 2px solid #31708f;
+  height: 35px;
+  width: 40%;
+  margin: 5px 0;
+  display: inline-block;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  padding: 0;
+  color: #31708f;
+  background-color: #ffffff;
+  border: 2px solid #31708f;
+  padding: 0 0 0 10px;
+  font-size: 0.8em;
+  line-height: 2em; }
+  .formian-form .input-container.file label:focus, .formian-form .input-container.file label:hover {
+    color: #ffffff;
+    background-color: #31708f; }
+
+.formian-form .input-container.file .file-preview {
+  position: absolute;
+  top: 0;
+  left: calc(40% - 2px);
+  z-index: 2;
+  border: 2px solid #31708f;
+  width: 60%;
+  height: 35px;
+  margin: 5px 0;
+  border-top-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+  background: #ffffff;
+  padding: 0 0 0 5px; }
+
 .formian-form {
   width: 100%;
   display: flex;

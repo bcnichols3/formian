@@ -56,17 +56,21 @@ var _TextArea = require('./Field/TextArea');
 
 var _TextArea2 = _interopRequireDefault(_TextArea);
 
+var _File = require('./Special/File');
+
+var _File2 = _interopRequireDefault(_File);
+
 var _Recaptcha = require('./Special/Recaptcha');
 
 var _Recaptcha2 = _interopRequireDefault(_Recaptcha);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// ========== FIELD INPUTS
-// ========== ARRAY INPUTS
-exports.default = [_Checkbox2.default, _Datalist2.default, _Email2.default, _Name2.default, _Number2.default, _OnOff2.default, _Password2.default, _Phone2.default, _Radio2.default, _Range2.default, _Select2.default, _Text2.default, _TextArea2.default, _Recaptcha2.default];
-
 // ========== SPECIAL INPUTS
 
 
 // ========== BOX INPUTS
+exports.default = [_Checkbox2.default, _Datalist2.default, _Email2.default, _File2.default, _Name2.default, _Number2.default, _OnOff2.default, _Password2.default, _Phone2.default, _Radio2.default, _Range2.default, _Select2.default, _Text2.default, _TextArea2.default, _Recaptcha2.default];
+
+// ========== FIELD INPUTS
+// ========== ARRAY INPUTS

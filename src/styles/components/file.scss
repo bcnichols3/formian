@@ -1,0 +1,47 @@
+.formian-form {
+	.input-container.file {
+		input {
+			display: none;
+		}
+
+		label {
+			left: 0;
+			color: $color-info;
+			background-color: $white;
+			border: 2px solid $color-info;
+			height: 35px;
+			width: 35%;
+			margin: 5px 0;
+			display: inline-block;
+			border-top-left-radius: 2px;
+			border-bottom-left-radius: 2px;
+			padding: 0;
+			color: $color-info;
+			background-color: $white;
+			border: 2px solid $color-info;
+			padding: 0 0 0 10px;
+			font-size: 0.8em;
+			line-height: 2em;
+
+			&:focus,&:hover {
+				color: $white;
+				background-color: $color-info;
+			}
+		}
+
+		.file-preview {
+			position: absolute;
+		    top: 0;
+		    left: calc(35% - 2px);
+		    z-index: 2;
+		    border: 2px solid $color-info;
+		    width: 65%;
+		    height: 35px;
+		    margin: 5px 0;
+		    border-top-right-radius: 2px;
+		    border-bottom-left-radius: 2px;
+		    background: $white ;
+		    padding: 0 0 0 5px;
+		}
+	}
+}

@@ -18,10 +18,11 @@ import Text from './Field/Text';
 import TextArea from './Field/TextArea';
 
 // ========== SPECIAL INPUTS
+import File from './Special/File';
 import Recaptcha from './Special/Recaptcha';
 
 export default [
-	Checkbox, Datalist, Email, Name, Number, OnOff, Password, Phone,
+	Checkbox, Datalist, Email, File, Name, Number, OnOff, Password, Phone,
 	Radio, Range, Select, Text, TextArea,
 	Recaptcha
 ];

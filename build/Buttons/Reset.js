@@ -15,22 +15,24 @@ var _Container2 = _interopRequireDefault(_Container);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Reset = function Reset(_ref) {
-	var disabled = _ref.disabled,
-	    resetForm = _ref.resetForm,
+	var labelText = _ref.labelText,
+	    value = _ref.value,
+	    disabled = _ref.disabled,
 	    tabIndex = _ref.tabIndex,
-	    className = _ref.className,
+	    resetForm = _ref.resetForm,
 	    style = _ref.style,
-	    labelText = _ref.labelText,
-	    value = _ref.value;
+	    className = _ref.className,
+	    position = _ref.position;
 
 	if (disabled) className += " disabled";
 	return _react2.default.createElement(
 		_Container2.default,
 		{ type: 'reset', className: className, style: style },
 		_react2.default.createElement('input', {
-			type: 'reset',
-			onClick: resetForm,
+			type: 'button',
 			tabIndex: tabIndex,
+			onClick: resetForm,
+			disabled: disabled,
 			value: labelText || value
 		})
 	);
