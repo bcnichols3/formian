@@ -83,6 +83,7 @@ var Form = function (_Component) {
 
 		_this.initialState = { disabled: true, formData: {} };
 		_this.mapInputsToState(props.children);
+		_this.formDataKeys = Object.keys(_this.initialState.formData);
 		_this.state = Object.assign({}, _this.initialState);
 		return _this;
 	}
@@ -126,11 +127,16 @@ var Form = function (_Component) {
 		value: function setCheckersForChild(child, set) {
 			var key = child.props.name || child.type.name;
 
-			this[set][key] = child.props[set] // custom checker
-			|| this[set][key.toLowerCase()] // checker by field name
-			|| this[set][child.type.name.toLowerCase()] // checker by type name
-			|| this[set][child.props.type.toLowerCase()] // checker by type
-			;
+			if (!child.props[set] && child.props.tinyInt) {
+				this[set][key] = this[set].tinyInt;
+				child.props.defaultValue = child.props.defaultValue || 0;
+			} else {
+				this[set][key] = child.props[set] // custom checker
+				|| this[set][key.toLowerCase()] // checker by field name
+				|| this[set][child.type.name.toLowerCase()] // checker by type name
+				|| this[set][child.props.type.toLowerCase()] // checker by type
+				;
+			}
 		}
 	}, {
 		key: 'addHandlersToChild',
@@ -185,9 +191,8 @@ var Form = function (_Component) {
 	}, {
 		key: 'isDefaultState',
 		value: function isDefaultState() {
-			var keys = Object.keys(this.initialState.formData);
-			for (var i = 0; i < keys.length; i++) {
-				if (this.initialState.formData[keys[i]] !== this.state.formData[keys[i]]) {
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				if (this.initialState.formData[this.formDataKeys[i]] !== this.state.formData[this.formDataKeys[i]]) {
 					return false;
 				}
 			}
@@ -233,10 +238,7 @@ var Form = function (_Component) {
 		key: 'onSubmit',
 		value: function onSubmit(evt) {
 			evt.preventDefault();
-			if (this.state.disabled) this.flagAllErrors();else {
-				console.log('ready to go!');
-				this.props.onSubmit.call(this, this.state.formData);
-			}
+			if (this.state.disabled) this.flagAllErrors();else this.props.onSubmit.call(this, this.state.formData);
 		}
 	}, {
 		key: 'recaptcha',
@@ -248,14 +250,15 @@ var Form = function (_Component) {
 	}, {
 		key: 'checkForm',
 		value: function checkForm(formData) {
-			var _this4 = this;
-
 			var disabled = false;
-			Object.keys(formData).forEach(function (key) {
-				if (_this4.validators[key] && !_this4.validators[key](formData[key])) {
+			var key = void 0;
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				key = this.formDataKeys[i];
+				if (this.validators[key] && !this.validators[key](formData[key])) {
 					disabled = true;
+					break;
 				}
-			});
+			}
 			this.setState({ disabled: disabled, formData: formData });
 		}
 	}, {
@@ -263,26 +266,26 @@ var Form = function (_Component) {
 		value: function resetForm(evt) {
 			evt.preventDefault();
 			this.setState(Object.assign({}, this.initialState));
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				document.getElementById(this.formDataKeys[i]).dispatchEvent(new Event('blur'));
+			}
 		}
 	}, {
 		key: 'flagAllErrors',
 		value: function flagAllErrors() {
 			if (!this.state.disabled) return;
-
-			var el = void 0;
-			Object.keys(this.state.formData).forEach(function (key) {
-				el = document.getElementById(key);
-				el.dispatchEvent(new Event('blur'));
-			});
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				document.getElementById(this.formDataKeys[i]).dispatchEvent(new Event('blur'));
+			}
 		}
 	}, {
 		key: 'autoSubmit',
 		value: function autoSubmit() {
-			var _this5 = this;
+			var _this4 = this;
 
 			clearTimeout(this.submitTimeout);
 			this.submitTimeout = setTimeout(function () {
-				_this5.onSubmit(SYNTH);
+				_this4.onSubmit(SYNTH);
 			}, 2000);
 		}
 	}, {

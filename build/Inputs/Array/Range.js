@@ -42,7 +42,7 @@ var Range = function Range(_ref) {
 		_react2.default.createElement(
 			'label',
 			{ htmlFor: name },
-			labelText || name
+			(labelText || name) + (' (' + dataset[name] + ')')
 		),
 		_react2.default.createElement('input', {
 			id: name, type: 'range',
@@ -55,6 +55,7 @@ var Range = function Range(_ref) {
 };
 
 Range.propTypes = {
+	name: _propTypes2.default.string.isRequired,
 	min: _propTypes2.default.number,
 	max: _propTypes2.default.number,
 	step: _propTypes2.default.number
@@ -67,7 +68,6 @@ Range.defaultProps = {
 	step: 1,
 	defaultValue: 50,
 	tabIndex: "0",
-	options: ['option 1', 'option 2'],
 	className: ""
 };
 

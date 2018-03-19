@@ -13,7 +13,9 @@ const Range = ({
 }) => {
 	return (
 		<Container type={type} className={className} style={style}>
-			<label htmlFor={name}>{labelText || name}</label>
+			<label htmlFor={name}>
+				{(labelText || name) + ` (${dataset[name]})`}
+			</label>
 			<input
 				id={name} type="range"
 				tabIndex={tabIndex}
@@ -26,6 +28,7 @@ const Range = ({
 };
 
 Range.propTypes = {
+	name: PropTypes.string.isRequired,
 	min: PropTypes.number,
 	max: PropTypes.number,
 	step: PropTypes.number,
@@ -38,7 +41,6 @@ Range.defaultProps = {
 	step: 1,
 	defaultValue: 50,
 	tabIndex: "0",
-	options: ['option 1', 'option 2'],
 	className: ""
 };
 

@@ -34,3 +34,4 @@ function textSmall (target) { return target.value.slice(0, 25).toLowerCase(); }
 function textMed (target) { return target.value.slice(0, 50).toLowerCase(); }
 function textLarge (target) { return target.value.slice(0, 50000); }
 function checkbox (target) { return target.checked || false; }
+function tinyInt (target) { return target.checked ? 1 : 0; }

@@ -2,14 +2,17 @@
 	.input-container.file {
 		display: flex;
 
-		input {
-			display: none;
+		input { // get this outta here
+			position: absolute;
+			height: 0;
+			width: 0;
+			left: -9999px;
 		}
 
 		label {
-			color: $color-info;
+			color: $gray-dark;
 			background-color: $white;
-			border: 2px solid $color-info;
+			border: 2px solid $gray-dark;
 			height: 35px;
 			margin: 5px 0;
 			border-top-left-radius: 2px;
@@ -23,14 +26,21 @@
 			&:focus,&:hover {
 				color: $white;
 				background-color: $color-info;
+				border-color: $color-info;
 			}
+		}
+
+		input:focus ~ label {
+			color: $white;
+			background-color: $color-info;
+			border-color: $color-info;
 		}
 
 		.file-name {
 			flex-grow: 1;
 		    z-index: 2;
 			line-height: 1.6em;
-		    border: 2px solid $color-info;
+		    border: 2px solid $gray-dark;
 		    height: 35px;
 		    margin: 5px 0;
 		    border-top-right-radius: 2px;
@@ -39,6 +49,12 @@
 		    padding: 0 0 0 5px;
 			font-size: 1rem;
 			line-height: 1.9rem;
+		}
+
+		input:focus ~ .file-name,
+		label:hover ~ .file-name,
+		label:active ~ .file-name {
+			border-color: $color-info;
 		}
 
 		.file-info {

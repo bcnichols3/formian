@@ -44,6 +44,7 @@ class Form extends Component {
 
 		this.initialState = { disabled: true, formData: {} };
 		this.mapInputsToState(props.children);
+		this.formDataKeys = Object.keys(this.initialState.formData);
 		this.state = Object.assign({}, this.initialState);
 	}
 
@@ -92,11 +93,17 @@ class Form extends Component {
 	setCheckersForChild(child, set) {
 		let key = child.props.name || child.type.name;
 
-		this[set][key] = child.props[set]			// custom checker
-		|| this[set][key.toLowerCase()]				// checker by field name
-		|| this[set][child.type.name.toLowerCase()]	// checker by type name
-		|| this[set][child.props.type.toLowerCase()]// checker by type
-		;
+		if (!child.props[set] && child.props.tinyInt) {
+			this[set][key] = this[set].tinyInt;
+			child.props.defaultValue = child.props.defaultValue || 0;
+		}
+		else {
+			this[set][key] = child.props[set]			// custom checker
+			|| this[set][key.toLowerCase()]				// checker by field name
+			|| this[set][child.type.name.toLowerCase()]	// checker by type name
+			|| this[set][child.props.type.toLowerCase()]// checker by type
+			;
+		}
 	}
 
 	addHandlersToChild(child, tabIndex) {
@@ -148,10 +155,9 @@ class Form extends Component {
 	}
 
 	isDefaultState() {
-		const keys = Object.keys(this.initialState.formData);
-		for (let i = 0; i < keys.length; i++) {
-			if (this.initialState.formData[keys[i]]
-			!== this.state.formData[keys[i]]) {
+		for (let i = 0; i < this.formDataKeys.length; i++) {
+			if (this.initialState.formData[this.formDataKeys[i]]
+			!== this.state.formData[this.formDataKeys[i]]) {
 				return false;
 			}
 		}
@@ -195,10 +201,7 @@ class Form extends Component {
 	onSubmit(evt) {
 		evt.preventDefault();
 		if (this.state.disabled) this.flagAllErrors();
-		else {
-			console.log('ready to go!');
-			this.props.onSubmit.call(this, this.state.formData);
-		}
+		else this.props.onSubmit.call(this, this.state.formData);
 	}
 
 	recaptcha(value) {
@@ -212,28 +215,35 @@ class Form extends Component {
 
 	checkForm(formData) {
 		let disabled = false;
-		Object.keys(formData).forEach(key => {
+		let key;
+		for (let i = 0; i < this.formDataKeys.length; i++) {
+			key = this.formDataKeys[i];
 			if (this.validators[key]
 			&& !this.validators[key](formData[key])) {
 				disabled = true;
+				break;
 			}
-		});
+		}
 		this.setState({ disabled, formData });
 	}
 
 	resetForm(evt) {
 		evt.preventDefault();
 		this.setState(Object.assign({}, this.initialState));
+		for (let i = 0 ; i < this.formDataKeys.length; i++) {
+			document.getElementById(this.formDataKeys[i])
+				.dispatchEvent(new Event('blur'))
+			;
+		}
 	}
 
 	flagAllErrors() {
 		if (!this.state.disabled) return;
-
-		let el;
-		Object.keys(this.state.formData).forEach(key => {
-			el = document.getElementById(key);
-			el.dispatchEvent(new Event('blur'));
-		});
+		for (let i = 0 ; i < this.formDataKeys.length; i++) {
+			document.getElementById(this.formDataKeys[i])
+				.dispatchEvent(new Event('blur'))
+			;
+		}
 	}
 
 	autoSubmit() {

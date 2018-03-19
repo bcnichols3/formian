@@ -13,14 +13,14 @@ const Radio = ({
 	onChange, onFocus, onBlur,
 	icon, style, className, position
 }) => (
-	<Fieldset name={name} labelText={labelText}>
+	<Fieldset name={name} labelText={labelText} className={type}>
 		{options.map(option => (
 			<Container key={option} type={type} className={className} style={style}>
 				<label htmlFor={option+'@@'+name}>
 					<input
 						id={option+'@@'+name} type="radio"
-						tabIndex={tabIndex}
 						name={name}
+						tabIndex={tabIndex}
 						value={option}
 						checked={dataset[name] === option}
 						onChange={onChange}

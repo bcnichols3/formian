@@ -49,3 +49,6 @@ function textLarge(target) {
 function checkbox(target) {
 	return target.checked || false;
 }
+function tinyInt(target) {
+	return target.checked ? 1 : 0;
+}

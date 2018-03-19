@@ -23,7 +23,7 @@ const Demo = (props) => (
 			maxWidth: "800px",
 			position: "relative",
 			margin: "auto",
-			fontSize: "20px",
+			fontSize: "20px"
 		}}
 	>
 		<h1>My Formian Form</h1>
@@ -59,17 +59,15 @@ const Demo = (props) => (
 			name="species"
 			labelText="Favorite Species of Ant"
 			defaultValue={1}
-			options={["fire ant", "weaver ant", "carpenter ant"]}
+			options={["Fire Ant", "Weaver Ant", "Carpenter Ant"]}
 		/>
 		<Formian.File />
+		<Formian.Range labelText="Volume" name="volume" min={0} max={11} defaultValue={5} />
 		<Formian.Text
 			name="whatIsThis"
 			labelText="What Is This?"
-			placeholder="Please type ‘A School for Ants’"
-			validator={function(val) {
-				return val.toLowerCase().trim() === 'a school for ants';
-			}}
-			required={false}
+			errorText="Please type ‘A School for Ants’"
+			validator={val => val.test((/a school for ants/ig))}
 		/>
 		<Formian.Checkbox
 			name="formianEasy"

@@ -1,8 +1,14 @@
-An insect-based React module for easy, stylish and accessible controlled forms that closely mimic HTML syntax, and auto-include formatters and front-end validators.
+An insect-based module for creating controlled web forms for React.
+
+* Fun to write
+* Pre-packed with formatters and validators
+* Auto-injects styles (override without using `!important`)
+* Easy to customize
+* Familiar HTML-esque syntax
 
 **currently in alpha — use with caution**
 
-**This package requires that your project uses React and probably also Webpack**
+**This package requires that your project uses React**
 
 
 # Controlled form elements as React components
@@ -25,8 +31,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Formian from 'react-formian';
 
-const submitHandler = function(evt) {
-	console.log('hello world', this.state.formData)
+const submitHandler = function(formData) {
+	console.log('hello world', formData)
 }
 
 ReactDOM.renderComponent(
@@ -55,19 +61,19 @@ Styles for Formian elements are dynamically injected.
 
 ### `Formian.Form` Component API
 
-**All form input elements are children of `Formian.Form`. You can also put anything else you might need in as a child; `Formian.Form` only manipulates Formian inputs.**
+**All form input elements are children of `Formian.Form`. You can also put anything else you might need in as a child; `Formian.Form` only manipulates form inputs.**
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|onSubmit |`function`|`undefined`|Required: Non-arrow function that will utilize `this.state.formData` |
-|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (useful for applying an auto-save to user settings and the like)                               |
-|[className]|`string`|`undefined`|Set a CSS class for custom styles              |
+|onSubmit |`function`|`undefined`|Required: Non-arrow function that will utilize one argument: `formData`                                                |
+|[className]|`string`|`''`|Set a CSS class for custom styles                    |
+|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (useful for applying an auto-save to user settings and the like)                                        |
+|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (useful for applying an auto-save to user settings and the like)                                        |
+|[customStyles]|`boolean`|`false`|Used to prevent Formain's native styles from being injected on the page                                                      |
 
 ### Common Child Component API
 
-**Some defaults vary type-to-type**
-
-Formian elements are intended to mirror native HTML elements as closely as possible, just with a lot of useful built-in structure (like `<label>`s) and properties (like `tabindex` for mouseless navigation). The hope is you will be able to trust that Formian has fully extended and utilized HTML's [native functionality](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) so these docs may feel (mostly) redundant.
+Formian elements are intended to mirror native HTML elements as closely as possible, just with a lot of useful built-in structure (like `<div>` containers and `<label>`s) and also properties (like `tabindex` for mouseless navigation). The hope is you will be able to trust that Formian has fully extended and utilized HTML's [native functionality](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) so these docs may feel (mostly) redundant.
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
@@ -77,7 +83,6 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 |[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                       |
 |[defaultValue]|`boolean` or `string`|`false` or `''`|Value that the form element should initially render with                                                                            |
 |[formatter]|`function`|`undefined`|Custom formatter function; manipulates the field value during every onChange event                                         |
-
 
 ### `Formian.Text` Component API
 
@@ -89,17 +94,18 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 |[placeholder]|`string`|`undefined`|Placeholder text                            |
 |[errorText]|`string` or `false`|`Please enter a valid input`|Invalid input error message text (does not render if false)                                   |
 
+Common fields like Email, Text, Phone etc ... are designed to be as easy to use as possible and (assuming no customization needs) require nothing besides being called as a child of `Formian.Form`.
+
 ### `Formian.Checkbox` Component API
 
 **Shared by `Formian.OnOff`, a stylized Checkbox**
 
-An option for passing `0` and `1` for MySQL is in the works.
-
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|[children]|`react components`|`undefined`|Component to be placed inline with the checkbox; supersedes `text`                                                 |
-|[errorText]|`string` or `false`|`'Please check to agree'`|Invalid input error message text (if false, does not render)                                        |
+|[children]|`react components`|`undefined`|Component to be placed inline with the checkbox; supersedes `labelText`                                                 |
+|[errorText]|`string` or `false`|`'Please check to agree'`|Invalid input error message text (if `false`, does not render)                                        |
 |[icon]|`URL string` or `React Component`|`'\u2714'`|Custom checkmark icon                                                                            |
+|[tinyInt]|`boolean`|`false`|Field returns `1` or `0` instead of `true` or `false`                                                                         |
 
 ### `Formian.Radio` Component API
 

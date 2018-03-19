@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 
 import Container from './Container';
 
-const Fieldset = ({type, name, labelText, position, style, className, children}) => (
-	<fieldset id={name} name={name}>
+const Fieldset = ({
+	name, type,
+	labelText,
+	style, className, position,
+	children
+}) => (
+	<fieldset id={name} name={name} className={'fieldset-'+className}>
 		{labelText || name
 			? <legend>{labelText || name}</legend>
 		: null}
@@ -16,7 +21,6 @@ const Fieldset = ({type, name, labelText, position, style, className, children})
 
 Fieldset.defaultProps = {
 	type: "fieldset",
-	position: "left",
 	className: ""
 };
 

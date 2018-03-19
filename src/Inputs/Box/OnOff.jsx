@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import Checkbox from './Checkbox';
 
-const OnOff = (props) => <Checkbox {...props} /> ;
+const OnOff = (props) => {
+	return (
+		<Checkbox {...props} />
+	);
+};
 
 OnOff.propTypes = {
 	name: PropTypes.string.isRequired

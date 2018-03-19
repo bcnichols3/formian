@@ -5,31 +5,27 @@ import Container from '../../common/Container';
 import ErrorMessage from '../../common/ErrorMessage';
 
 function getName(dataset, name, placeholder) {
-	return dataset[name].length
-		? dataset[name][0].name
-		: placeholder
-	;
+	return dataset[name].length ? dataset[name][0].name : placeholder ;
 }
 
 function getInfo(dataset, name) {
-	const file = dataset[name].length
-		? dataset[name][0]
-		: null
-	;
+	const file = dataset[name].length ? dataset[name][0] : null ;
 
 	if (!file) return "";
-
-	return getSize(file.size)+" "+getDate(file.lastModifiedDate + '');
+	return getSize(file.size)
+		+ " "
+		+ `Last modified: `
+		+ String(file.lastModifiedDate)
+			.split(' ')
+			.slice(1, 4)
+			.join(' ')
+		;
 }
 
 function getSize(num) {
 	if (num < 1024) return num + ' bytes';
 	if (num > 1024 && num < 1048576) return (num/1024).toFixed(1) + 'KB';
 	if (num > 1048576) return (num/1048576).toFixed(1) + 'MB';
-}
-
-function getDate(date) {
-	return `Last modified: ${date.split(' ').slice(1, 4).join(' ')}`;
 }
 
 const File = ({
@@ -41,7 +37,6 @@ const File = ({
 	children,
 }) => (
 	<Container type={type} className={className} style={style}>
-		<label htmlFor={name}>{labelText || name}</label>
 		<input
 			id={name}
 			type="file"
@@ -51,6 +46,7 @@ const File = ({
 			onBlur={onBlur}
 			onFocus={onFocus}
 		/>
+		<label htmlFor={name}>{labelText || name}</label>
 		<div className="file-name">{getName(dataset, name, placeholder)}</div>
 		<div className="file-info">{getInfo(dataset, name)}</div>
 		{children}

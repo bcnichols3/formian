@@ -47,7 +47,7 @@ var Radio = function Radio(_ref) {
 	    position = _ref.position;
 	return _react2.default.createElement(
 		_Fieldset2.default,
-		{ name: name, labelText: labelText },
+		{ name: name, labelText: labelText, className: type },
 		options.map(function (option) {
 			return _react2.default.createElement(
 				_Container2.default,
@@ -57,8 +57,8 @@ var Radio = function Radio(_ref) {
 					{ htmlFor: option + '@@' + name },
 					_react2.default.createElement('input', {
 						id: option + '@@' + name, type: 'radio',
-						tabIndex: tabIndex,
 						name: name,
+						tabIndex: tabIndex,
 						value: option,
 						checked: dataset[name] === option,
 						onChange: onChange,

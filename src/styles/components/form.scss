@@ -7,12 +7,20 @@
 
 	label,legend {
 		display: block;
-		margin: 0;
+		margin: 0 0 0 5px;
 	}
 
 	fieldset {
 		border: none;
 		padding: 0;
+
+		&.fieldset-radio {
+			border: 2px solid $gray-dark;
+
+			&:focus-within {
+				border-color: $color-info;
+			}
+		}
 	}
 
 	.input-container.fieldset {
@@ -36,7 +44,7 @@
 			outline: none;
 			resize: none;
 			cursor: pointer;
-			border: 2px solid $color-info;
+			border: 2px solid $gray-dark;
 			-webkit-appearance: none;
 			-webkit-border-radius: 2px;
 			border-radius: 2px;

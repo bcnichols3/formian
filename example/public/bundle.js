@@ -8348,7 +8348,7 @@ var Range = function Range(_ref) {
 		_react2.default.createElement(
 			'label',
 			{ htmlFor: name },
-			labelText || name
+			(labelText || name) + (' (' + dataset[name] + ')')
 		),
 		_react2.default.createElement('input', {
 			id: name, type: 'range',
@@ -8361,6 +8361,7 @@ var Range = function Range(_ref) {
 };
 
 Range.propTypes = {
+	name: _propTypes2.default.string.isRequired,
 	min: _propTypes2.default.number,
 	max: _propTypes2.default.number,
 	step: _propTypes2.default.number
@@ -8373,7 +8374,6 @@ Range.defaultProps = {
 	step: 1,
 	defaultValue: 50,
 	tabIndex: "0",
-	options: ['option 1', 'option 2'],
 	className: ""
 };
 
@@ -8570,7 +8570,8 @@ Checkbox.defaultProps = {
 	tabIndex: "0",
 	defaultValue: false,
 	errorText: "Please check to agree",
-	className: ""
+	className: "",
+	tinyInt: false
 };
 
 exports.default = Checkbox;
@@ -8682,7 +8683,7 @@ var Radio = function Radio(_ref) {
 	    position = _ref.position;
 	return _react2.default.createElement(
 		_Fieldset2.default,
-		{ name: name, labelText: labelText },
+		{ name: name, labelText: labelText, className: type },
 		options.map(function (option) {
 			return _react2.default.createElement(
 				_Container2.default,
@@ -8692,8 +8693,8 @@ var Radio = function Radio(_ref) {
 					{ htmlFor: option + '@@' + name },
 					_react2.default.createElement('input', {
 						id: option + '@@' + name, type: 'radio',
-						tabIndex: tabIndex,
 						name: name,
+						tabIndex: tabIndex,
 						value: option,
 						checked: dataset[name] === option,
 						onChange: onChange,
@@ -9055,18 +9056,13 @@ function getInfo(dataset, name) {
 	var file = dataset[name].length ? dataset[name][0] : null;
 
 	if (!file) return "";
-
-	return getSize(file.size) + " " + getDate(file.lastModifiedDate + '');
+	return getSize(file.size) + " " + 'Last modified: ' + String(file.lastModifiedDate).split(' ').slice(1, 4).join(' ');
 }
 
 function getSize(num) {
 	if (num < 1024) return num + ' bytes';
 	if (num > 1024 && num < 1048576) return (num / 1024).toFixed(1) + 'KB';
 	if (num > 1048576) return (num / 1048576).toFixed(1) + 'MB';
-}
-
-function getDate(date) {
-	return 'Last modified: ' + date.split(' ').slice(1, 4).join(' ');
 }
 
 var File = function File(_ref) {
@@ -9089,11 +9085,6 @@ var File = function File(_ref) {
 	return _react2.default.createElement(
 		_Container2.default,
 		{ type: type, className: className, style: style },
-		_react2.default.createElement(
-			'label',
-			{ htmlFor: name },
-			labelText || name
-		),
 		_react2.default.createElement('input', {
 			id: name,
 			type: 'file',
@@ -9103,6 +9094,11 @@ var File = function File(_ref) {
 			onBlur: onBlur,
 			onFocus: onFocus
 		}),
+		_react2.default.createElement(
+			'label',
+			{ htmlFor: name },
+			labelText || name
+		),
 		_react2.default.createElement(
 			'div',
 			{ className: 'file-name' },
@@ -9385,19 +9381,26 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ErrorMessage = function ErrorMessage(_ref) {
-	var _ref$errorText = _ref.errorText,
-	    errorText = _ref$errorText === undefined ? "invalid input" : _ref$errorText,
-	    _ref$placement = _ref.placement,
-	    placement = _ref$placement === undefined ? "left" : _ref$placement;
+	var errorText = _ref.errorText,
+	    placement = _ref.placement;
 
 	return errorText !== false ? _react2.default.createElement(
-		"div",
-		{ className: "error-message " + placement },
+		'div',
+		{ className: 'error-message ' + placement },
 		errorText
 	) : null;
+};
+
+ErrorMessage.defaultProps = {
+	errorText: "invalid input",
+	placement: "left"
 };
 
 exports.default = ErrorMessage;
@@ -9433,16 +9436,16 @@ var _Container2 = _interopRequireDefault(_Container);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Fieldset = function Fieldset(_ref) {
-	var type = _ref.type,
-	    name = _ref.name,
+	var name = _ref.name,
+	    type = _ref.type,
 	    labelText = _ref.labelText,
-	    position = _ref.position,
 	    style = _ref.style,
 	    className = _ref.className,
+	    position = _ref.position,
 	    children = _ref.children;
 	return _react2.default.createElement(
 		'fieldset',
-		{ id: name, name: name },
+		{ id: name, name: name, className: 'fieldset-' + className },
 		labelText || name ? _react2.default.createElement(
 			'legend',
 			null,
@@ -9458,7 +9461,6 @@ var Fieldset = function Fieldset(_ref) {
 
 Fieldset.defaultProps = {
 	type: "fieldset",
-	position: "left",
 	className: ""
 };
 
@@ -9647,6 +9649,9 @@ function textLarge(target) {
 function checkbox(target) {
 	return target.checked || false;
 }
+function tinyInt(target) {
+	return target.checked ? 1 : 0;
+}
 
 /***/ }),
 
@@ -9743,6 +9748,7 @@ var Form = function (_Component) {
 
 		_this.initialState = { disabled: true, formData: {} };
 		_this.mapInputsToState(props.children);
+		_this.formDataKeys = Object.keys(_this.initialState.formData);
 		_this.state = Object.assign({}, _this.initialState);
 		return _this;
 	}
@@ -9786,11 +9792,16 @@ var Form = function (_Component) {
 		value: function setCheckersForChild(child, set) {
 			var key = child.props.name || child.type.name;
 
-			this[set][key] = child.props[set] // custom checker
-			|| this[set][key.toLowerCase()] // checker by field name
-			|| this[set][child.type.name.toLowerCase()] // checker by type name
-			|| this[set][child.props.type.toLowerCase()] // checker by type
-			;
+			if (!child.props[set] && child.props.tinyInt) {
+				this[set][key] = this[set].tinyInt;
+				child.props.defaultValue = child.props.defaultValue || 0;
+			} else {
+				this[set][key] = child.props[set] // custom checker
+				|| this[set][key.toLowerCase()] // checker by field name
+				|| this[set][child.type.name.toLowerCase()] // checker by type name
+				|| this[set][child.props.type.toLowerCase()] // checker by type
+				;
+			}
 		}
 	}, {
 		key: 'addHandlersToChild',
@@ -9845,9 +9856,8 @@ var Form = function (_Component) {
 	}, {
 		key: 'isDefaultState',
 		value: function isDefaultState() {
-			var keys = Object.keys(this.initialState.formData);
-			for (var i = 0; i < keys.length; i++) {
-				if (this.initialState.formData[keys[i]] !== this.state.formData[keys[i]]) {
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				if (this.initialState.formData[this.formDataKeys[i]] !== this.state.formData[this.formDataKeys[i]]) {
 					return false;
 				}
 			}
@@ -9893,10 +9903,7 @@ var Form = function (_Component) {
 		key: 'onSubmit',
 		value: function onSubmit(evt) {
 			evt.preventDefault();
-			if (this.state.disabled) this.flagAllErrors();else {
-				console.log('ready to go!');
-				this.props.onSubmit.call(this, this.state.formData);
-			}
+			if (this.state.disabled) this.flagAllErrors();else this.props.onSubmit.call(this, this.state.formData);
 		}
 	}, {
 		key: 'recaptcha',
@@ -9908,14 +9915,15 @@ var Form = function (_Component) {
 	}, {
 		key: 'checkForm',
 		value: function checkForm(formData) {
-			var _this4 = this;
-
 			var disabled = false;
-			Object.keys(formData).forEach(function (key) {
-				if (_this4.validators[key] && !_this4.validators[key](formData[key])) {
+			var key = void 0;
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				key = this.formDataKeys[i];
+				if (this.validators[key] && !this.validators[key](formData[key])) {
 					disabled = true;
+					break;
 				}
-			});
+			}
 			this.setState({ disabled: disabled, formData: formData });
 		}
 	}, {
@@ -9923,26 +9931,26 @@ var Form = function (_Component) {
 		value: function resetForm(evt) {
 			evt.preventDefault();
 			this.setState(Object.assign({}, this.initialState));
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				document.getElementById(this.formDataKeys[i]).dispatchEvent(new Event('blur'));
+			}
 		}
 	}, {
 		key: 'flagAllErrors',
 		value: function flagAllErrors() {
 			if (!this.state.disabled) return;
-
-			var el = void 0;
-			Object.keys(this.state.formData).forEach(function (key) {
-				el = document.getElementById(key);
-				el.dispatchEvent(new Event('blur'));
-			});
+			for (var i = 0; i < this.formDataKeys.length; i++) {
+				document.getElementById(this.formDataKeys[i]).dispatchEvent(new Event('blur'));
+			}
 		}
 	}, {
 		key: 'autoSubmit',
 		value: function autoSubmit() {
-			var _this5 = this;
+			var _this4 = this;
 
 			clearTimeout(this.submitTimeout);
 			this.submitTimeout = setTimeout(function () {
-				_this5.onSubmit(SYNTH);
+				_this4.onSubmit(SYNTH);
 			}, 2000);
 		}
 	}, {
@@ -10214,17 +10222,17 @@ var Demo = function Demo(props) {
 			name: 'species',
 			labelText: 'Favorite Species of Ant',
 			defaultValue: 1,
-			options: ["fire ant", "weaver ant", "carpenter ant"]
+			options: ["Fire Ant", "Weaver Ant", "Carpenter Ant"]
 		}),
 		_react2.default.createElement(_index2.default.File, null),
+		_react2.default.createElement(_index2.default.Range, { labelText: 'Volume', name: 'volume', min: 0, max: 11, defaultValue: 5 }),
 		_react2.default.createElement(_index2.default.Text, {
 			name: 'whatIsThis',
 			labelText: 'What Is This?',
-			placeholder: 'Please type \u2018A School for Ants\u2019',
+			errorText: 'Please type \u2018A School for Ants\u2019',
 			validator: function validator(val) {
-				return val.toLowerCase().trim() === 'a school for ants';
-			},
-			required: false
+				return val.test(/a school for ants/ig);
+			}
 		}),
 		_react2.default.createElement(_index2.default.Checkbox, {
 			name: 'formianEasy',

@@ -23,7 +23,6 @@ var _ErrorMessage2 = _interopRequireDefault(_ErrorMessage);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getName(dataset, name, placeholder) {
-	console.log('FILE', dataset[name]);
 	return dataset[name].length ? dataset[name][0].name : placeholder;
 }
 
@@ -31,18 +30,13 @@ function getInfo(dataset, name) {
 	var file = dataset[name].length ? dataset[name][0] : null;
 
 	if (!file) return "";
-
-	return getSize(file.size) + getDate(file.lastModifiedDate());
+	return getSize(file.size) + " " + 'Last modified: ' + String(file.lastModifiedDate).split(' ').slice(1, 4).join(' ');
 }
 
 function getSize(num) {
 	if (num < 1024) return num + ' bytes';
 	if (num > 1024 && num < 1048576) return (num / 1024).toFixed(1) + 'KB';
 	if (num > 1048576) return (num / 1048576).toFixed(1) + 'MB';
-}
-
-function getDate(date) {
-	return 'Last modified: ' + date.split(' ').slice(1, 4).join(' ');
 }
 
 var File = function File(_ref) {
@@ -65,11 +59,6 @@ var File = function File(_ref) {
 	return _react2.default.createElement(
 		_Container2.default,
 		{ type: type, className: className, style: style },
-		_react2.default.createElement(
-			'label',
-			{ htmlFor: name },
-			labelText || name
-		),
 		_react2.default.createElement('input', {
 			id: name,
 			type: 'file',
@@ -79,6 +68,11 @@ var File = function File(_ref) {
 			onBlur: onBlur,
 			onFocus: onFocus
 		}),
+		_react2.default.createElement(
+			'label',
+			{ htmlFor: name },
+			labelText || name
+		),
 		_react2.default.createElement(
 			'div',
 			{ className: 'file-name' },

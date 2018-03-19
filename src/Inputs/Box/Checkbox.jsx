@@ -41,7 +41,8 @@ Checkbox.defaultProps = {
 	tabIndex: "0",
 	defaultValue: false,
 	errorText: "Please check to agree",
-	className: ""
+	className: "",
+	tinyInt: false
 };
 
 export default Checkbox;
