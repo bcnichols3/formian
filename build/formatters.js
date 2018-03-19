@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
@@ -27,8 +27,7 @@ formatters.textArea = textLarge;
 // ========== SPECIAL INPUTS
 formatters.recaptcha = preformatted;
 formatters.file = function (target) {
-	console.log('target', target);
-	return target.files;
+	return target.files ? Array.from(target.files) : [];
 };
 
 exports.default = formatters;

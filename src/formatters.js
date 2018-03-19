@@ -22,8 +22,7 @@ formatters.textArea = textLarge;
 // ========== SPECIAL INPUTS
 formatters.recaptcha = preformatted;
 formatters.file = function(target) {
-	console.log('target', target);
-	return target.files;
+	return target.files ? Array.from(target.files) : [];
 };
 
 export default formatters;

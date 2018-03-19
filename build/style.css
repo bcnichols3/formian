@@ -334,44 +334,45 @@
   margin: 0;
   /* <-- Apparently some margin are still there even though it's hidden */ }
 
-.formian-form .input-container.file input {
-  display: none; }
-
-.formian-form .input-container.file label {
-  left: 0;
-  color: #31708f;
-  background-color: #ffffff;
-  border: 2px solid #31708f;
-  height: 35px;
-  width: 40%;
-  margin: 5px 0;
-  display: inline-block;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
-  padding: 0;
-  color: #31708f;
-  background-color: #ffffff;
-  border: 2px solid #31708f;
-  padding: 0 0 0 10px;
-  font-size: 0.8em;
-  line-height: 2em; }
-  .formian-form .input-container.file label:focus, .formian-form .input-container.file label:hover {
-    color: #ffffff;
-    background-color: #31708f; }
-
-.formian-form .input-container.file .file-preview {
-  position: absolute;
-  top: 0;
-  left: calc(40% - 2px);
-  z-index: 2;
-  border: 2px solid #31708f;
-  width: 60%;
-  height: 35px;
-  margin: 5px 0;
-  border-top-right-radius: 2px;
-  border-bottom-left-radius: 2px;
-  background: #ffffff;
-  padding: 0 0 0 5px; }
+.formian-form .input-container.file {
+  display: flex; }
+  .formian-form .input-container.file input {
+    display: none; }
+  .formian-form .input-container.file label {
+    color: #31708f;
+    background-color: #ffffff;
+    border: 2px solid #31708f;
+    height: 35px;
+    margin: 5px 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    border-right: 0;
+    padding: 0 10px;
+    font-size: inherit;
+    line-height: 1.5em;
+    flex-grow: 0; }
+    .formian-form .input-container.file label:focus, .formian-form .input-container.file label:hover {
+      color: #ffffff;
+      background-color: #31708f; }
+  .formian-form .input-container.file .file-name {
+    flex-grow: 1;
+    z-index: 2;
+    line-height: 1.6em;
+    border: 2px solid #31708f;
+    height: 35px;
+    margin: 5px 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background: #ffffff;
+    padding: 0 0 0 5px;
+    font-size: 1rem;
+    line-height: 1.9rem; }
+  .formian-form .input-container.file .file-info {
+    position: absolute;
+    right: 3px;
+    bottom: 8px;
+    z-index: 3;
+    font-size: 0.6rem; }
 
 .formian-form {
   width: 100%;

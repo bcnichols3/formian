@@ -9047,11 +9047,26 @@ var _ErrorMessage2 = _interopRequireDefault(_ErrorMessage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function data(dataset, name) {
-	console.log(dataset[name]);
-	if (!dataset[name]) return "No File selected";
-	if (dataset[name][0]) return dataset[name][0].name;
-	return "No File selected";
+function getName(dataset, name, placeholder) {
+	return dataset[name].length ? dataset[name][0].name : placeholder;
+}
+
+function getInfo(dataset, name) {
+	var file = dataset[name].length ? dataset[name][0] : null;
+
+	if (!file) return "";
+
+	return getSize(file.size) + " " + getDate(file.lastModifiedDate + '');
+}
+
+function getSize(num) {
+	if (num < 1024) return num + ' bytes';
+	if (num > 1024 && num < 1048576) return (num / 1024).toFixed(1) + 'KB';
+	if (num > 1048576) return (num / 1048576).toFixed(1) + 'MB';
+}
+
+function getDate(date) {
+	return 'Last modified: ' + date.split(' ').slice(1, 4).join(' ');
 }
 
 var File = function File(_ref) {
@@ -9069,7 +9084,8 @@ var File = function File(_ref) {
 	    icon = _ref.icon,
 	    style = _ref.style,
 	    className = _ref.className,
-	    position = _ref.position;
+	    position = _ref.position,
+	    children = _ref.children;
 	return _react2.default.createElement(
 		_Container2.default,
 		{ type: type, className: className, style: style },
@@ -9082,7 +9098,6 @@ var File = function File(_ref) {
 			id: name,
 			type: 'file',
 			tabIndex: tabIndex,
-			placeholder: placeholder,
 			accept: accept,
 			onChange: onChange,
 			onBlur: onBlur,
@@ -9090,9 +9105,15 @@ var File = function File(_ref) {
 		}),
 		_react2.default.createElement(
 			'div',
-			{ className: 'file-preview' },
-			data(dataset, name)
+			{ className: 'file-name' },
+			getName(dataset, name, placeholder)
 		),
+		_react2.default.createElement(
+			'div',
+			{ className: 'file-info' },
+			getInfo(dataset, name)
+		),
+		children,
 		_react2.default.createElement(_ErrorMessage2.default, { errorText: errorText, position: position })
 	);
 };
@@ -9101,18 +9122,15 @@ File.defaultProps = {
 	name: "file",
 	type: "file",
 	accept: "",
+	defaultValue: [],
 	labelText: "Upload an attachment",
 	errorText: "invalid file",
+	placeholder: "No File selected",
 	className: "",
 	tabIndex: "0"
 };
 
 exports.default = File;
-
-
-function fileSize(num) {
-	if (num < 1024) return num + ' bytes';else if (num > 1024 && num < 1048576) return (num / 1024).toFixed(1) + 'KB';else if (num > 1048576) return (num / 1048576).toFixed(1) + 'MB';
-}
 
 /***/ }),
 
@@ -9607,8 +9625,7 @@ formatters.textArea = textLarge;
 // ========== SPECIAL INPUTS
 formatters.recaptcha = preformatted;
 formatters.file = function (target) {
-	console.log('target', target);
-	return target.files;
+	return target.files ? Array.from(target.files) : [];
 };
 
 exports.default = formatters;
