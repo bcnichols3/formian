@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
 
+const unicodes = {
+	onoff: '',
+	select: "\u25BC",
+	checkbox: "\u2714"
+};
+
 function resolveIcon(props) {
 	if (!props.icon) {
 		return <div className="custom-icon" >{unicodes[props.type]}</div>;
@@ -11,12 +17,6 @@ function resolveIcon(props) {
 		return <img className={`custom-icon ${name}-custom-icon`} src={props.icon} />;
 	}
 }
-
-const unicodes = {
-	onoff: '',
-	select: "\u25BC",
-	checkbox: "\u2714"
-};
 
 const CustomBox = (props) => (
 	<div className={`${props.type}-custom`}>

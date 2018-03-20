@@ -34,13 +34,12 @@ const Select = ({
 );
 
 Select.propTypes = {
-	options: PropTypes.array,
-	defaultValue: PropTypes.number
+	options: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 Select.defaultProps = {
 	type: "select",
-	defaultValue: 0,
+	defaultValue: false,
 	tabIndex: "0",
 	options: ['option 1', 'option 2'],
 	errorText: "please select an option",

@@ -14,10 +14,6 @@ import formElements from './Inputs';
 
 const Recaptcha = formElements[formElements.length - 1];
 
-const SYNTH = new Event('synthetic',
-	{bubbles: false, cancelable: true}
-);
-
 class Form extends Component {
 	constructor(props) {
 		super(props);
@@ -239,24 +235,29 @@ class Form extends Component {
 
 	flagAllErrors() {
 		if (!this.state.disabled) return;
+		let target;
 		for (let i = 0 ; i < this.formDataKeys.length; i++) {
-			document.getElementById(this.formDataKeys[i])
-				.dispatchEvent(new Event('blur'))
-			;
+			target = document.getElementById(this.formDataKeys[i]);
+			target.classList.remove('error');
+			target.nextSibling.classList.remove('error');
 		}
 	}
 
 	autoSubmit() {
 		clearTimeout(this.submitTimeout);
 		this.submitTimeout = setTimeout(() => {
-			this.onSubmit(SYNTH);
+			this.onSubmit(new Event('synthetic',
+				{bubbles: false, cancelable: true}
+			));
 		}, 2000);
 	}
 
 	componentWillUnmount() {
 		if (this.submitTimeout) {
 			clearTimeout(this.submitTimeout);
-			this.onSubmit(SYNTH);
+			this.onSubmit(new Event('synthetic',
+				{bubbles: false, cancelable: true}
+			));
 		}
 	}
 

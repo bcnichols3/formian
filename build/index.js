@@ -50,8 +50,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Recaptcha = _Inputs2.default[_Inputs2.default.length - 1];
 
-var SYNTH = new Event('synthetic', { bubbles: false, cancelable: true });
-
 var Form = function (_Component) {
 	_inherits(Form, _Component);
 
@@ -274,8 +272,11 @@ var Form = function (_Component) {
 		key: 'flagAllErrors',
 		value: function flagAllErrors() {
 			if (!this.state.disabled) return;
+			var target = void 0;
 			for (var i = 0; i < this.formDataKeys.length; i++) {
-				document.getElementById(this.formDataKeys[i]).dispatchEvent(new Event('blur'));
+				target = document.getElementById(this.formDataKeys[i]);
+				target.classList.remove('error');
+				target.nextSibling.classList.remove('error');
 			}
 		}
 	}, {
@@ -285,7 +286,7 @@ var Form = function (_Component) {
 
 			clearTimeout(this.submitTimeout);
 			this.submitTimeout = setTimeout(function () {
-				_this4.onSubmit(SYNTH);
+				_this4.onSubmit(new Event('synthetic', { bubbles: false, cancelable: true }));
 			}, 2000);
 		}
 	}, {
@@ -293,7 +294,7 @@ var Form = function (_Component) {
 		value: function componentWillUnmount() {
 			if (this.submitTimeout) {
 				clearTimeout(this.submitTimeout);
-				this.onSubmit(SYNTH);
+				this.onSubmit(new Event('synthetic', { bubbles: false, cancelable: true }));
 			}
 		}
 	}, {

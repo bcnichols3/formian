@@ -75,13 +75,12 @@ var Select = function Select(_ref) {
 };
 
 Select.propTypes = {
-	options: _propTypes2.default.array,
-	defaultValue: _propTypes2.default.number
+	options: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
 };
 
 Select.defaultProps = {
 	type: "select",
-	defaultValue: 0,
+	defaultValue: false,
 	tabIndex: "0",
 	options: ['option 1', 'option 2'],
 	errorText: "please select an option",

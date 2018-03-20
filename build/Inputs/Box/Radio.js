@@ -83,7 +83,7 @@ var Radio = function Radio(_ref) {
 
 Radio.propTypes = {
 	name: _propTypes2.default.string.isRequired,
-	options: _propTypes2.default.arrayOf(_propTypes2.default.string)
+	options: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
 };
 
 Radio.defaultProps = {

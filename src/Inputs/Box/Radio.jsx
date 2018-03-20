@@ -39,7 +39,7 @@ const Radio = ({
 
 Radio.propTypes = {
 	name: PropTypes.string.isRequired,
-	options: PropTypes.arrayOf(PropTypes.string)
+	options: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 Radio.defaultProps = {

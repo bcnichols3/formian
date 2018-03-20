@@ -6,7 +6,6 @@
 			cursor: pointer;
 			display: flex;
 			align-items: center;
-			color: $gray-dark;
 			line-height: 15px;
 			vertical-align: middle;
 		}
@@ -59,9 +58,11 @@
 	}
 
 	.input-container.checkbox {
+		label { width: fit-content; }
 		.checkbox-custom {
 			height: 18px;
 			width: 18px;
+			background-color: $white;
 
 			.custom-icon,.fa {
 				font-size: 1.4em;
@@ -77,37 +78,48 @@
 	}
 
 	.input-container.onoff {
+		label { width: fit-content; }
 		.onoff-custom {
 			display: block;
 			width: 80px;
 			height: 30px;
-			background: $white;
+			background: $trans;
 			border-radius: 100px;
+			overflow: hidden;
 
-			.custom-icon {
-				position: absolute;
-				top: 3px;
-				left: 3px;
-				width: 20px;
-				height: 20px;
-				background: $white;
-				border-radius: 90px;
-				transition: all 0.3s;
-				opacity: 1;
-				box-shadow: 0 0 0 2px $white;
-				border: 2px solid $gray-dark;
-				background-color: $white;
+			.onoff-custom-wrapper {
+				width: 150%;
+				margin-left: -50%;
+				transition: all 0.5s ease;
 
-				&::after {
-					color: $gray-dark;
-					font-size: 12px;
-					width: 100%;
-					height: 100%;
-					position: absolute;
-					top: 0;
-					left: 0;
-					transition: inherit;
-					padding: 0px 5px 5px 30px;
+				.on-text,.custom-icon,.off-text {
+					display: inline-block;
+					position: relative;
+					background-color: $trans;
+				}
+
+				.on-text {
+					color: $white;
+					width: 35%;
+					text-align: left;
+				}
+
+				.custom-icon {
+					top: 3px;
+					left: 3px;
+					width: 20px;
+					height: 20px;
+					background: $trans;
+					border-radius: 90px;
+					opacity: 1;
+					box-shadow: 0 0 0 2px $trans;
+					border: 2px solid $gray-dark;
+				}
+
+				.off-text {
+					color: $black;
+					width: 35%;
+					text-align: right;
 				}
 			}
 		}
@@ -116,16 +128,16 @@
 		input:checked ~ .onoff-custom {
 			background: $color-info;
 
-			.custom-icon {
-				border-color: $color-info;
-				left: calc(100% - 25px);
+			.onoff-custom-wrapper {
+				margin-left: 10%;
 
-				&::after {
-					color: $white;
-					right: 0;
-					left: unset;
-					padding: 0px 30px 5px 5px;
+				.custom-icon {
+					border-color: $color-info;
+					background: $white;
+					box-shadow: 0 0 0 2px $white;
 				}
+
+				.off-text { color: $trans; }
 			}
 		}
 	}
@@ -137,7 +149,7 @@
 
 		.radio-custom {
 			min-width: 80px;
-			background: $white;
+			background: $trans;
 			border: 2px solid $gray-dark;
 			display: block;
 			border-radius: 100px;
@@ -150,14 +162,14 @@
 				left: 4px;
 				width: 18px;
 				height: 18px;
-				box-shadow: 0 0 0 2px $white;
+				box-shadow: 0 0 0 2px $trans;
 				border: 2px solid $gray-dark;
-				background-color: $white;
+				background-color: $trans;
 				border-radius: 90px;
 			}
 			.radio-text {
 				color: $black;
-				background-color: transparent;
+				background-color: $trans;
 				padding: 5px 5px 5px 30px;
 			}
 		}
@@ -166,6 +178,8 @@
 			border-color: $color-info;
 
 			.custom-icon {
+				box-shadow: 0 0 0 2px $white;
+				background-color: $white;
 				border-color: $color-info;
 			}
 		}
@@ -173,8 +187,11 @@
 		input:checked ~ .radio-custom {
 			background-color: $color-info;
 			border-color: $color-info;
+
 			.custom-icon {
 				border-color: $color-info;
+				box-shadow: 0 0 0 2px white;
+				background-color: white;
 			}
 			.radio-text {
 				color: $white;

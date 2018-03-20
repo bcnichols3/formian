@@ -8466,13 +8466,12 @@ var Select = function Select(_ref) {
 };
 
 Select.propTypes = {
-	options: _propTypes2.default.array,
-	defaultValue: _propTypes2.default.number
+	options: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
 };
 
 Select.defaultProps = {
 	type: "select",
-	defaultValue: 0,
+	defaultValue: false,
 	tabIndex: "0",
 	options: ['option 1', 'option 2'],
 	errorText: "please select an option",
@@ -8600,14 +8599,74 @@ var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-typ
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Checkbox = __webpack_require__(/*! ./Checkbox */ "../src/Inputs/Box/Checkbox.jsx");
+var _Container = __webpack_require__(/*! ../../common/Container */ "../src/common/Container.jsx");
 
-var _Checkbox2 = _interopRequireDefault(_Checkbox);
+var _Container2 = _interopRequireDefault(_Container);
+
+var _CustomBox = __webpack_require__(/*! ../../common/CustomBox */ "../src/common/CustomBox.jsx");
+
+var _CustomBox2 = _interopRequireDefault(_CustomBox);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var OnOff = function OnOff(props) {
-	return _react2.default.createElement(_Checkbox2.default, props);
+var OnOff = function OnOff(_ref) {
+	var name = _ref.name,
+	    type = _ref.type,
+	    labelText = _ref.labelText,
+	    onText = _ref.onText,
+	    offText = _ref.offText,
+	    dataset = _ref.dataset,
+	    defaultValue = _ref.defaultValue,
+	    tabIndex = _ref.tabIndex,
+	    onChange = _ref.onChange,
+	    onFocus = _ref.onFocus,
+	    onBlur = _ref.onBlur,
+	    icon = _ref.icon,
+	    style = _ref.style,
+	    className = _ref.className,
+	    position = _ref.position,
+	    children = _ref.children;
+	return _react2.default.createElement(
+		_Container2.default,
+		{ type: type, className: className, style: style },
+		_react2.default.createElement(
+			'label',
+			{ htmlFor: name },
+			_react2.default.createElement('input', {
+				id: name, type: 'checkbox',
+				name: name,
+				tabIndex: tabIndex,
+				checked: !!dataset[name],
+				onChange: onChange,
+				onBlur: onBlur,
+				onFocus: onFocus
+			}),
+			_react2.default.createElement(
+				'div',
+				{ className: type + '-custom' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'onoff-custom-wrapper' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'on-text' },
+						onText
+					),
+					_react2.default.createElement('div', { className: 'custom-icon' }),
+					_react2.default.createElement(
+						'div',
+						{ className: 'off-text' },
+						offText
+					)
+				)
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: type + '-text' },
+				children || labelText || name
+			)
+		)
+	);
 };
 
 OnOff.propTypes = {
@@ -8617,7 +8676,6 @@ OnOff.propTypes = {
 OnOff.defaultProps = {
 	type: "onoff",
 	required: false,
-	errorText: false,
 	onText: "on",
 	offText: "off"
 };
@@ -8719,7 +8777,7 @@ var Radio = function Radio(_ref) {
 
 Radio.propTypes = {
 	name: _propTypes2.default.string.isRequired,
-	options: _propTypes2.default.arrayOf(_propTypes2.default.string)
+	options: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
 };
 
 Radio.defaultProps = {
@@ -9328,6 +9386,12 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var unicodes = {
+	onoff: '',
+	select: '\u25BC',
+	checkbox: '\u2714'
+};
+
 function resolveIcon(props) {
 	if (!props.icon) {
 		return _react2.default.createElement(
@@ -9343,12 +9407,6 @@ function resolveIcon(props) {
 		return _react2.default.createElement('img', { className: 'custom-icon ' + name + '-custom-icon', src: props.icon });
 	}
 }
-
-var unicodes = {
-	onoff: '',
-	select: '\u25BC',
-	checkbox: '\u2714'
-};
 
 var CustomBox = function CustomBox(props) {
 	return _react2.default.createElement(
@@ -9715,8 +9773,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var Recaptcha = _Inputs2.default[_Inputs2.default.length - 1];
 
-var SYNTH = new Event('synthetic', { bubbles: false, cancelable: true });
-
 var Form = function (_Component) {
 	_inherits(Form, _Component);
 
@@ -9939,8 +9995,11 @@ var Form = function (_Component) {
 		key: 'flagAllErrors',
 		value: function flagAllErrors() {
 			if (!this.state.disabled) return;
+			var target = void 0;
 			for (var i = 0; i < this.formDataKeys.length; i++) {
-				document.getElementById(this.formDataKeys[i]).dispatchEvent(new Event('blur'));
+				target = document.getElementById(this.formDataKeys[i]);
+				target.classList.remove('error');
+				target.nextSibling.classList.remove('error');
 			}
 		}
 	}, {
@@ -9950,7 +10009,7 @@ var Form = function (_Component) {
 
 			clearTimeout(this.submitTimeout);
 			this.submitTimeout = setTimeout(function () {
-				_this4.onSubmit(SYNTH);
+				_this4.onSubmit(new Event('synthetic', { bubbles: false, cancelable: true }));
 			}, 2000);
 		}
 	}, {
@@ -9958,7 +10017,7 @@ var Form = function (_Component) {
 		value: function componentWillUnmount() {
 			if (this.submitTimeout) {
 				clearTimeout(this.submitTimeout);
-				this.onSubmit(SYNTH);
+				this.onSubmit(new Event('synthetic', { bubbles: false, cancelable: true }));
 			}
 		}
 	}, {

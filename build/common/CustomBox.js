@@ -10,6 +10,12 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var unicodes = {
+	onoff: '',
+	select: '\u25BC',
+	checkbox: '\u2714'
+};
+
 function resolveIcon(props) {
 	if (!props.icon) {
 		return _react2.default.createElement(
@@ -25,12 +31,6 @@ function resolveIcon(props) {
 		return _react2.default.createElement('img', { className: 'custom-icon ' + name + '-custom-icon', src: props.icon });
 	}
 }
-
-var unicodes = {
-	onoff: '',
-	select: '\u25BC',
-	checkbox: '\u2714'
-};
 
 var CustomBox = function CustomBox(props) {
 	return _react2.default.createElement(
