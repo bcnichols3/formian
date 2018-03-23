@@ -1,17 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../../common/Input';
 
-const TextArea = (props) => {
-	const newProps = Object.assign({}, props, {
-		name: props.name || "textarea",
-		placeholder: props.placeholder || "your message",
-		errorText: props.errorText || "please enter a message"
-	});
-	return (<Input
-		type="textarea"
-		{...newProps}
-	/>);
+const TextArea = (props) => (
+	<Input type="textarea" {...props} className={props.className+" textarea"} />
+);
+
+TextArea.defaultProps = {
+	name: "message",
+	errorText: "Please enter a message"
 };
 
 export default TextArea;

@@ -20,6 +20,7 @@ var Phone = function Phone(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "phone",
 		placeholder: props.placeholder,
+		autoComplete: props.autoComplete || "tel",
 		errorText: props.errorText || "please enter a valid phone number"
 	});
 	return _react2.default.createElement(_Input2.default, _extends({ type: 'tel' }, newProps));

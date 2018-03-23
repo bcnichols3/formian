@@ -45,7 +45,6 @@ Radio.propTypes = {
 Radio.defaultProps = {
 	type: "radio",
 	tabIndex: "0",
-	options: ['option1', 'option2'],
 	defaultValue: 0,
 	errorText: "Please select an option",
 	className: ""

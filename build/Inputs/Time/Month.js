@@ -20,12 +20,14 @@ var _Input2 = _interopRequireDefault(_Input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextArea = function TextArea(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'textarea' }, props, { className: props.className + " textarea" }));
+var Month = function Month(props) {
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'month' }, props, { className: props.className + " month" }));
 };
 
-TextArea.defaultProps = {
-	errorText: "Please enter a message"
+Month.defaultProps = {
+	name: "month",
+	autoComplete: "on",
+	errorText: "Please enter a month and year"
 };
 
-exports.default = TextArea;
+exports.default = Month;

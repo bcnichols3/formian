@@ -10,15 +10,16 @@ const validators = {};
 validators.prevalidated = prevalidated;
 
 // ========== BOX INPUTS
-validators.checkbox = box;
-validators.onoff = box;
+validators.checkbox = checkbox;
+validators.onoff = checkbox;
+validators.tinyInt = checkbox;
 validators.radio = prevalidated;
 
 // ========== ARRAY INPUTS
 validators.color = prevalidated;
 validators.datalist = prevalidated;
 validators.range = prevalidated;
-validators.select = box;
+validators.select = checkbox;
 
 // ========== FIELD INPUTS
 validators.email = function email(val) { return emailRegex.test(val); };
@@ -29,7 +30,7 @@ validators.textarea = text;
 
 // ========== SPECIAL INPUTS
 validators.recaptcha = validators.prevalidated;
-validators.file = box;
+validators.file = checkbox;
 
 export default validators;
 
@@ -37,4 +38,4 @@ export default validators;
 // ========== COMMON VALIDATORS
 function prevalidated (val) { return true; }
 function text (val) { return val.length > 0; }
-function box (val) { return !!val; }
+function checkbox (val) { return !!val; }

@@ -20,12 +20,15 @@ var _Input2 = _interopRequireDefault(_Input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextArea = function TextArea(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'textarea' }, props, { className: props.className + " textarea" }));
+var Url = function Url(props) {
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'url' }, props, { className: props.className + " url" }));
 };
 
-TextArea.defaultProps = {
-	errorText: "Please enter a message"
+Url.defaultProps = {
+	name: "url",
+	autoComplete: "url",
+	placeholder: "http://www.example.com",
+	errorText: "Please enter a valid web address"
 };
 
-exports.default = TextArea;
+exports.default = Url;

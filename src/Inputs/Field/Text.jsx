@@ -1,13 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../../common/Input';
 
-const Text = (props) => {
-	const newProps = Object.assign({}, props, {
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter your text"
-	});
-	return <Input type="text" {...newProps} />;
+const Text = (props) => (
+	<Input type="text" {...props} className={props.className+" text"} />
+);
+
+Text.defaultProps = {
+	name: "text",
+	errorText: "Please enter a short message"
 };
 
 export default Text;

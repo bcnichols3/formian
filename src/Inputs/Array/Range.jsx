@@ -12,7 +12,7 @@ const Range = ({
 	icon, style, className, position, vertical
 }) => {
 	return (
-		<Container type={type} className={className} style={style}>
+		<Container type="range" className={className} style={style}>
 			<label htmlFor={name}>
 				{(labelText || name) + ` (${dataset[name]})`}
 			</label>

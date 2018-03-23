@@ -69,20 +69,20 @@ var Select = function Select(_ref) {
 				return _react2.default.createElement(_Option2.default, { key: data.value || data, data: data });
 			})
 		),
-		_react2.default.createElement(_CustomBox2.default, { name: name, type: type, icon: icon }),
+		_react2.default.createElement(_CustomBox2.default, { name: name, type: 'select', icon: icon }),
 		_react2.default.createElement(_ErrorMessage2.default, { errorText: errorText, position: position })
 	);
 };
 
 Select.propTypes = {
-	options: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
+	name: _propTypes2.default.string.isRequired,
+	options: _propTypes2.default.array.isRequired
 };
 
 Select.defaultProps = {
 	type: "select",
 	defaultValue: false,
 	tabIndex: "0",
-	options: ['option 1', 'option 2'],
 	errorText: "please select an option",
 	className: ""
 };

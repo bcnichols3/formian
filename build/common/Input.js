@@ -24,18 +24,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Input = function Input(_ref) {
 	var name = _ref.name,
-	    position = _ref.position,
-	    dataset = _ref.dataset,
-	    style = _ref.style,
-	    tabIndex = _ref.tabIndex,
-	    onChange = _ref.onChange,
-	    onBlur = _ref.onBlur,
-	    onFocus = _ref.onFocus,
 	    type = _ref.type,
 	    labelText = _ref.labelText,
 	    placeholder = _ref.placeholder,
 	    errorText = _ref.errorText,
-	    className = _ref.className;
+	    dataset = _ref.dataset,
+	    tabIndex = _ref.tabIndex,
+	    readOnly = _ref.readOnly,
+	    onChange = _ref.onChange,
+	    onBlur = _ref.onBlur,
+	    onFocus = _ref.onFocus,
+	    autoComplete = _ref.autoComplete,
+	    inputMode = _ref.inputMode,
+	    style = _ref.style,
+	    className = _ref.className,
+	    position = _ref.position;
 	return _react2.default.createElement(
 		_Container2.default,
 		{ type: type, className: 'field ' + className, style: style },
@@ -47,10 +50,13 @@ var Input = function Input(_ref) {
 		_react2.default.createElement('input', {
 			id: name,
 			type: type,
+			inputMode: inputMode,
 			tabIndex: tabIndex,
 			placeholder: placeholder,
+			readOnly: readOnly,
 			onChange: onChange,
 			onBlur: onBlur,
+			autoComplete: autoComplete,
 			onFocus: onFocus,
 			value: dataset[name]
 		}),
@@ -62,6 +68,7 @@ Input.defaultProps = {
 	name: "text",
 	type: "text",
 	placeholder: "",
+	autoComplete: "on",
 	errorText: "invalid input",
 	className: "",
 	tabIndex: "0"

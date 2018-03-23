@@ -13,6 +13,7 @@
 	fieldset {
 		border: none;
 		padding: 0;
+	    margin: 0 5px;
 
 		&.fieldset-radio {
 			border: 2px solid $gray-dark;
@@ -25,7 +26,7 @@
 
 	.input-container.fieldset {
 		width: 100%;
-		margin: 5px;
+
 	    display: flex;
 		flex-basis: 100%;
 		flex-flow: row;
@@ -38,6 +39,8 @@
 		font-size: inherit;
 		margin: 5px;
 	    min-height: 25px;
+		margin: 5px 0;
+		padding: 0 5px;
 
 		// global input container styles
 		input,select,textarea {

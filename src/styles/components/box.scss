@@ -8,6 +8,7 @@
 			align-items: center;
 			line-height: 15px;
 			vertical-align: middle;
+			margin-left: 0;
 		}
 
 		input {
@@ -22,7 +23,7 @@
 		.onoff-custom,
 		.radio-custom {
 			cursor: pointer;
-			margin: 0 5px;
+			margin: 0 5px 0 0;
 			position: relative;
 			border: 2px solid $gray-dark;
 		}
@@ -58,15 +59,19 @@
 	}
 
 	.input-container.checkbox {
+	    margin: 5px 0 10px 0;
+
 		label { width: fit-content; }
+
 		.checkbox-custom {
-			height: 18px;
-			width: 18px;
+			height: 25px;
+			width: 25px;
 			background-color: $white;
 
 			.custom-icon,.fa {
-				font-size: 1.4em;
 				position: absolute;
+				bottom: 5px;
+				font-size: 1.6em;
 				color: $color-info;
 				opacity: 0;
 			}
@@ -78,7 +83,10 @@
 	}
 
 	.input-container.onoff {
+		margin: 5px 0 10px 0;
+
 		label { width: fit-content; }
+
 		.onoff-custom {
 			display: block;
 			width: 80px;
@@ -99,7 +107,7 @@
 				}
 
 				.on-text {
-					color: $white;
+					color: $trans;
 					width: 35%;
 					text-align: left;
 				}
@@ -136,7 +144,7 @@
 					background: $white;
 					box-shadow: 0 0 0 2px $white;
 				}
-
+				.on-text { color: $white; }
 				.off-text { color: $trans; }
 			}
 		}

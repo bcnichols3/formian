@@ -20,6 +20,7 @@ var Name = function Name(props) {
 	var newProps = Object.assign({}, props, {
 		name: props.name || "name",
 		text: "Your Name",
+		autoComplete: props.autoComplete || "name",
 		placeholder: props.placeholder,
 		errorText: props.errorText || "please enter your name"
 	});

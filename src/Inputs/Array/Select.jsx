@@ -28,20 +28,20 @@ const Select = ({
 				<Option key={data.value || data} data={data} />
 			))}
 		</select>
-		<CustomBox name={name} type={type} icon={icon} />
+		<CustomBox name={name} type="select" icon={icon} />
 		<ErrorMessage errorText={errorText} position={position} />
 	</Container>
 );
 
 Select.propTypes = {
-	options: PropTypes.arrayOf(PropTypes.string).isRequired
+	name: PropTypes.string.isRequired,
+	options: PropTypes.array.isRequired
 };
 
 Select.defaultProps = {
 	type: "select",
 	defaultValue: false,
 	tabIndex: "0",
-	options: ['option 1', 'option 2'],
 	errorText: "please select an option",
 	className: ""
 };

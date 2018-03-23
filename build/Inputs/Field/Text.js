@@ -10,6 +10,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Input = require('../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
@@ -17,11 +21,11 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Text = function Text(props) {
-	var newProps = Object.assign({}, props, {
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter your text"
-	});
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'text' }, newProps));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'text' }, props, { className: props.className + " text" }));
+};
+
+Text.defaultProps = {
+	errorText: "Please enter a short message"
 };
 
 exports.default = Text;

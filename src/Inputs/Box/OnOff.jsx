@@ -30,7 +30,9 @@ const OnOff = ({
 					<div className="off-text">{offText}</div>
 				</div>
 			</div>
-			<div className={`${type}-text`}>{children || labelText || name}</div>
+			<div className={`${type}-text`}>
+				{children || labelText || name}
+			</div>
 		</label>
 	</Container>
 );

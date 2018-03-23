@@ -38,7 +38,7 @@ var Range = function Range(_ref) {
 
 	return _react2.default.createElement(
 		_Container2.default,
-		{ type: type, className: className, style: style },
+		{ type: 'range', className: className, style: style },
 		_react2.default.createElement(
 			'label',
 			{ htmlFor: name },

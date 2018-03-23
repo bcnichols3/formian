@@ -4,7 +4,7 @@ An insect-based module for creating controlled web forms for React.
 * Pre-packed with formatters and validators
 * Auto-injects styles (override without using `!important`)
 * Easy to customize
-* Familiar HTML-esque syntax
+* Same HTML syntax
 
 **currently in alpha — use with caution**
 
@@ -63,12 +63,14 @@ Styles for Formian elements are dynamically injected.
 
 **All form input elements are children of `Formian.Form`. You can also put anything else you might need in as a child; `Formian.Form` only manipulates form inputs.**
 
-|Prop       |Type    |Default    |Description                                   |
-|-----------|:------:|:---------:|--------------------------------------------  |
-|onSubmit |`function`|`undefined`|Required: Non-arrow function that will utilize one argument: `formData`                                                |
-|[className]|`string`|`''`|Set a CSS class for custom styles                    |
-|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (useful for applying an auto-save to user settings and the like)                                        |
-|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (useful for applying an auto-save to user settings and the like)                                        |
+|Prop       |Type    |Default    |Description
+|
+|-----------|:------:|:---------:|--------------------------------------------
+|
+|onSubmit |`function`|`undefined`|Required: function that will utilize one argument: `formData`
+|
+|[className]|`string`|`""`|Set a CSS class for custom styles                    |
+|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (used for auto-saving the form)                                        |
 |[customStyles]|`boolean`|`false`|Used to prevent Formain's native styles from being injected on the page                                                      |
 
 ### Common Child Component API
@@ -77,8 +79,8 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|name       |`string`|field type|Required: Key name for the formData object (some child types have a default for ease of use but it's advised to declare names manually)                                                                       |
-|[className]|`string`|`''`|Set a CSS class for custom styles                     |
+|name       |`string`|field type|Required: Key name for the formData object (some child types have a default for ease of use but it’s recommended to declare names manually)|
+|[className]|`string`|`""`|Set a CSS class for custom styles|
 |[labelText]     |`string`|`name`|Label or Legend text                               |
 |[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                       |
 |[defaultValue]|`boolean` or `string`|`false` or `''`|Value that the form element should initially render with                                                                            |
@@ -86,7 +88,7 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 
 ### `Formian.Text` Component API
 
-**Shared by `Formian.Email`, `Formian.Name`, `Formian.Number`, `Formian.Password`, `Formian.Phone` and `Formian.TextArea`**
+**Shared by `Formian.Email`, `Formian.Number`, `Formian.Password`, `Formian.Tel` and `Formian.TextArea`**
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |

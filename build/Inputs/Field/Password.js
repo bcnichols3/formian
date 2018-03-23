@@ -10,19 +10,24 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Input = require('../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Name = function Name(props) {
-	var newProps = Object.assign({}, props, {
-		name: props.name || "password",
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter your password"
-	});
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'password' }, newProps));
+var Password = function Password(props) {
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'password' }, props, { className: props.className + " password" }));
 };
 
-exports.default = Name;
+Password.defaultProps = {
+	name: "password",
+	autoComplete: "current-password",
+	errorText: "Please enter your password"
+};
+
+exports.default = Password;

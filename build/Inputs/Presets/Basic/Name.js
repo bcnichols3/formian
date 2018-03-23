@@ -14,18 +14,22 @@ var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Input = require('../../common/Input');
+var _Input = require('../../../common/Input');
 
 var _Input2 = _interopRequireDefault(_Input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextArea = function TextArea(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'textarea' }, props, { className: props.className + " textarea" }));
+var Name = function Name(props) {
+	return _react2.default.createElement(_Input2.default, _extends({}, props, { className: props.className + " name" }));
 };
 
-TextArea.defaultProps = {
-	errorText: "Please enter a message"
+Name.defaultProps = {
+	name: "name",
+	type: "text",
+	labelText: "Name",
+	autoComplete: "name",
+	errorText: "Please enter your name"
 };
 
-exports.default = TextArea;
+exports.default = Name;

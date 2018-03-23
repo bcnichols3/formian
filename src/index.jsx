@@ -1,6 +1,7 @@
 import injectCSS from './injectCSS';
 
 import React, {Component, Children} from 'react';
+import PropTypes from 'prop-types';
 
 import validators from './validators';
 import formatters from './formatters';
@@ -38,7 +39,10 @@ class Form extends Component {
 
 		if (props.customStyles !== false) injectCSS();
 
-		this.initialState = { disabled: true, formData: {} };
+		this.initialState = {
+			disabled: !!!this.props.noValidate,
+			formData: {}
+		};
 		this.mapInputsToState(props.children);
 		this.formDataKeys = Object.keys(this.initialState.formData);
 		this.state = Object.assign({}, this.initialState);
@@ -55,13 +59,13 @@ class Form extends Component {
 			}
 			else if (formElements.includes(child.type)) {
 				// discover the dataset object key
-				let key = child.props.name || child.type.name.toLowerCase();
+				let key = child.props.name;
 				// set prevalidated for marked inputs; otherwise set an appropriate validator function
 				if (child.props.required === false
 				|| child.props.required === 'false') {
-					this.validators[key] = this.validators.prevalidated;
+					this.validators[key] = this.validators.prevalidator(key);
 				} else {
-					this.setCheckersForChild(child, 'validators');
+					this.setCheckersForChild(child, 'validators', this.props.noValidate);
 				}
 				this.setCheckersForChild(child, 'formatters');
 
@@ -86,17 +90,19 @@ class Form extends Component {
 		});
 	}
 
-	setCheckersForChild(child, set) {
+	setCheckersForChild(child, set, setOff) {
 		let key = child.props.name || child.type.name;
 
-		if (!child.props[set] && child.props.tinyInt) {
+		// tinyint rule
+		if (!child.props[set]
+		&& ['onoff', 'checkbox'].includes(child.props.type)
+		&& child.props.tinyInt) {
 			this[set][key] = this[set].tinyInt;
 			child.props.defaultValue = child.props.defaultValue || 0;
 		}
 		else {
 			this[set][key] = child.props[set]			// custom checker
 			|| this[set][key.toLowerCase()]				// checker by field name
-			|| this[set][child.type.name.toLowerCase()]	// checker by type name
 			|| this[set][child.props.type.toLowerCase()]// checker by type
 			;
 		}
@@ -170,8 +176,7 @@ class Form extends Component {
 				: evt.target.value}
 		);
 
-		this.checkForm(formData);
-
+		if (!this.props.noValidate) this.checkForm(formData);
 		if (this.props.submitOnChange) this.autoSubmit();
 	}
 
@@ -206,7 +211,7 @@ class Form extends Component {
 			{recaptcha: value}
 		);
 
-		this.checkForm(formData);
+		if (!this.props.noValidate) this.checkForm(formData);
 	}
 
 	checkForm(formData) {
@@ -275,6 +280,14 @@ class Form extends Component {
 		);
 	}
 }
+
+Form.propTypes = {
+	id: "",
+	className: "",
+	autoComplete: "on",
+	noValidate: false,
+	submitOnChange: false
+};
 
 const Formian = formElements.reduce((formian, input) => {
 	formian[input.name] = input;

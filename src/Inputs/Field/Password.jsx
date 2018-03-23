@@ -1,14 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Input from '../../common/Input';
 
-const Name = (props) => {
-	const newProps = Object.assign({}, props, {
-		name: props.name || "password",
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter your password"
-	});
-	return (<Input type="password" {...newProps} />);
+const Password = (props) => (
+	<Input type="password" {...props} className={props.className+" password"} />
+);
+
+Password.defaultProps = {
+	name: "password",
+	autoComplete: "current-password",
+	errorText: "Please enter your password"
 };
 
-export default Name;
+export default Password;

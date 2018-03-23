@@ -20,12 +20,14 @@ var _Input2 = _interopRequireDefault(_Input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var TextArea = function TextArea(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'textarea' }, props, { className: props.className + " textarea" }));
+var Tel = function Tel(props) {
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'tel' }, props, { className: props.className + " tel" }));
 };
 
-TextArea.defaultProps = {
-	errorText: "Please enter a message"
+Tel.defaultProps = {
+	name: "phone",
+	autoComplete: "tel",
+	errorText: "Please enter a valid phone number"
 };
 
-exports.default = TextArea;
+exports.default = Tel;
