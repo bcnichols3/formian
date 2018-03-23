@@ -8344,7 +8344,7 @@ var Range = function Range(_ref) {
 
 	return _react2.default.createElement(
 		_Container2.default,
-		{ type: type, className: className, style: style },
+		{ type: 'range', className: className, style: style },
 		_react2.default.createElement(
 			'label',
 			{ htmlFor: name },
@@ -8460,20 +8460,20 @@ var Select = function Select(_ref) {
 				return _react2.default.createElement(_Option2.default, { key: data.value || data, data: data });
 			})
 		),
-		_react2.default.createElement(_CustomBox2.default, { name: name, type: type, icon: icon }),
+		_react2.default.createElement(_CustomBox2.default, { name: name, type: 'select', icon: icon }),
 		_react2.default.createElement(_ErrorMessage2.default, { errorText: errorText, position: position })
 	);
 };
 
 Select.propTypes = {
-	options: _propTypes2.default.arrayOf(_propTypes2.default.string).isRequired
+	name: _propTypes2.default.string.isRequired,
+	options: _propTypes2.default.array.isRequired
 };
 
 Select.defaultProps = {
 	type: "select",
 	defaultValue: false,
 	tabIndex: "0",
-	options: ['option 1', 'option 2'],
 	errorText: "please select an option",
 	className: ""
 };
@@ -8783,7 +8783,6 @@ Radio.propTypes = {
 Radio.defaultProps = {
 	type: "radio",
 	tabIndex: "0",
-	options: ['option1', 'option2'],
 	defaultValue: 0,
 	errorText: "Please select an option",
 	className: ""
@@ -8807,9 +8806,15 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
@@ -8818,59 +8823,16 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Email = function Email(props) {
-	var newProps = Object.assign({}, props, {
-		name: props.name || "email",
-		type: "email",
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter a valid email address"
-	});
-	return _react2.default.createElement(_Input2.default, newProps);
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'email' }, props, { className: props.className + " email" }));
+};
+
+Email.defaultProps = {
+	name: "email",
+	autoComplete: "email",
+	errorText: "Please enter a valid email address"
 };
 
 exports.default = Email;
-
-/***/ }),
-
-/***/ "../src/Inputs/Field/Name.jsx":
-/*!************************************!*\
-  !*** ../src/Inputs/Field/Name.jsx ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
-
-var _Input2 = _interopRequireDefault(_Input);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Name = function Name(props) {
-	var newProps = Object.assign({}, props, {
-		name: props.name || "name",
-		text: "Your Name",
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter your name"
-	});
-	return _react2.default.createElement(_Input2.default, _extends({
-		className: 'name',
-		type: 'text'
-	}, newProps));
-};
-
-exports.default = Name;
 
 /***/ }),
 
@@ -8894,6 +8856,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
@@ -8901,16 +8867,12 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Number = function Number(props) {
-	var newProps = Object.assign({}, props, {
-		name: props.name || "number",
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter a number",
-		wheel: props.wheel || false
-	});
-	return _react2.default.createElement(_Input2.default, _extends({
-		className: 'number ' + (!newProps.wheel ? 'number-no-wheel' : ''),
-		type: 'number'
-	}, newProps));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'number' }, props, { className: props.className + " number" }));
+};
+
+Number.defaultProps = {
+	name: "number",
+	errorText: "Please enter a number"
 };
 
 exports.default = Number;
@@ -8937,29 +8899,34 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Name = function Name(props) {
-	var newProps = Object.assign({}, props, {
-		name: props.name || "password",
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter your password"
-	});
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'password' }, newProps));
+var Password = function Password(props) {
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'password' }, props, { className: props.className + " password" }));
 };
 
-exports.default = Name;
+Password.defaultProps = {
+	name: "password",
+	autoComplete: "current-password",
+	errorText: "Please enter your password"
+};
+
+exports.default = Password;
 
 /***/ }),
 
-/***/ "../src/Inputs/Field/Phone.jsx":
-/*!*************************************!*\
-  !*** ../src/Inputs/Field/Phone.jsx ***!
-  \*************************************/
+/***/ "../src/Inputs/Field/Tel.jsx":
+/*!***********************************!*\
+  !*** ../src/Inputs/Field/Tel.jsx ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8976,22 +8943,27 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Phone = function Phone(props) {
-	var newProps = Object.assign({}, props, {
-		name: props.name || "phone",
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter a valid phone number"
-	});
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'tel' }, newProps));
+var Tel = function Tel(props) {
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'tel' }, props, { className: props.className + " tel" }));
 };
 
-exports.default = Phone;
+Tel.defaultProps = {
+	name: "phone",
+	autoComplete: "tel",
+	errorText: "Please enter a valid phone number"
+};
+
+exports.default = Tel;
 
 /***/ }),
 
@@ -9015,6 +8987,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
@@ -9022,11 +8998,12 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Text = function Text(props) {
-	var newProps = Object.assign({}, props, {
-		placeholder: props.placeholder,
-		errorText: props.errorText || "please enter your text"
-	});
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'text' }, newProps));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'text' }, props, { className: props.className + " text" }));
+};
+
+Text.defaultProps = {
+	name: "text",
+	errorText: "Please enter a short message"
 };
 
 exports.default = Text;
@@ -9053,6 +9030,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
 
 var _Input2 = _interopRequireDefault(_Input);
@@ -9060,17 +9041,61 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TextArea = function TextArea(props) {
-	var newProps = Object.assign({}, props, {
-		name: props.name || "textarea",
-		placeholder: props.placeholder || "your message",
-		errorText: props.errorText || "please enter a message"
-	});
-	return _react2.default.createElement(_Input2.default, _extends({
-		type: 'textarea'
-	}, newProps));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'textarea' }, props, { className: props.className + " textarea" }));
+};
+
+TextArea.defaultProps = {
+	name: "message",
+	errorText: "Please enter a message"
 };
 
 exports.default = TextArea;
+
+/***/ }),
+
+/***/ "../src/Inputs/Presets/Basic/Name.jsx":
+/*!********************************************!*\
+  !*** ../src/Inputs/Presets/Basic/Name.jsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Input = __webpack_require__(/*! ../../../common/Input */ "../src/common/Input.jsx");
+
+var _Input2 = _interopRequireDefault(_Input);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Name = function Name(props) {
+	return _react2.default.createElement(_Input2.default, _extends({}, props, { className: props.className + " name" }));
+};
+
+Name.defaultProps = {
+	name: "name",
+	type: "text",
+	labelText: "Name",
+	autoComplete: "name",
+	errorText: "Please enter your name"
+};
+
+exports.default = Name;
 
 /***/ }),
 
@@ -9240,6 +9265,50 @@ exports.default = Recaptcha;
 
 /***/ }),
 
+/***/ "../src/Inputs/Time/Month.jsx":
+/*!************************************!*\
+  !*** ../src/Inputs/Time/Month.jsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _Input = __webpack_require__(/*! ../../common/Input */ "../src/common/Input.jsx");
+
+var _Input2 = _interopRequireDefault(_Input);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Month = function Month(props) {
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'month' }, props, { className: props.className + " month" }));
+};
+
+Month.defaultProps = {
+	name: "month",
+	autoComplete: "on",
+	errorText: "Please enter a month and year"
+};
+
+exports.default = Month;
+
+/***/ }),
+
 /***/ "../src/Inputs/index.js":
 /*!******************************!*\
   !*** ../src/Inputs/index.js ***!
@@ -9282,10 +9351,6 @@ var _Email = __webpack_require__(/*! ./Field/Email */ "../src/Inputs/Field/Email
 
 var _Email2 = _interopRequireDefault(_Email);
 
-var _Name = __webpack_require__(/*! ./Field/Name */ "../src/Inputs/Field/Name.jsx");
-
-var _Name2 = _interopRequireDefault(_Name);
-
 var _Number = __webpack_require__(/*! ./Field/Number */ "../src/Inputs/Field/Number.jsx");
 
 var _Number2 = _interopRequireDefault(_Number);
@@ -9294,9 +9359,9 @@ var _Password = __webpack_require__(/*! ./Field/Password */ "../src/Inputs/Field
 
 var _Password2 = _interopRequireDefault(_Password);
 
-var _Phone = __webpack_require__(/*! ./Field/Phone */ "../src/Inputs/Field/Phone.jsx");
+var _Tel = __webpack_require__(/*! ./Field/Tel */ "../src/Inputs/Field/Tel.jsx");
 
-var _Phone2 = _interopRequireDefault(_Phone);
+var _Tel2 = _interopRequireDefault(_Tel);
 
 var _Text = __webpack_require__(/*! ./Field/Text */ "../src/Inputs/Field/Text.jsx");
 
@@ -9305,6 +9370,14 @@ var _Text2 = _interopRequireDefault(_Text);
 var _TextArea = __webpack_require__(/*! ./Field/TextArea */ "../src/Inputs/Field/TextArea.jsx");
 
 var _TextArea2 = _interopRequireDefault(_TextArea);
+
+var _Month = __webpack_require__(/*! ./Time/Month */ "../src/Inputs/Time/Month.jsx");
+
+var _Month2 = _interopRequireDefault(_Month);
+
+var _Name = __webpack_require__(/*! ./Presets/Basic/Name */ "../src/Inputs/Presets/Basic/Name.jsx");
+
+var _Name2 = _interopRequireDefault(_Name);
 
 var _File = __webpack_require__(/*! ./Special/File */ "../src/Inputs/Special/File.jsx");
 
@@ -9316,14 +9389,27 @@ var _Recaptcha2 = _interopRequireDefault(_Recaptcha);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// ========== PRESET MONEY INPUTS
+
 // ========== SPECIAL INPUTS
+// import Color from './Special/Color';
 
 
-// ========== BOX INPUTS
-exports.default = [_Checkbox2.default, _Datalist2.default, _Email2.default, _File2.default, _Name2.default, _Number2.default, _OnOff2.default, _Password2.default, _Phone2.default, _Radio2.default, _Range2.default, _Select2.default, _Text2.default, _TextArea2.default, _Recaptcha2.default];
+// ========== TIME INPUTS
+
 
 // ========== FIELD INPUTS
 // ========== ARRAY INPUTS
+exports.default = [_Checkbox2.default, _Datalist2.default, _Email2.default, _File2.default, _Month2.default, _Number2.default, _OnOff2.default, _Password2.default, _Tel2.default, _Radio2.default, _Range2.default, _Select2.default, _Text2.default, _TextArea2.default, _Recaptcha2.default];
+// import Date from './Time/Date';
+// import DateTime from './Time/DateTime';
+// import Time from './Time/Time';
+// import Week from './Time/Week';
+
+// ========== PRESET BASIC INPUTS
+
+
+// ========== BOX INPUTS
 
 /***/ }),
 
@@ -9345,21 +9431,27 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Container = function Container(_ref) {
-	var _ref$type = _ref.type,
-	    type = _ref$type === undefined ? "text" : _ref$type,
-	    _ref$className = _ref.className,
-	    className = _ref$className === undefined ? "" : _ref$className,
-	    _ref$style = _ref.style,
-	    style = _ref$style === undefined ? {} : _ref$style,
+	var type = _ref.type,
+	    className = _ref.className,
+	    style = _ref.style,
 	    children = _ref.children;
 	return _react2.default.createElement(
-		"div",
-		{ className: "input-container " + type + " " + className, style: style },
+		'div',
+		{ className: 'input-container ' + type + ' ' + className, style: style },
 		children
 	);
+};
+
+Container.defaultProps = {
+	type: "text",
+	classname: ""
 };
 
 exports.default = Container;
@@ -9560,18 +9652,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Input = function Input(_ref) {
 	var name = _ref.name,
-	    position = _ref.position,
-	    dataset = _ref.dataset,
-	    style = _ref.style,
-	    tabIndex = _ref.tabIndex,
-	    onChange = _ref.onChange,
-	    onBlur = _ref.onBlur,
-	    onFocus = _ref.onFocus,
 	    type = _ref.type,
 	    labelText = _ref.labelText,
 	    placeholder = _ref.placeholder,
 	    errorText = _ref.errorText,
-	    className = _ref.className;
+	    dataset = _ref.dataset,
+	    tabIndex = _ref.tabIndex,
+	    readOnly = _ref.readOnly,
+	    onChange = _ref.onChange,
+	    onBlur = _ref.onBlur,
+	    onFocus = _ref.onFocus,
+	    autoComplete = _ref.autoComplete,
+	    inputMode = _ref.inputMode,
+	    style = _ref.style,
+	    className = _ref.className,
+	    position = _ref.position;
 	return _react2.default.createElement(
 		_Container2.default,
 		{ type: type, className: 'field ' + className, style: style },
@@ -9583,10 +9678,13 @@ var Input = function Input(_ref) {
 		_react2.default.createElement('input', {
 			id: name,
 			type: type,
+			inputMode: inputMode,
 			tabIndex: tabIndex,
 			placeholder: placeholder,
+			readOnly: readOnly,
 			onChange: onChange,
 			onBlur: onBlur,
+			autoComplete: autoComplete,
 			onFocus: onFocus,
 			value: dataset[name]
 		}),
@@ -9598,6 +9696,7 @@ Input.defaultProps = {
 	name: "text",
 	type: "text",
 	placeholder: "",
+	autoComplete: "on",
 	errorText: "invalid input",
 	className: "",
 	tabIndex: "0"
@@ -9737,6 +9836,10 @@ var _react = __webpack_require__(/*! react */ "../node_modules/react/react.js");
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js");
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _validators = __webpack_require__(/*! ./validators */ "../src/validators.js");
 
 var _validators2 = _interopRequireDefault(_validators);
@@ -9802,7 +9905,10 @@ var Form = function (_Component) {
 
 		if (props.customStyles !== false) (0, _injectCSS2.default)();
 
-		_this.initialState = { disabled: true, formData: {} };
+		_this.initialState = {
+			disabled: !!!_this.props.noValidate,
+			formData: {}
+		};
 		_this.mapInputsToState(props.children);
 		_this.formDataKeys = Object.keys(_this.initialState.formData);
 		_this.state = Object.assign({}, _this.initialState);
@@ -9821,12 +9927,12 @@ var Form = function (_Component) {
 					_this2.mapInputsToState(child.props.children);
 				} else if (_Inputs2.default.includes(child.type)) {
 					// discover the dataset object key
-					var key = child.props.name || child.type.name.toLowerCase();
+					var key = child.props.name;
 					// set prevalidated for marked inputs; otherwise set an appropriate validator function
 					if (child.props.required === false || child.props.required === 'false') {
-						_this2.validators[key] = _this2.validators.prevalidated;
+						_this2.validators[key] = _this2.validators.prevalidator(key);
 					} else {
-						_this2.setCheckersForChild(child, 'validators');
+						_this2.setCheckersForChild(child, 'validators', _this2.props.noValidate);
 					}
 					_this2.setCheckersForChild(child, 'formatters');
 
@@ -9845,16 +9951,16 @@ var Form = function (_Component) {
 		}
 	}, {
 		key: 'setCheckersForChild',
-		value: function setCheckersForChild(child, set) {
+		value: function setCheckersForChild(child, set, setOff) {
 			var key = child.props.name || child.type.name;
 
-			if (!child.props[set] && child.props.tinyInt) {
+			// tinyint rule
+			if (!child.props[set] && ['onoff', 'checkbox'].includes(child.props.type) && child.props.tinyInt) {
 				this[set][key] = this[set].tinyInt;
 				child.props.defaultValue = child.props.defaultValue || 0;
 			} else {
 				this[set][key] = child.props[set] // custom checker
 				|| this[set][key.toLowerCase()] // checker by field name
-				|| this[set][child.type.name.toLowerCase()] // checker by type name
 				|| this[set][child.props.type.toLowerCase()] // checker by type
 				;
 			}
@@ -9926,8 +10032,7 @@ var Form = function (_Component) {
 			if (evt.target.type === 'radio') key = key.split('@@')[1];
 			var formData = Object.assign({}, this.state.formData, _defineProperty({}, key, this.formatters[key] ? this.formatters[key](evt.target) : evt.target.value));
 
-			this.checkForm(formData);
-
+			if (!this.props.noValidate) this.checkForm(formData);
 			if (this.props.submitOnChange) this.autoSubmit();
 		}
 
@@ -9966,7 +10071,7 @@ var Form = function (_Component) {
 		value: function recaptcha(value) {
 			var formData = Object.assign({}, this.state.formData, { recaptcha: value });
 
-			this.checkForm(formData);
+			if (!this.props.noValidate) this.checkForm(formData);
 		}
 	}, {
 		key: 'checkForm',
@@ -10040,6 +10145,14 @@ var Form = function (_Component) {
 	return Form;
 }(_react.Component);
 
+Form.propTypes = {
+	id: "",
+	className: "",
+	autoComplete: "on",
+	noValidate: false,
+	submitOnChange: false
+};
+
 var Formian = _Inputs2.default.reduce(function (formian, input) {
 	formian[input.name] = input;
 	return formian;
@@ -10105,15 +10218,16 @@ var validators = {};
 validators.prevalidated = prevalidated;
 
 // ========== BOX INPUTS
-validators.checkbox = box;
-validators.onoff = box;
+validators.checkbox = checkbox;
+validators.onoff = checkbox;
+validators.tinyInt = checkbox;
 validators.radio = prevalidated;
 
 // ========== ARRAY INPUTS
 validators.color = prevalidated;
 validators.datalist = prevalidated;
 validators.range = prevalidated;
-validators.select = box;
+validators.select = checkbox;
 
 // ========== FIELD INPUTS
 validators.email = function email(val) {
@@ -10130,7 +10244,7 @@ validators.textarea = text;
 
 // ========== SPECIAL INPUTS
 validators.recaptcha = validators.prevalidated;
-validators.file = box;
+validators.file = checkbox;
 
 exports.default = validators;
 
@@ -10142,7 +10256,7 @@ function prevalidated(val) {
 function text(val) {
   return val.length > 0;
 }
-function box(val) {
+function checkbox(val) {
   return !!val;
 }
 
@@ -10192,6 +10306,17 @@ exports.default = QueenSVG;
 
 /***/ }),
 
+/***/ "./browser/antSpecies.json":
+/*!*********************************!*\
+  !*** ./browser/antSpecies.json ***!
+  \*********************************/
+/*! exports provided: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, default */
+/***/ (function(module) {
+
+module.exports = ["Fire Ant","Weaver Ant",{"value":"Velvet Ant","disabled":true},"Carpenter Ant","Crazy Ant","Garden Black Ant","Bullet Ant","Flower Ant","Army Ant","Singapore Ant","Pharaoh Ant","Little Black Ant","Talbot Ant","Southern Ant","Megatron Ant"];
+
+/***/ }),
+
 /***/ "./browser/index.jsx":
 /*!***************************!*\
   !*** ./browser/index.jsx ***!
@@ -10218,6 +10343,10 @@ var _Queen = __webpack_require__(/*! ./Queen */ "./browser/Queen.jsx");
 
 var _Queen2 = _interopRequireDefault(_Queen);
 
+var _antSpecies = __webpack_require__(/*! ./antSpecies */ "./browser/antSpecies.json");
+
+var _antSpecies2 = _interopRequireDefault(_antSpecies);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function submitHandler(data) {
@@ -10241,7 +10370,9 @@ var Demo = function Demo(props) {
 				maxWidth: "800px",
 				position: "relative",
 				margin: "auto",
-				fontSize: "20px"
+				padding: "5px",
+				fontSize: "20px",
+				fontFamily: "sans-serif"
 			}
 		},
 		_react2.default.createElement(
@@ -10263,13 +10394,13 @@ var Demo = function Demo(props) {
 			labelText: 'Activate Ant Queen'
 		}),
 		_react2.default.createElement(_Queen2.default, { style: {
-				position: 'absolute',
-				top: '32%',
-				right: '-33%',
-				transform: 'rotate(-40deg)',
-				width: '90%',
-				zIndex: '-1',
-				fill: 'gray'
+				position: "absolute",
+				top: "32%",
+				right: "-33%",
+				transform: "rotate(-40deg)",
+				width: "90%",
+				zIndex: "-1",
+				fill: "gray"
 			}
 		}),
 		_react2.default.createElement(_index2.default.Radio, {
@@ -10280,8 +10411,7 @@ var Demo = function Demo(props) {
 		_react2.default.createElement(_index2.default.Select, {
 			name: 'species',
 			labelText: 'Favorite Species of Ant',
-			defaultValue: 1,
-			options: ["Fire Ant", "Weaver Ant", "Carpenter Ant"]
+			options: _antSpecies2.default
 		}),
 		_react2.default.createElement(_index2.default.File, null),
 		_react2.default.createElement(_index2.default.Range, { labelText: 'Volume', name: 'volume', min: 0, max: 11, defaultValue: 5 }),

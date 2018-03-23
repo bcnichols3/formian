@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import Formian from '../../src/index.jsx';
 import QueenSVG from './Queen';
 
+import antSpecies from './antSpecies';
+
 function submitHandler(data) {
 	console.log('SUBMITTING FORM', data);
 }
@@ -23,7 +25,9 @@ const Demo = (props) => (
 			maxWidth: "800px",
 			position: "relative",
 			margin: "auto",
-			fontSize: "20px"
+			padding: "5px",
+			fontSize: "20px",
+			fontFamily: "sans-serif",
 		}}
 	>
 		<h1>My Formian Form</h1>
@@ -41,13 +45,13 @@ const Demo = (props) => (
 			labelText="Activate Ant Queen"
 		/>
 		<QueenSVG style={{
-				position: 'absolute',
-				top: '32%',
-				right: '-33%',
-				transform: 'rotate(-40deg)',
-				width: '90%',
-				zIndex: '-1',
-				fill: 'gray'
+				position: "absolute",
+				top: "32%",
+				right: "-33%",
+				transform: "rotate(-40deg)",
+				width: "90%",
+				zIndex: "-1",
+				fill: "gray"
 			}}
 		/>
 		<Formian.Radio
@@ -58,8 +62,7 @@ const Demo = (props) => (
 		<Formian.Select
 			name="species"
 			labelText="Favorite Species of Ant"
-			defaultValue={1}
-			options={["Fire Ant", "Weaver Ant", "Carpenter Ant"]}
+			options={antSpecies}
 		/>
 		<Formian.File />
 		<Formian.Range labelText="Volume" name="volume" min={0} max={11} defaultValue={5} />
