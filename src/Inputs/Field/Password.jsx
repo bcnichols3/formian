@@ -8,6 +8,7 @@ const Password = (props) => (
 );
 
 Password.defaultProps = {
+	type: "password",
 	name: "password",
 	autoComplete: "current-password",
 	errorText: "Please enter your password"

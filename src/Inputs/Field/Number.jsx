@@ -8,6 +8,7 @@ const Number = (props) => (
 );
 
 Number.defaultProps = {
+	type: "number",
 	name: "number",
 	errorText: "Please enter a number"
 };

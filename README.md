@@ -65,12 +65,10 @@ Styles for Formian elements are dynamically injected.
 
 |Prop       |Type    |Default    |Description
 |
-|-----------|:------:|:---------:|--------------------------------------------
-|
-|onSubmit |`function`|`undefined`|Required: function that will utilize one argument: `formData`
-|
-|[className]|`string`|`""`|Set a CSS class for custom styles                    |
-|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (used for auto-saving the form)                                        |
+|-----------|:------:|:---------:|--------------------------------------------|
+|onSubmit |`function`|`undefined`|Required: function that will utilize one argument: `formData`|
+|[className]|`string`|`""`|Set a CSS class for custom styles|
+|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (used for auto-saving the form)	|
 |[customStyles]|`boolean`|`false`|Used to prevent Formain's native styles from being injected on the page                                                      |
 
 ### Common Child Component API

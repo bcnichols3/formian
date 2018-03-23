@@ -8,6 +8,7 @@ const Url = props => (
 );
 
 Url.defaultProps = {
+	type: "url",
 	name: "url",
 	autoComplete: "url",
 	placeholder: "http://www.example.com",

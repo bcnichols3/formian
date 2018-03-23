@@ -8,6 +8,7 @@ const Email = props => (
 );
 
 Email.defaultProps = {
+	type: "email",
 	name: "email",
 	autoComplete: "email",
 	errorText: "Please enter a valid email address"

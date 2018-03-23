@@ -23,6 +23,7 @@ const Reset = ({
 };
 
 Reset.defaultProps = {
+	type: "reset",
 	disabled: true,
 	tabIndex: "0",
 	value: "submit",

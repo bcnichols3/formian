@@ -25,6 +25,7 @@ var TextArea = function TextArea(props) {
 };
 
 TextArea.defaultProps = {
+	name: "message",
 	errorText: "Please enter a message"
 };
 

@@ -25,6 +25,7 @@ var Text = function Text(props) {
 };
 
 Text.defaultProps = {
+	name: "text",
 	errorText: "Please enter a short message"
 };
 

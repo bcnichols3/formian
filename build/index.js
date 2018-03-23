@@ -14,6 +14,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _validators = require('./validators');
 
 var _validators2 = _interopRequireDefault(_validators);
@@ -79,7 +83,10 @@ var Form = function (_Component) {
 
 		if (props.customStyles !== false) (0, _injectCSS2.default)();
 
-		_this.initialState = { disabled: true, formData: {} };
+		_this.initialState = {
+			disabled: !!!_this.props.noValidate,
+			formData: {}
+		};
 		_this.mapInputsToState(props.children);
 		_this.formDataKeys = Object.keys(_this.initialState.formData);
 		_this.state = Object.assign({}, _this.initialState);
@@ -98,12 +105,12 @@ var Form = function (_Component) {
 					_this2.mapInputsToState(child.props.children);
 				} else if (_Inputs2.default.includes(child.type)) {
 					// discover the dataset object key
-					var key = child.props.name || child.type.name.toLowerCase();
+					var key = child.props.name;
 					// set prevalidated for marked inputs; otherwise set an appropriate validator function
 					if (child.props.required === false || child.props.required === 'false') {
-						_this2.validators[key] = _this2.validators.prevalidated;
+						_this2.validators[key] = _this2.validators.prevalidator(key);
 					} else {
-						_this2.setCheckersForChild(child, 'validators');
+						_this2.setCheckersForChild(child, 'validators', _this2.props.noValidate);
 					}
 					_this2.setCheckersForChild(child, 'formatters');
 
@@ -122,16 +129,16 @@ var Form = function (_Component) {
 		}
 	}, {
 		key: 'setCheckersForChild',
-		value: function setCheckersForChild(child, set) {
+		value: function setCheckersForChild(child, set, setOff) {
 			var key = child.props.name || child.type.name;
 
-			if (!child.props[set] && child.props.tinyInt) {
+			// tinyint rule
+			if (!child.props[set] && ['onoff', 'checkbox'].includes(child.props.type) && child.props.tinyInt) {
 				this[set][key] = this[set].tinyInt;
 				child.props.defaultValue = child.props.defaultValue || 0;
 			} else {
 				this[set][key] = child.props[set] // custom checker
 				|| this[set][key.toLowerCase()] // checker by field name
-				|| this[set][child.type.name.toLowerCase()] // checker by type name
 				|| this[set][child.props.type.toLowerCase()] // checker by type
 				;
 			}
@@ -203,8 +210,7 @@ var Form = function (_Component) {
 			if (evt.target.type === 'radio') key = key.split('@@')[1];
 			var formData = Object.assign({}, this.state.formData, _defineProperty({}, key, this.formatters[key] ? this.formatters[key](evt.target) : evt.target.value));
 
-			this.checkForm(formData);
-
+			if (!this.props.noValidate) this.checkForm(formData);
 			if (this.props.submitOnChange) this.autoSubmit();
 		}
 
@@ -243,7 +249,7 @@ var Form = function (_Component) {
 		value: function recaptcha(value) {
 			var formData = Object.assign({}, this.state.formData, { recaptcha: value });
 
-			this.checkForm(formData);
+			if (!this.props.noValidate) this.checkForm(formData);
 		}
 	}, {
 		key: 'checkForm',
@@ -316,6 +322,14 @@ var Form = function (_Component) {
 
 	return Form;
 }(_react.Component);
+
+Form.propTypes = {
+	id: "",
+	className: "",
+	autoComplete: "on",
+	noValidate: false,
+	submitOnChange: false
+};
 
 var Formian = _Inputs2.default.reduce(function (formian, input) {
 	formian[input.name] = input;

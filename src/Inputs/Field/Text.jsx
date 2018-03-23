@@ -8,6 +8,7 @@ const Text = (props) => (
 );
 
 Text.defaultProps = {
+	type: "text",
 	name: "text",
 	errorText: "Please enter a short message"
 };

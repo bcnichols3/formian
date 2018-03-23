@@ -8,6 +8,7 @@ const TextArea = (props) => (
 );
 
 TextArea.defaultProps = {
+	type: "textarea",
 	name: "message",
 	errorText: "Please enter a message"
 };

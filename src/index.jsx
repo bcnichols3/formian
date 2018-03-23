@@ -281,7 +281,7 @@ class Form extends Component {
 	}
 }
 
-Form.propTypes = {
+Form.defaultProps = {
 	id: "",
 	className: "",
 	autoComplete: "on",
