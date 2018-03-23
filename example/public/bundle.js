@@ -8129,6 +8129,7 @@ var Reset = function Reset(_ref) {
 };
 
 Reset.defaultProps = {
+	type: "reset",
 	disabled: true,
 	tabIndex: "0",
 	value: "submit",
@@ -8827,6 +8828,7 @@ var Email = function Email(props) {
 };
 
 Email.defaultProps = {
+	type: "email",
 	name: "email",
 	autoComplete: "email",
 	errorText: "Please enter a valid email address"
@@ -8871,6 +8873,7 @@ var Number = function Number(props) {
 };
 
 Number.defaultProps = {
+	type: "number",
 	name: "number",
 	errorText: "Please enter a number"
 };
@@ -8914,6 +8917,7 @@ var Password = function Password(props) {
 };
 
 Password.defaultProps = {
+	type: "password",
 	name: "password",
 	autoComplete: "current-password",
 	errorText: "Please enter your password"
@@ -8958,6 +8962,7 @@ var Tel = function Tel(props) {
 };
 
 Tel.defaultProps = {
+	type: "tel",
 	name: "phone",
 	autoComplete: "tel",
 	errorText: "Please enter a valid phone number"
@@ -9002,6 +9007,7 @@ var Text = function Text(props) {
 };
 
 Text.defaultProps = {
+	type: "text",
 	name: "text",
 	errorText: "Please enter a short message"
 };
@@ -9045,6 +9051,7 @@ var TextArea = function TextArea(props) {
 };
 
 TextArea.defaultProps = {
+	type: "textarea",
 	name: "message",
 	errorText: "Please enter a message"
 };
@@ -10145,7 +10152,7 @@ var Form = function (_Component) {
 	return Form;
 }(_react.Component);
 
-Form.propTypes = {
+Form.defaultProps = {
 	id: "",
 	className: "",
 	autoComplete: "on",
