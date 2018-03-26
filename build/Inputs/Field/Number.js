@@ -21,11 +21,14 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Number = function Number(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'number' }, props, { className: props.className + " number" }));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'number' }, props, { className: props.className }));
 };
 
 Number.defaultProps = {
+	type: "number",
 	name: "number",
+	defaultValue: "",
+	className: "",
 	errorText: "Please enter a number"
 };
 

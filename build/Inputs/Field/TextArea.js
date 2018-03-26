@@ -21,11 +21,14 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var TextArea = function TextArea(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'textarea' }, props, { className: props.className + " textarea" }));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'textarea' }, props, { className: props.className }));
 };
 
 TextArea.defaultProps = {
+	type: "textarea",
 	name: "message",
+	defaultValue: "",
+	className: "",
 	errorText: "Please enter a message"
 };
 

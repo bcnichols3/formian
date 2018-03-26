@@ -21,11 +21,14 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Email = function Email(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'email' }, props, { className: props.className + " email" }));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'email' }, props, { className: props.className }));
 };
 
 Email.defaultProps = {
+	type: "email",
 	name: "email",
+	defaultValue: "",
+	className: "",
 	autoComplete: "email",
 	errorText: "Please enter a valid email address"
 };

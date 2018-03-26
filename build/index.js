@@ -62,9 +62,7 @@ var Form = function (_Component) {
 
 		var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
 
-		_this.mapInputsToState = _this.mapInputsToState.bind(_this);
 		_this.addHandlersToChild = _this.addHandlersToChild.bind(_this);
-		_this.setCheckersForChild = _this.setCheckersForChild.bind(_this);
 		_this.renderChildren = _this.renderChildren.bind(_this);
 		_this.autoSubmit = _this.autoSubmit.bind(_this);
 
@@ -84,7 +82,7 @@ var Form = function (_Component) {
 		if (props.customStyles !== false) (0, _injectCSS2.default)();
 
 		_this.initialState = {
-			disabled: !!!_this.props.noValidate,
+			disabled: !_this.props.noValidate,
 			formData: {}
 		};
 		_this.mapInputsToState(props.children);
@@ -107,41 +105,48 @@ var Form = function (_Component) {
 					// discover the dataset object key
 					var key = child.props.name;
 					// set prevalidated for marked inputs; otherwise set an appropriate validator function
-					if (child.props.required === false || child.props.required === 'false') {
-						_this2.validators[key] = _this2.validators.prevalidator(key);
+					if (!child.props.required) {
+						_this2.validators[key] = _this2.validators.prevalidated;
 					} else {
-						_this2.setCheckersForChild(child, 'validators', _this2.props.noValidate);
+						_this2.setCheckerForChild(child, 'validators');
 					}
-					_this2.setCheckersForChild(child, 'formatters');
-
-					// create initial state
-					var target = {};
-					if (child.props.options) {
-						target.value = child.props.options[child.props.defaultValue] || child.props.options[0];
-					} else {
-						target.value = child.props.defaultValue || '';
-					}
-					target.checked = child.props.defaultValue || '';
-
-					_this2.initialState.formData[key] = _this2.formatters[key](target);
+					_this2.setCheckerForChild(child, 'formatters');
+					_this2.setInitialStateForChild(child);
 				}
 			});
 		}
 	}, {
-		key: 'setCheckersForChild',
-		value: function setCheckersForChild(child, set, setOff) {
-			var key = child.props.name || child.type.name;
+		key: 'setCheckerForChild',
+		value: function setCheckerForChild(child, set, setOff) {
+			var _child$props = child.props,
+			    name = _child$props.name,
+			    type = _child$props.type,
+			    defaultValue = _child$props.defaultValue;
 
-			// tinyint rule
-			if (!child.props[set] && ['onoff', 'checkbox'].includes(child.props.type) && child.props.tinyInt) {
-				this[set][key] = this[set].tinyInt;
-				child.props.defaultValue = child.props.defaultValue || 0;
+			// tinyInt rule
+
+			if (child.props.tinyInt && set === 'formatters' && (type === 'onoff' || type === 'checkbox')) {
+				this[set][name] = this[set].tinyInt;
 			} else {
-				this[set][key] = child.props[set] // custom checker
-				|| this[set][key.toLowerCase()] // checker by field name
-				|| this[set][child.props.type.toLowerCase()] // checker by type
+				this[set][name] = child.props[set] // custom
+				|| this[set][name.toLowerCase()] // by field name
+				|| this[set][child.props.type.toLowerCase()] // by type
 				;
 			}
+		}
+	}, {
+		key: 'setInitialStateForChild',
+		value: function setInitialStateForChild(child) {
+			var _child$props2 = child.props,
+			    name = _child$props2.name,
+			    options = _child$props2.options,
+			    defaultValue = _child$props2.defaultValue;
+
+
+			var target = { value: defaultValue, checked: defaultValue };
+			if (options) target.value = options[defaultValue];
+
+			this.initialState.formData[name] = this.formatters[name](target);
 		}
 	}, {
 		key: 'addHandlersToChild',
@@ -323,7 +328,7 @@ var Form = function (_Component) {
 	return Form;
 }(_react.Component);
 
-Form.propTypes = {
+Form.defaultProps = {
 	id: "",
 	className: "",
 	autoComplete: "on",

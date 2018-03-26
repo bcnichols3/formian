@@ -89,6 +89,8 @@ OnOff.propTypes = {
 OnOff.defaultProps = {
 	type: "onoff",
 	required: false,
+	defaultValue: false,
+	className: "",
 	onText: "on",
 	offText: "off"
 };

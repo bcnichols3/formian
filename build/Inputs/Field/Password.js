@@ -21,11 +21,14 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Password = function Password(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'password' }, props, { className: props.className + " password" }));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'password' }, props, { className: props.className }));
 };
 
 Password.defaultProps = {
+	type: "password",
 	name: "password",
+	defaultValue: "",
+	className: "",
 	autoComplete: "current-password",
 	errorText: "Please enter your password"
 };

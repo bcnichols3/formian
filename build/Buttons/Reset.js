@@ -39,6 +39,7 @@ var Reset = function Reset(_ref) {
 };
 
 Reset.defaultProps = {
+	type: "reset",
 	disabled: true,
 	tabIndex: "0",
 	value: "submit",

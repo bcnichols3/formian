@@ -89,7 +89,6 @@ var File = function File(_ref) {
 };
 
 File.defaultProps = {
-	name: "file",
 	type: "file",
 	accept: "",
 	defaultValue: [],

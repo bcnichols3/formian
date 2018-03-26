@@ -21,11 +21,14 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Url = function Url(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'url' }, props, { className: props.className + " url" }));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'url' }, props, { className: props.className }));
 };
 
 Url.defaultProps = {
+	type: "url",
 	name: "url",
+	defaultValue: "",
+	className: "",
 	autoComplete: "url",
 	placeholder: "http://www.example.com",
 	errorText: "Please enter a valid web address"

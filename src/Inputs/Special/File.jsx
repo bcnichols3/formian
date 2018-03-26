@@ -55,7 +55,6 @@ const File = ({
 );
 
 File.defaultProps = {
-	name: "file",
 	type: "file",
 	accept: "",
 	defaultValue: [],

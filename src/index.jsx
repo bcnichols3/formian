@@ -18,9 +18,7 @@ const Recaptcha = formElements[formElements.length - 1];
 class Form extends Component {
 	constructor(props) {
 		super(props);
-		this.mapInputsToState = this.mapInputsToState.bind(this);
 		this.addHandlersToChild = this.addHandlersToChild.bind(this);
-		this.setCheckersForChild = this.setCheckersForChild.bind(this);
 		this.renderChildren = this.renderChildren.bind(this);
 		this.autoSubmit = this.autoSubmit.bind(this);
 
@@ -40,7 +38,7 @@ class Form extends Component {
 		if (props.customStyles !== false) injectCSS();
 
 		this.initialState = {
-			disabled: !!!this.props.noValidate,
+			disabled: !this.props.noValidate,
 			formData: {}
 		};
 		this.mapInputsToState(props.children);
@@ -59,53 +57,42 @@ class Form extends Component {
 			}
 			else if (formElements.includes(child.type)) {
 				// discover the dataset object key
-				let key = child.props.name;
+				const key = child.props.name;
 				// set prevalidated for marked inputs; otherwise set an appropriate validator function
-				if (child.props.required === false
-				|| child.props.required === 'false') {
-					this.validators[key] = this.validators.prevalidator(key);
+				if (!child.props.required) {
+					this.validators[key] = this.validators.prevalidated;
 				} else {
-					this.setCheckersForChild(child, 'validators', this.props.noValidate);
+					this.setCheckerForChild(child, 'validators');
 				}
-				this.setCheckersForChild(child, 'formatters');
-
-				// create initial state
-				const target = {};
-				if (child.props.options) {
-					target.value =
-						child.props.options[child.props.defaultValue]
-						|| child.props.options[0]
-					;
-				}
-				else {
-					target.value = child.props.defaultValue || '';
-				}
-				target.checked = child.props.defaultValue || '';
-
-				this.initialState.formData[key] =
-					this.formatters[key](target)
-				;
-
+				this.setCheckerForChild(child, 'formatters');
+				this.setInitialStateForChild(child);
 			}
 		});
 	}
 
-	setCheckersForChild(child, set, setOff) {
-		let key = child.props.name || child.type.name;
+	setCheckerForChild(child, set, setOff) {
+		const {name, type, defaultValue} = child.props;
 
-		// tinyint rule
-		if (!child.props[set]
-		&& ['onoff', 'checkbox'].includes(child.props.type)
-		&& child.props.tinyInt) {
-			this[set][key] = this[set].tinyInt;
-			child.props.defaultValue = child.props.defaultValue || 0;
+		// tinyInt rule
+		if (child.props.tinyInt && set === 'formatters'
+		&& (type === 'onoff' || type === 'checkbox')) {
+			this[set][name] = this[set].tinyInt;
 		}
 		else {
-			this[set][key] = child.props[set]			// custom checker
-			|| this[set][key.toLowerCase()]				// checker by field name
-			|| this[set][child.props.type.toLowerCase()]// checker by type
+			this[set][name] = child.props[set]				// custom
+			|| this[set][name.toLowerCase()]				// by field name
+			|| this[set][child.props.type.toLowerCase()]	// by type
 			;
 		}
+	}
+
+	setInitialStateForChild(child) {
+		const {name, options, defaultValue} = child.props;
+
+		const target = {value: defaultValue, checked: defaultValue};
+		if (options) target.value = options[defaultValue];
+
+		this.initialState.formData[name] = this.formatters[name](target);
 	}
 
 	addHandlersToChild(child, tabIndex) {

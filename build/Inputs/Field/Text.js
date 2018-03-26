@@ -21,11 +21,14 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Text = function Text(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'text' }, props, { className: props.className + " text" }));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'text' }, props, { className: props.className }));
 };
 
 Text.defaultProps = {
+	type: "text",
 	name: "text",
+	className: "",
+	defaultValue: "",
 	errorText: "Please enter a short message"
 };
 

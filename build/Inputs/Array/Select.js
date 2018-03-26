@@ -81,7 +81,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
 	type: "select",
-	defaultValue: false,
+	defaultValue: 0,
 	tabIndex: "0",
 	errorText: "please select an option",
 	className: ""

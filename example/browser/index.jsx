@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+const {whyDidYouUpdate} = require('why-did-you-update');
+whyDidYouUpdate(React);
+
 import Formian from '../../src/index.jsx';
 import QueenSVG from './Queen';
 
@@ -64,8 +67,15 @@ const Demo = (props) => (
 			labelText="Favorite Species of Ant"
 			options={antSpecies}
 		/>
-		<Formian.File />
-		<Formian.Range labelText="Volume" name="volume" min={0} max={11} defaultValue={5} />
+		<Formian.File
+			name="file"
+		/>
+		<Formian.Range
+			labelText="Volume"
+			name="volume"
+			min={0}
+			max={11}
+			defaultValue={0} />
 		<Formian.Text
 			name="whatIsThis"
 			labelText="What Is This?"

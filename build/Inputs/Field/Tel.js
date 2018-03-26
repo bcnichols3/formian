@@ -21,11 +21,14 @@ var _Input2 = _interopRequireDefault(_Input);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Tel = function Tel(props) {
-	return _react2.default.createElement(_Input2.default, _extends({ type: 'tel' }, props, { className: props.className + " tel" }));
+	return _react2.default.createElement(_Input2.default, _extends({ type: 'tel' }, props, { className: props.className }));
 };
 
 Tel.defaultProps = {
+	type: "tel",
 	name: "phone",
+	defaultValue: "",
+	className: "",
 	autoComplete: "tel",
 	errorText: "Please enter a valid phone number"
 };

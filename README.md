@@ -65,10 +65,10 @@ Styles for Formian elements are dynamically injected.
 
 |Prop       |Type    |Default    |Description
 |
-|-----------|:------:|:---------:|--------------------------------------------|
-|onSubmit |`function`|`undefined`|Required: function that will utilize one argument: `formData`|
-|[className]|`string`|`""`|Set a CSS class for custom styles|
-|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (used for auto-saving the form)	|
+|-----------|:------:|:---------:|--------------------------------------------  |
+|onSubmit |`function`|`undefined`|Required: function that will utilize one argument: `formData`                                                            |
+|[className]|`string`|`""`|Set a CSS class for custom styles                    |
+|[submitOnChange]|`boolean`|`false`|Runs the onSubmit function after every change, with a two second timeout to reduce calls (used for auto-saving the form)                                                                           |
 |[customStyles]|`boolean`|`false`|Used to prevent Formain's native styles from being injected on the page                                                      |
 
 ### Common Child Component API
@@ -77,11 +77,10 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|name       |`string`|field type|Required: Key name for the formData object (some child types have a default for ease of use but it’s recommended to declare names manually)|
-|[className]|`string`|`""`|Set a CSS class for custom styles|
-|[labelText]     |`string`|`name`|Label or Legend text                               |
+|name       |`string`|field type|Required: Key name for the formData object (some child types have a default for ease of use but it’s recommended to declare names manually)                                                         |
+|[className]|`string`|`""`|Set a CSS class for custom styles                    |
+|[labelText]     |`string`|`name`|Label or Legend text                          |
 |[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                       |
-|[defaultValue]|`boolean` or `string`|`false` or `''`|Value that the form element should initially render with                                                                            |
 |[formatter]|`function`|`undefined`|Custom formatter function; manipulates the field value during every onChange event                                         |
 
 ### `Formian.Text` Component API
@@ -89,10 +88,11 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 **Shared by `Formian.Email`, `Formian.Number`, `Formian.Password`, `Formian.Tel` and `Formian.TextArea`**
 
 |Prop       |Type    |Default    |Description                                   |
-|-----------|:------:|:---------:|--------------------------------------------  |
-|[validator]|`function`|`undefined`|Custom validator function; returns a boolean that asserts an acceptable input. If required is set to `false`, the validator will not run                                                          |
+|-----------|:------:|:---------:|--------------------------------------------	|
+|[defaultValue]|`string`|`''`|Value that the form element should initially render with                                                                     |
 |[placeholder]|`string`|`undefined`|Placeholder text                            |
 |[errorText]|`string` or `false`|`Please enter a valid input`|Invalid input error message text (does not render if false)                                   |
+|[validator]|`function`|`undefined`|Custom validator function; returns a boolean that asserts an acceptable input. If required is set to `false`, the validator will not run                                                          |
 
 Common fields like Email, Text, Phone etc ... are designed to be as easy to use as possible and (assuming no customization needs) require nothing besides being called as a child of `Formian.Form`.
 
@@ -102,8 +102,9 @@ Common fields like Email, Text, Phone etc ... are designed to be as easy to use 
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|[children]|`react components`|`undefined`|Component to be placed inline with the checkbox; supersedes `labelText`                                                 |
-|[errorText]|`string` or `false`|`'Please check to agree'`|Invalid input error message text (if `false`, does not render)                                        |
+|[defaultValue]|`boolean`|`false`|Value that the form element should initially render with                                                                     |
+|[children]|`react components`|`undefined`|Component to be placed inline with the checkbox; supersedes `labelText`                                            |
+|[errorText]|`string` or `false`|`'Please check to agree'`|Invalid input error message text (if `false`, does not render)                                      |
 |[icon]|`URL string` or `React Component`|`'\u2714'`|Custom checkmark icon                                                                            |
 |[tinyInt]|`boolean`|`false`|Field returns `1` or `0` instead of `true` or `false`                                                                         |
 
@@ -116,22 +117,25 @@ For lengthier text, options for bigger buttons or a vertical layout is in the wo
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
 |options|`array of strings`|`['option1', 'option2']`|Required: Array of values for this key                                                                             |
+|[defaultValue]|`boolean`|`false`|Value that the form element should initially render with                                                                     |
 
 ### `Formian.Select` Component API
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|options|`array of strings`|`['option1', 'option2']`|Required: Array of values for this key                                                                             |
-|[placeholder]|`string`|`props.type`|Placeholder text                                                                            |
-|[errorText]|`string`|`Please select an option`|Invalid input error message text             |
+|options|`array of strings`|`['option1', 'option2']`|Required: Array of values for this key                                                                    |
+|[defaultValue]|`int`|`0`|Value as an index of the options array with which the form element should initially render                                            |
+|[placeholder]|`string`|`props.type`|Placeholder text                           |
+|[errorText]|`string`|`Please select an option`|Invalid input error message text                                                                            |
 
 ### `Formian.Range` Component API
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|[min]|`integer`|`0`|Minimum value for this Range                                                                           |
-|[max]|`integer`|`100`|Maximum value for this Range                                                                           |
-|[step]|`integer`|`1`|Step at which the Range increments or decrements                                                                      |
+|[defaultValue]|`int`|`0`|Value the slider should be initially placed on        |
+|[min]|`integer`|`0`|Minimum value for this Range                               |
+|[max]|`integer`|`100`|Maximum value for this Range                             |
+|[step]|`integer`|`1`|Step at which the Range increments or decrements          |
 
 ## Coming soon
 
