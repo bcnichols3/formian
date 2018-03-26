@@ -63,8 +63,7 @@ Styles for Formian elements are dynamically injected.
 
 **All form input elements are children of `Formian.Form`. You can also put anything else you might need in as a child; `Formian.Form` only manipulates form inputs.**
 
-|Prop       |Type    |Default    |Description
-|
+|Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
 |onSubmit |`function`|`undefined`|Required: function that will utilize one argument: `formData`                                                            |
 |[className]|`string`|`""`|Set a CSS class for custom styles                    |
@@ -77,7 +76,7 @@ Formian elements are intended to mirror native HTML elements as closely as possi
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|name       |`string`|field type|Required: Key name for the formData object (some child types have a default for ease of use but it’s recommended to declare names manually)                                                         |
+|name       |`string`|`undefined`|Required: Key name for the formData object (some child types have a default for ease of use but it’s recommended to declare names manually)                                                         |
 |[className]|`string`|`""`|Set a CSS class for custom styles                    |
 |[labelText]     |`string`|`name`|Label or Legend text                          |
 |[required]|`boolean`|`true`|Submit button is disabled until all required fields have a valid input                                                       |
@@ -116,14 +115,14 @@ For lengthier text, options for bigger buttons or a vertical layout is in the wo
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|options|`array of strings`|`['option1', 'option2']`|Required: Array of values for this key                                                                             |
+|options|`array of strings`|`undefined`|Required: Array of values for this key                                                                             |
 |[defaultValue]|`boolean`|`false`|Value that the form element should initially render with                                                                     |
 
 ### `Formian.Select` Component API
 
 |Prop       |Type    |Default    |Description                                   |
 |-----------|:------:|:---------:|--------------------------------------------  |
-|options|`array of strings`|`['option1', 'option2']`|Required: Array of values for this key                                                                    |
+|options|`array of strings`|`undefined`|Required: Array of values for this key                                                                    |
 |[defaultValue]|`int`|`0`|Value as an index of the options array with which the form element should initially render                                            |
 |[placeholder]|`string`|`props.type`|Placeholder text                           |
 |[errorText]|`string`|`Please select an option`|Invalid input error message text                                                                            |
