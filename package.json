@@ -1,6 +1,6 @@
 {
   "name": "react-formian",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A React framework for easily creating and handling controlled forms",
   "main": "build/index.js",
   "maintainers": [
