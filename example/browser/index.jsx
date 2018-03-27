@@ -30,6 +30,7 @@ const Demo = (props) => (
 			margin: "auto",
 			padding: "5px",
 			fontFamily: "sans-serif",
+			fontSize: "15px"
 		}}
 	>
 		<h1>My Formian Form</h1>
