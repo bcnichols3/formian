@@ -1,13 +1,15 @@
 .formian-form {
 	width: 100%;
 	display: flex;
-	font-size: 1.4em;
+	font-size: inherit;
 	flex-basis: 100%;
 	flex-flow: column;
 
 	label,legend {
 		display: block;
 		margin: 0 0 0 5px;
+		font-size: 1.1em;
+		font-weight: bold;
 	}
 
 	fieldset {
@@ -26,7 +28,6 @@
 
 	.input-container.fieldset {
 		width: 100%;
-
 	    display: flex;
 		flex-basis: 100%;
 		flex-flow: row;
@@ -36,8 +37,6 @@
 	.input-container {
 		position: relative;
 		width: 100%;
-		font-size: inherit;
-		margin: 5px;
 	    min-height: 25px;
 		margin: 5px 0;
 		padding: 0 5px;
@@ -53,9 +52,8 @@
 			border-radius: 2px;
 			width: 100%;
 			margin: 5px 0 10px;
-			text-transform: none;
 			padding: 5px;
-			font-size: 1rem;
+			font-size: 1em;
 
 			&:focus,&:hover {
 				outline: none;

@@ -1,16 +1,18 @@
-.formian-form * {
+.formian-form {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; }
-
-.formian-form section {
-  display: flex;
-  flex-basis: 100%;
-  flex-flow: row wrap; }
-
-.formian-form div, .formian-form section {
-  position: relative;
-  outline: none; }
+  .formian-form * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box; }
+  .formian-form section {
+    display: flex;
+    flex-basis: 100%;
+    flex-flow: row wrap; }
+  .formian-form div, .formian-form section {
+    position: relative;
+    outline: none; }
 
 .formian-form .input-container.range input {
   -webkit-appearance: none;
@@ -54,7 +56,7 @@
   pointer-events: none;
   right: 5px;
   bottom: 9px;
-  font-size: 1.5rem;
+  font-size: 1.5em;
   color: #555555; }
 
 .formian-form .input-container.select select:focus ~ .select-custom .custom-icon,
@@ -84,6 +86,22 @@
     width: 25px;
     z-index: 2;
     position: absolute; }
+  .formian-form .input-container.checkbox .radio-text, .formian-form .input-container.checkbox .off-text, .formian-form .input-container.checkbox .on-text,
+  .formian-form .input-container.radio .radio-text,
+  .formian-form .input-container.radio .off-text,
+  .formian-form .input-container.radio .on-text,
+  .formian-form .input-container.onoff .radio-text,
+  .formian-form .input-container.onoff .off-text,
+  .formian-form .input-container.onoff .on-text {
+    font-size: 20px;
+    font-weight: normal; }
+  .formian-form .input-container.checkbox .onoff-text, .formian-form .input-container.checkbox .checkbox-text,
+  .formian-form .input-container.radio .onoff-text,
+  .formian-form .input-container.radio .checkbox-text,
+  .formian-form .input-container.onoff .onoff-text,
+  .formian-form .input-container.onoff .checkbox-text {
+    font-size: 1em;
+    font-weight: normal; }
   .formian-form .input-container.checkbox .checkbox-custom,
   .formian-form .input-container.checkbox .onoff-custom,
   .formian-form .input-container.checkbox .radio-custom,
@@ -184,7 +202,7 @@
     .formian-form .input-container.checkbox .checkbox-custom .custom-icon, .formian-form .input-container.checkbox .checkbox-custom .fa {
       position: absolute;
       bottom: 5px;
-      font-size: 1.6em;
+      font-size: 30px;
       color: #31708f;
       opacity: 0; }
     .formian-form .input-container.checkbox .checkbox-custom:hover, .formian-form .input-container.checkbox .checkbox-custom:focus, .formian-form .input-container.checkbox .checkbox-custom:active {
@@ -287,7 +305,7 @@
   color: #31708f;
   background-color: #ffffff;
   border: 2px solid #31708f;
-  padding: 15px; }
+  padding: 15px 0; }
   .formian-form .input-container.submit input:focus, .formian-form .input-container.submit input:hover,
   .formian-form .input-container.reset input:focus,
   .formian-form .input-container.reset input:hover {
@@ -318,7 +336,6 @@
   max-width: 150px;
   color: #ffffff;
   background-color: #a94442;
-  font-size: inherit;
   border-radius: 5px;
   padding: 10px; }
   .formian-form .error-message.error {
@@ -368,9 +385,9 @@
     border-bottom-left-radius: 2px;
     border-right: 0;
     padding: 0 10px;
-    font-size: inherit;
-    line-height: 1.5em;
-    flex-grow: 0; }
+    flex-grow: 0;
+    display: flex;
+    align-items: center; }
     .formian-form .input-container.file label:focus, .formian-form .input-container.file label:hover {
       color: #ffffff;
       background-color: #31708f;
@@ -382,7 +399,6 @@
   .formian-form .input-container.file .file-name {
     flex-grow: 1;
     z-index: 2;
-    line-height: 1.6em;
     border: 2px solid #555555;
     height: 35px;
     margin: 5px 0;
@@ -390,28 +406,31 @@
     border-bottom-right-radius: 2px;
     background: #ffffff;
     padding: 0 0 0 5px;
-    font-size: 1rem;
-    line-height: 1.9rem; }
+    font-size: 1em;
+    display: flex;
+    align-items: center; }
   .formian-form .input-container.file input:focus ~ .file-name,
   .formian-form .input-container.file label:hover ~ .file-name,
   .formian-form .input-container.file label:active ~ .file-name {
     border-color: #31708f; }
   .formian-form .input-container.file .file-info {
     position: absolute;
-    right: 3px;
-    bottom: 8px;
+    right: 10px;
+    bottom: -7px;
     z-index: 3;
-    font-size: 0.6rem; }
+    font-size: 0.6em; }
 
 .formian-form {
   width: 100%;
   display: flex;
-  font-size: 1.4em;
+  font-size: inherit;
   flex-basis: 100%;
   flex-flow: column; }
   .formian-form label, .formian-form legend {
     display: block;
-    margin: 0 0 0 5px; }
+    margin: 0 0 0 5px;
+    font-size: 1.1em;
+    font-weight: bold; }
   .formian-form fieldset {
     border: none;
     padding: 0;
@@ -429,8 +448,6 @@
   .formian-form .input-container {
     position: relative;
     width: 100%;
-    font-size: inherit;
-    margin: 5px;
     min-height: 25px;
     margin: 5px 0;
     padding: 0 5px; }
@@ -444,9 +461,8 @@
       border-radius: 2px;
       width: 100%;
       margin: 5px 0 10px;
-      text-transform: none;
       padding: 5px;
-      font-size: 1rem; }
+      font-size: 1em; }
       .formian-form .input-container input:focus, .formian-form .input-container input:hover, .formian-form .input-container select:focus, .formian-form .input-container select:hover, .formian-form .input-container textarea:focus, .formian-form .input-container textarea:hover {
         outline: none;
         border-color: #31708f; }

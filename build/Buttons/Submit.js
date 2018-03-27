@@ -45,8 +45,7 @@ Submit.defaultProps = {
 	type: "submit",
 	disabled: true,
 	tabIndex: "0",
-	value: "submit",
-	labelText: "submit",
+	value: "Submit",
 	className: ""
 };
 
