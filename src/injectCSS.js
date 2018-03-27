@@ -1,5 +1,3 @@
-const version = require('../package').version;
-
 export default function injectCSS() {
 	let styles = document.getElementById('react-formian-default-styles');
 	if (styles) return;
