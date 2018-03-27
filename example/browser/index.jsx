@@ -29,7 +29,6 @@ const Demo = (props) => (
 			position: "relative",
 			margin: "auto",
 			padding: "5px",
-			fontSize: "20px",
 			fontFamily: "sans-serif",
 		}}
 	>
@@ -89,7 +88,7 @@ const Demo = (props) => (
 		/>
 		<Formian.Fieldset>
 			<Formian.Submit
-				labelText="Do it!"
+				labelText="Do It!"
 				style={buttonStyle}
 			/>
 			<Formian.Reset style={buttonStyle} />

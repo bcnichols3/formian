@@ -19,6 +19,17 @@
 			position: absolute;
 		}
 
+		// text inside a 'buttony' radio or onoff box
+		.radio-text,.off-text,.on-text {
+			font-size: 20px;
+			font-weight: normal;
+		}
+
+		.onoff-text, .checkbox-text {
+			font-size: 1em;
+			font-weight: normal;
+		}
+
 		.checkbox-custom,
 		.onoff-custom,
 		.radio-custom {
@@ -71,7 +82,7 @@
 			.custom-icon,.fa {
 				position: absolute;
 				bottom: 5px;
-				font-size: 1.6em;
+				font-size: 30px;
 				color: $color-info;
 				opacity: 0;
 			}

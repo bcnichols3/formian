@@ -42,8 +42,7 @@ Reset.defaultProps = {
 	type: "reset",
 	disabled: true,
 	tabIndex: "0",
-	value: "submit",
-	labelText: "restore defaults",
+	value: "Restore Defaults",
 	className: ""
 };
 

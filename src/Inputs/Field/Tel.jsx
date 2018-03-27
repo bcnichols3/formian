@@ -9,7 +9,7 @@ const Tel = (props) => {
 
 Tel.defaultProps = {
 	type: "tel",
-	name: "phone",
+	name: "tel",
 	defaultValue: "",
 	className: "",
 	autoComplete: "tel",

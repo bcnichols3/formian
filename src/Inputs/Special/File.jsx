@@ -58,9 +58,9 @@ File.defaultProps = {
 	type: "file",
 	accept: "",
 	defaultValue: [],
-	labelText: "Upload an attachment",
-	errorText: "invalid file",
-	placeholder: "No File selected",
+	labelText: "Upload File",
+	errorText: "Invalid file",
+	placeholder: "No file selected",
 	className: "",
 	tabIndex: "0"
 };

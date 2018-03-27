@@ -42,7 +42,8 @@ Select.defaultProps = {
 	type: "select",
 	defaultValue: 0,
 	tabIndex: "0",
-	errorText: "please select an option",
+	placeholder: "",
+	errorText: "Please select an option",
 	className: ""
 };
 
